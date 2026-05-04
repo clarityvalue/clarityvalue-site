@@ -1,0 +1,89 @@
+/* ============================================================
+   Clarity Value — Typography
+   Family: Public Sans (civic-tech canon)
+   Two weights only — 400 regular, 500 emphasized. No 600, no 700.
+   ============================================================ */
+
+/* Brand fonts — Public Sans (self-hosted) */
+@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 100; src: url("../fonts/PublicSans-Thin.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: italic;  font-weight: 100; src: url("../fonts/PublicSans-ThinItalic.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 200; src: url("../fonts/PublicSans-ExtraLight.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: italic;  font-weight: 200; src: url("../fonts/PublicSans-ExtraLightItalic.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 300; src: url("../fonts/PublicSans-Light.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: italic;  font-weight: 300; src: url("../fonts/PublicSans-LightItalic.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 400; src: url("../fonts/PublicSans-Regular.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: italic;  font-weight: 400; src: url("../fonts/PublicSans-Italic.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 500; src: url("../fonts/PublicSans-Medium.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: italic;  font-weight: 500; src: url("../fonts/PublicSans-MediumItalic.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 600; src: url("../fonts/PublicSans-SemiBold.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: italic;  font-weight: 600; src: url("../fonts/PublicSans-SemiBoldItalic.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 700; src: url("../fonts/PublicSans-Bold.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: italic;  font-weight: 700; src: url("../fonts/PublicSans-BoldItalic.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 800; src: url("../fonts/PublicSans-ExtraBold.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: italic;  font-weight: 800; src: url("../fonts/PublicSans-ExtraBoldItalic.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 900; src: url("../fonts/PublicSans-Black.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: italic;  font-weight: 900; src: url("../fonts/PublicSans-BlackItalic.ttf") format("truetype"); font-display: swap; }
+
+/* Mono — Roboto Mono via Google Fonts (no brand mono font supplied) */
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap");
+
+:root {
+  --cv-font-sans: "Public Sans", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --cv-font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Type scale (px) */
+  --cv-fs-10: 10px;    /* search hint badge */
+  --cv-fs-11: 11px;    /* caps eyebrow, breadcrumb, meta, status pill, table header */
+  --cv-fs-115: 11.5px; /* input prefix mono */
+  --cv-fs-12: 12px;    /* body, table body, button, input, action panel */
+  --cv-fs-125: 12.5px; /* input chrome (.fi3) */
+  --cv-fs-13: 13px;    /* card title */
+  --cv-fs-14: 14px;    /* prose body, empty-state title, form-section header small */
+  --cv-fs-16: 16px;    /* prose H1/H2 (admin-authored) */
+  --cv-fs-18: 18px;    /* form-section header large, step title */
+  --cv-fs-20: 20px;    /* page title */
+
+  /* Line-heights */
+  --cv-lh-tight: 1.2;   /* buttons, page title */
+  --cv-lh-snug:  1.3;   /* card titles, h1/h2 chrome */
+  --cv-lh-base:  1.4;   /* h3, header-large, h2 prose */
+  --cv-lh-prose: 1.45;  /* breadcrumb, meta, tags, subtitles */
+  --cv-lh-body:  1.55;  /* prose body, list items, multi-line input */
+  --cv-lh-loose: 1.6;   /* info card body */
+
+  /* Letter-spacing */
+  --cv-ls-tight: -0.01em; /* page title */
+  --cv-ls-table: 0.02em;  /* table headers */
+  --cv-ls-caps:  0.05em;  /* caps eyebrow section headers */
+}
+
+/* Base */
+html, body {
+  font-family: var(--cv-font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: var(--cv-lh-body);
+  color: var(--cv-text-primary);
+  background: var(--cv-surface-page);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Form-element font-family unity rule (2026-04-28) */
+button, input, textarea, select { font-family: inherit; }
+
+/* ---- Display roles (use these classes, not raw element selectors) ---- */
+.cv-page-title    { font-size: 20px; font-weight: 500; line-height: 1.2; letter-spacing: -0.01em; color: var(--cv-text-primary); }
+.cv-card-title    { font-size: 13px; font-weight: 500; line-height: 1.3;  color: var(--cv-text-primary); }
+.cv-card-meta     { font-size: 11px; font-weight: 400; line-height: 1.3;  color: var(--cv-text-tertiary); }
+.cv-breadcrumb    { font-size: 11px; font-weight: 400; line-height: 1.45; color: var(--cv-text-tertiary); }
+.cv-subtitle      { font-size: 12px; font-weight: 400; line-height: 1.45; color: var(--cv-text-tertiary); }
+.cv-eyebrow       { font-size: 11px; font-weight: 500; line-height: 1.3;  letter-spacing: 0.05em; text-transform: uppercase; color: var(--cv-text-tertiary); }
+.cv-form-label    { font-size: 11px; font-weight: 500; line-height: 1.3;  color: var(--cv-text-secondary); padding-bottom: 5px; }
+.cv-table-header  { font-size: 11px; font-weight: 500; line-height: 1.3;  letter-spacing: 0.02em; color: var(--cv-text-tertiary); }
+.cv-table-body    { font-size: 12px; font-weight: 400; line-height: 1.4;  color: var(--cv-text-primary); }
+.cv-body          { font-size: 14px; font-weight: 400; line-height: 1.55; color: var(--cv-text-primary); }
+.cv-body-muted    { font-size: 14px; font-weight: 400; line-height: 1.55; color: var(--cv-text-secondary); }
+.cv-h2-prose      { font-size: 16px; font-weight: 500; line-height: 1.4;  color: var(--cv-text-primary); }
+.cv-h3-prose      { font-size: 14px; font-weight: 500; line-height: 1.4;  color: var(--cv-text-primary); }
+.cv-header-large  { font-size: 18px; font-weight: 500; line-height: 1.3;  color: var(--cv-text-primary); }

@@ -1,0 +1,15 @@
+# Pretty URLs
+/home          /index.html         200
+/solutions     /index.html#modules 302
+/product       /index.html#product 302
+/about         /index.html#about   302
+/approach      /index.html#approach 302
+
+# Old Webflow URLs → new pages (uncomment when migrating DNS)
+# /modules/land        /land-management.html      301
+# /modules/foia        /record-requests.html      301
+# /modules/311         /311.html                  301
+# /modules/reports     /reports.html              301
+# /modules/hr          /human-resources.html      301
+# /modules/budget      /budget-management.html    301
+# /modules/licensing   /licensing.html            301

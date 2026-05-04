@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Clarity Value — The integrated platform for the work of government</title>
+
+<link rel="stylesheet" href="tokens/colors.css" />
+<link rel="stylesheet" href="tokens/typography.css" />
+<link rel="stylesheet" href="tokens/density.css" />
+<link rel="stylesheet" href="tokens/components-controls.css" />
+<link rel="stylesheet" href="tokens/components-display.css" />
+<link rel="stylesheet" href="tokens/components-shell.css" />
+
+<style>
+:root {
+  --cm-navy:#001A3A; --cm-navy-deep:#00132C;
+  --cm-on-dark:#F3F4F6; --cm-on-dark-mut:#9CA0B5; --cm-on-dark-dim:#5C6588;
+  --cm-paper:#F7F3EC; --cm-paper-deep:#EFE8DC;
+  --cm-ink:#1F2733;
+  --cm-page-w:1200px; --cm-pad-h:56px;
+  --cm-line-on-dark:rgba(255,255,255,0.10);
+}
+html,body{margin:0;padding:0}
+body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans);-webkit-font-smoothing:antialiased}
+.cm-wrap{max-width:var(--cm-page-w);margin:0 auto;padding:0 var(--cm-pad-h)}
+.cm-d1{font-size:64px;font-weight:500;line-height:1.04;letter-spacing:-0.026em}
+.cm-eyebrow{font-family:var(--cv-font-mono);font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--cv-text-tertiary)}
+.cm-eyebrow--blue{color:var(--cv-brand-blue)}
+
+/* ====== Paper grain utility ====== */
+.cm-paper-bg{background-color:var(--cm-paper);position:relative}
+.cm-paper-bg::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(80,60,30,0.08) 1px,transparent 1.4px);background-size:3px 3px;mix-blend-mode:multiply;opacity:0.35;z-index:0}
+.cm-paper-bg>*{position:relative;z-index:1}
+
+/* ====== Nav ====== */
+.cm-nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.92);backdrop-filter:saturate(140%) blur(12px);border-bottom:0.5px solid var(--cv-line-hairline)}
+.cm-nav-row{max-width:var(--cm-page-w);margin:0 auto;padding:0 var(--cm-pad-h);height:56px;display:flex;align-items:center;gap:28px}
+.cm-nav-logo{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:500;letter-spacing:-0.015em;color:var(--cv-text-primary);text-decoration:none}
+.cm-nav-logo svg{width:22px;height:22px}
+.cm-nav-links{display:flex;gap:4px;margin-left:12px}
+.cm-nav-link{display:inline-flex;align-items:center;gap:5px;height:30px;padding:0 10px;font-size:13px;color:var(--cv-text-secondary);text-decoration:none;border-radius:6px}
+.cm-nav-link:hover{background:rgba(0,0,0,0.04);color:var(--cv-text-primary)}
+.cm-nav-spacer{flex:1}
+.cm-nav-signin{font-size:13px;color:var(--cv-text-secondary);text-decoration:none;padding:0 10px;height:30px;display:inline-flex;align-items:center;border-radius:6px}
+.cm-nav-signin:hover{background:rgba(0,0,0,0.04)}
+.cm-nav-cta{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px 0 14px;font-size:13px;font-weight:500;color:#fff;background:var(--cv-brand-blue);border-radius:6px;text-decoration:none}
+.cm-nav-cta svg{width:11px;height:11px}
+
+/* ====== Hero ====== */
+.cm-hero{position:relative;background:var(--cm-navy);color:var(--cm-on-dark);overflow:hidden;isolation:isolate}
+.cm-hero-wash{position:absolute;inset:-5% -5% -5% 30%;background-image:url(art/wash-hero.png);background-size:cover;background-position:center;mix-blend-mode:screen;opacity:0.85;pointer-events:none;z-index:0}
+.cm-hero-grid{position:absolute;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(to right,rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 110% 80% at 50% 0%,#000 40%,transparent 100%)}
+.cm-hero-row{position:relative;z-index:1;max-width:var(--cm-page-w);margin:0 auto;padding:96px var(--cm-pad-h) 84px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:56px;align-items:start}
+.cm-hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 10px 6px 9px;background:rgba(255,255,255,0.05);border:0.5px solid var(--cm-line-on-dark);border-radius:999px;font-family:var(--cv-font-mono);font-size:10.5px;font-weight:500;letter-spacing:0.10em;text-transform:uppercase}
+.cm-hero-eyebrow .cm-dot{width:6px;height:6px;border-radius:50%;background:#6FE3A4;box-shadow:0 0 0 3px rgba(111,227,164,0.18)}
+.cm-hero-eyebrow .cm-sep{width:0.5px;height:10px;background:var(--cm-line-on-dark)}
+.cm-hero h1{margin:22px 0 0;font-size:58px;font-weight:500;line-height:1.04;letter-spacing:-0.026em;color:#fff;text-wrap:balance}
+.cm-hero h1 em{font-style:normal;color:#85B7EB;font-weight:500}
+.cm-hero h1 em.cm-script{font-family:var(--cv-font-display);font-style:italic;color:#E8C28A;letter-spacing:-0.02em}
+.cm-hero-lede{margin:22px 0 0;max-width:540px;font-size:17px;line-height:1.55;color:rgba(243,244,246,0.78)}
+.cm-hero-ctas{margin-top:34px;display:flex;align-items:center;gap:10px}
+.cm-btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:8px;font-size:14px;font-weight:500;text-decoration:none;cursor:pointer;border:0}
+.cm-btn--primary{background:var(--cv-brand-blue);color:#fff;box-shadow:inset 0 0 0 0.5px rgba(255,255,255,0.18)}
+.cm-btn--ghost-dark{background:transparent;color:var(--cm-on-dark);box-shadow:inset 0 0 0 0.5px rgba(255,255,255,0.22)}
+.cm-btn--ghost-dark:hover{background:rgba(255,255,255,0.06)}
+.cm-btn svg{width:12px;height:12px}
+.cm-hero-foot{margin-top:36px;padding-top:22px;border-top:0.5px solid var(--cm-line-on-dark);display:flex;flex-wrap:wrap;gap:28px 36px;color:var(--cm-on-dark-mut);font-size:12px}
+.cm-hero-foot-item{display:flex;flex-direction:column;gap:4px}
+.cm-hero-foot-k{font-family:var(--cv-font-mono);font-size:10.5px;letter-spacing:0.10em;text-transform:uppercase;color:var(--cm-on-dark-dim)}
+.cm-hero-foot-v{color:#fff;font-size:13px}
+
+/* Hero right-side composition: rosette quieted, watercolor behind, single product stamp */
+.cm-hero-art{position:relative;height:600px}
+.cm-rose-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.cm-rose{width:540px;height:540px;opacity:0.65}
+.cm-rose-spin{transform-origin:center;animation:cmRoseSpin 140s linear infinite}
+@keyframes cmRoseSpin{to{transform:rotate(360deg)}}
+.cm-stamp{position:absolute;left:50%;top:62%;transform:translate(-50%,-50%);width:380px;background:#fff;border-radius:10px;box-shadow:0 30px 70px rgba(0,0,0,0.45),0 8px 18px rgba(0,0,0,0.30),0 0 0 0.5px rgba(255,255,255,0.08);overflow:hidden}
+.cm-stamp-h{padding:11px 14px 9px;border-bottom:0.5px solid var(--cv-line-hairline);display:flex;align-items:center;justify-content:space-between}
+.cm-stamp-h-title{font-family:var(--cv-font-display);font-size:13px;font-weight:500;color:var(--cv-text-primary)}
+.cm-stamp-h-meta{font-family:var(--cv-font-mono);font-size:10px;color:var(--cv-text-tertiary);letter-spacing:0.04em}
+.cm-stamp-row{padding:11px 14px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
+.cm-stamp-id{font-family:var(--cv-font-mono);font-size:11px;color:var(--cv-text-tertiary)}
+.cm-stamp-text{font-size:12px;color:var(--cv-text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cm-rose-note{position:absolute;font-family:var(--cv-font-mono);font-size:10px;letter-spacing:0.10em;text-transform:uppercase;color:rgba(255,255,255,0.34);line-height:1.5;pointer-events:none}
+.cm-rose-note b{display:block;color:rgba(255,255,255,0.62);font-weight:500;letter-spacing:0.06em}
+.cm-rose-note--tr{top:14px;right:8px;text-align:right}
+.cm-rose-note--bl{bottom:14px;left:8px;text-align:left}
+
+/* ====== Section helpers ====== */
+.cm-sec{padding:96px 0}
+.cm-sec-head{max-width:760px}
+.cm-sec-head .cm-eyebrow{display:block;margin-bottom:14px}
+.cm-sec-h2{margin:0 0 16px;font-size:42px;font-weight:500;line-height:1.08;letter-spacing:-0.02em;color:var(--cv-text-primary);text-wrap:balance}
+.cm-sec-h2 em{font-style:normal;color:var(--cv-brand-blue);font-weight:500}
+.cm-sec-h2 em.cm-script{font-family:var(--cv-font-display);font-style:italic;color:#A07A38}
+.cm-sec-sub{margin:0;font-size:17px;line-height:1.55;color:var(--cv-text-secondary);max-width:620px}
+
+/* ====== Breath bands ====== */
+.cm-breath{position:relative;height:200px;overflow:hidden;background:var(--cm-paper);border-top:0.5px solid var(--cv-line-hairline);border-bottom:0.5px solid var(--cv-line-hairline)}
+.cm-breath::before{content:"";position:absolute;inset:0;background-image:url(art/wash-breath-1.png);background-size:cover;background-position:center;opacity:0.85}
+.cm-breath--alt::before{background-image:url(art/wash-breath-2.png)}
+.cm-breath-line{position:relative;z-index:1;max-width:var(--cm-page-w);margin:0 auto;padding:0 var(--cm-pad-h);height:100%;display:flex;align-items:center;gap:28px}
+.cm-breath-mark{flex:0 0 auto;width:60px;height:60px;border:0.5px solid rgba(31,39,51,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--cv-font-mono);font-size:10px;color:rgba(31,39,51,0.55);letter-spacing:0.1em}
+.cm-breath-q{font-family:var(--cv-font-display);font-style:italic;font-size:24px;font-weight:500;color:rgba(31,39,51,0.78);line-height:1.4;letter-spacing:-0.005em;max-width:760px}
+.cm-breath-q b{font-style:normal;font-weight:500;color:rgba(31,39,51,0.95)}
+
+/* ====== "Not a roll-up" ====== */
+.cm-vs{margin-top:56px;display:grid;grid-template-columns:1fr 80px 1fr;align-items:stretch}
+.cm-vs-col{border:0.5px solid var(--cv-line-hairline);border-radius:14px;padding:28px 28px 24px;background:#fff;position:relative}
+.cm-vs-col--bad{background:#FBFBFB}
+.cm-vs-col--good{background:var(--cm-navy);color:var(--cm-on-dark);border-color:var(--cm-navy-deep)}
+.cm-vs-mid{display:flex;align-items:center;justify-content:center;font-family:var(--cv-font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--cv-text-muted)}
+.cm-vs-label{font-family:var(--cv-font-mono);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--cv-text-tertiary);margin-bottom:8px}
+.cm-vs-col--good .cm-vs-label{color:rgba(255,255,255,0.55)}
+.cm-vs-title{font-size:22px;font-weight:500;letter-spacing:-0.015em;line-height:1.2;margin-bottom:22px;color:var(--cv-text-primary)}
+.cm-vs-col--good .cm-vs-title{color:#fff}
+.cm-vs-list{margin:0;padding:18px 0 0;list-style:none;display:flex;flex-direction:column;gap:10px;border-top:0.5px solid var(--cv-line-hairline)}
+.cm-vs-col--good .cm-vs-list{border-color:var(--cm-line-on-dark)}
+.cm-vs-list li{display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--cv-text-secondary)}
+.cm-vs-col--good .cm-vs-list li{color:rgba(255,255,255,0.78)}
+.cm-vs-list li svg{flex:0 0 auto;margin-top:4px;width:11px;height:11px}
+.cm-vs-list li b{color:var(--cv-text-primary);font-weight:500}
+.cm-vs-col--good .cm-vs-list li b{color:#fff}
+.cm-vs-x{color:#C13F3F}
+.cm-vs-y{color:#6FE3A4}
+
+/* ====== PRODUCT — capability grid (sourced from clarityvalue.co/product) ====== */
+.cm-product{background:var(--cm-paper);border-top:0.5px solid var(--cv-line-hairline);border-bottom:0.5px solid var(--cv-line-hairline);position:relative}
+.cm-product::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(80,60,30,0.08) 1px,transparent 1.4px);background-size:3px 3px;mix-blend-mode:multiply;opacity:0.35;pointer-events:none}
+.cm-product>*{position:relative;z-index:1}
+.cm-cap-grid{margin-top:56px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:0.5px solid rgba(31,39,51,0.18)}
+.cm-cap{padding:32px 28px 36px;border-right:0.5px solid rgba(31,39,51,0.12);border-bottom:0.5px solid rgba(31,39,51,0.12);position:relative;overflow:hidden}
+.cm-cap:nth-child(3n){border-right:0}
+.cm-cap-num{font-family:var(--cv-font-mono);font-size:10.5px;letter-spacing:0.12em;color:rgba(31,39,51,0.45);margin-bottom:18px;display:flex;justify-content:space-between}
+.cm-cap-num span:last-child{color:rgba(31,39,51,0.30)}
+.cm-cap-mark{width:54px;height:54px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;color:rgba(31,39,51,0.7)}
+.cm-cap-mark svg{width:100%;height:100%}
+.cm-cap-h{margin:0 0 10px;font-family:var(--cv-font-display);font-size:18px;font-weight:500;line-height:1.25;letter-spacing:-0.005em;color:var(--cv-text-primary)}
+.cm-cap-b{margin:0;font-size:13.5px;line-height:1.55;color:var(--cv-text-secondary)}
+.cm-cap-bloom{position:absolute;width:140px;height:140px;border-radius:50%;filter:blur(28px);opacity:0.45;pointer-events:none}
+
+/* ====== Modules — minimal frames; per-module wash inside ====== */
+.cm-modules{background:#fff}
+.cm-modules-head{padding:96px 0 60px}
+.cm-mod{padding:64px 0;border-top:0.5px solid var(--cv-line-hairline)}
+.cm-mod-row{display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);gap:56px;align-items:center}
+.cm-mod--reverse .cm-mod-row{grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr)}
+.cm-mod--reverse .cm-mod-copy{order:2}
+.cm-mod--reverse .cm-mod-art{order:1}
+.cm-mod-num{font-family:var(--cv-font-mono);font-size:11px;letter-spacing:0.10em;color:var(--cv-text-muted);margin-bottom:12px}
+.cm-mod-num strong{color:var(--cv-brand-blue);font-weight:500}
+.cm-mod-title{font-size:32px;font-weight:500;letter-spacing:-0.018em;line-height:1.12;margin:0 0 14px;color:var(--cv-text-primary);text-wrap:balance}
+.cm-mod-lede{font-size:16px;line-height:1.55;color:var(--cv-text-secondary);margin:0 0 22px;max-width:460px}
+.cm-mod-feats{margin:0 0 24px;padding:18px 0 0;list-style:none;display:flex;flex-direction:column;gap:14px;border-top:0.5px solid var(--cv-line-hairline)}
+.cm-mod-feats li{display:grid;grid-template-columns:80px 1fr;gap:16px;font-size:13.5px;line-height:1.5;color:var(--cv-text-secondary)}
+.cm-mod-feats li b{color:var(--cv-text-primary);font-weight:500}
+.cm-mod-feats li .cm-feat-k{font-family:var(--cv-font-mono);font-size:10.5px;letter-spacing:0.10em;text-transform:uppercase;color:var(--cv-text-muted);padding-top:3px}
+.cm-mod-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--cv-brand-blue);text-decoration:none;border-bottom:0.5px solid transparent;padding-bottom:1px}
+.cm-mod-link:hover{border-color:var(--cv-brand-blue)}
+.cm-mod-link svg{width:11px;height:11px}
+
+/* Each module art frame: paper plate + per-module watercolor wash + tilted product UI */
+.cm-mod-art{position:relative;height:430px;border-radius:14px;background-color:var(--cm-paper);border:0.5px solid var(--cv-line-hairline);overflow:hidden;isolation:isolate}
+.cm-mod-art::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center;opacity:0.95;z-index:0}
+.cm-mod-art--land::before{background-image:url(art/wash-mod-land.png)}
+.cm-mod-art--foia::before{background-image:url(art/wash-mod-foia.png)}
+.cm-mod-art--311::before{background-image:url(art/wash-mod-311.png)}
+.cm-mod-art--reports::before{background-image:url(art/wash-mod-reports.png)}
+.cm-mod-art--hr::before{background-image:url(art/wash-mod-hr.png)}
+.cm-mod-art--budget::before{background-image:url(art/wash-mod-budget.png)}
+.cm-mod-art--licensing::before{background-image:url(art/wash-mod-licensing.png)}
+.cm-mod-art-spec{position:absolute;top:14px;left:16px;font-family:var(--cv-font-mono);font-size:9.5px;letter-spacing:0.10em;text-transform:uppercase;color:rgba(31,39,51,0.55);z-index:2}
+.cm-mod-art-mark{position:absolute;top:14px;right:16px;width:38px;height:38px;border:0.5px solid rgba(31,39,51,0.35);border-radius:50%;z-index:2;display:flex;align-items:center;justify-content:center;font-family:var(--cv-font-mono);font-size:9px;color:rgba(31,39,51,0.55);letter-spacing:0.05em;background:rgba(247,243,236,0.4);backdrop-filter:blur(2px)}
+.cm-mod-surface{position:absolute;background:#fff;border-radius:10px;overflow:hidden;z-index:3;box-shadow:0 24px 50px rgba(0,26,58,0.18),0 4px 12px rgba(0,26,58,0.10),0 0 0 0.5px rgba(0,0,0,0.06)}
+
+/* ====== ABOUT (mission band) — paper bg, hand-drawn flair ====== */
+.cm-about{background:var(--cm-paper);position:relative;border-top:0.5px solid var(--cv-line-hairline);border-bottom:0.5px solid var(--cv-line-hairline)}
+.cm-about::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(80,60,30,0.08) 1px,transparent 1.4px);background-size:3px 3px;mix-blend-mode:multiply;opacity:0.35;pointer-events:none}
+.cm-about-row{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;padding:96px 0}
+.cm-about-headline{font-family:var(--cv-font-display);font-size:42px;font-weight:500;line-height:1.1;letter-spacing:-0.02em;color:var(--cv-text-primary);margin:14px 0 20px;text-wrap:balance}
+.cm-about-headline em{font-style:italic;color:#A07A38;font-weight:500;font-family:var(--cv-font-display)}
+.cm-about-quote{margin:0 0 28px;padding:0 0 0 16px;border-left:1px solid rgba(31,39,51,0.25);font-size:15.5px;line-height:1.6;color:var(--cv-text-secondary);font-style:italic;max-width:520px}
+.cm-about-quote cite{display:block;margin-top:8px;font-style:normal;font-family:var(--cv-font-mono);font-size:11px;color:var(--cv-text-muted);letter-spacing:0.06em}
+.cm-values{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:0;border-top:0.5px solid rgba(31,39,51,0.18)}
+.cm-value{padding:22px 0;border-bottom:0.5px solid rgba(31,39,51,0.10);display:grid;grid-template-columns:130px 1fr;gap:24px;align-items:start}
+.cm-value-k{font-family:var(--cv-font-mono);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--cv-text-muted);padding-top:3px}
+.cm-value-h{margin:0 0 4px;font-family:var(--cv-font-display);font-size:16px;font-weight:500;letter-spacing:-0.005em;color:var(--cv-text-primary)}
+.cm-value-b{margin:0;font-size:14px;line-height:1.55;color:var(--cv-text-secondary)}
+.cm-about-meta{margin-top:40px;padding-top:22px;border-top:0.5px solid rgba(31,39,51,0.18);display:grid;grid-template-columns:repeat(3,1fr);gap:24px;font-family:var(--cv-font-mono);font-size:11px;color:var(--cv-text-muted)}
+.cm-about-meta b{display:block;color:var(--cv-text-primary);font-family:var(--cv-font-display);font-size:18px;font-weight:500;letter-spacing:-0.01em;margin-bottom:4px}
+
+/* ====== Philosophy ====== */
+.cm-philosophy{background:var(--cm-navy);color:var(--cm-on-dark);padding:110px 0;position:relative}
+.cm-philosophy::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 90% 70% at 50% 50%,#000 30%,transparent 100%);pointer-events:none}
+.cm-philosophy>.cm-wrap{position:relative;z-index:1}
+.cm-philosophy-head{max-width:760px;margin-bottom:72px}
+.cm-philosophy-h2{margin:0;font-size:42px;font-weight:500;line-height:1.08;letter-spacing:-0.02em;color:#fff;text-wrap:balance}
+.cm-philosophy-h2 em{font-style:normal;color:#85B7EB;font-weight:500}
+.cm-philosophy-h2 em.cm-script{font-family:var(--cv-font-display);font-style:italic;color:#E8C28A}
+.cm-philosophy-sub{margin:18px 0 0;font-size:17px;line-height:1.55;color:var(--cm-on-dark-dim);max-width:580px}
+.cm-principles{display:grid;grid-template-columns:repeat(4,1fr);border-top:0.5px solid rgba(255,255,255,0.14)}
+.cm-principle{padding:32px 28px 0 0;position:relative}
+.cm-principle+.cm-principle{border-left:0.5px solid rgba(255,255,255,0.14);padding-left:28px}
+.cm-principle-num{font-family:var(--cv-font-mono);font-size:11px;letter-spacing:0.14em;color:rgba(255,255,255,0.45);margin-bottom:18px;display:block}
+.cm-principle-h3{margin:0 0 12px;font-family:var(--cv-font-display);font-size:22px;font-weight:500;line-height:1.18;letter-spacing:-0.01em;color:#fff;text-wrap:balance}
+.cm-principle-body{margin:0;font-size:14.5px;line-height:1.55;color:var(--cm-on-dark-dim)}
+
+/* ====== Closing CTA — strengthened ====== */
+.cm-cta{background:var(--cm-navy);color:var(--cm-on-dark);padding:130px 0 90px;position:relative;overflow:hidden}
+.cm-cta-wash{position:absolute;inset:0;background-image:url(art/wash-cta.png);background-size:cover;background-position:center;mix-blend-mode:screen;opacity:0.7;pointer-events:none}
+.cm-cta-row{position:relative;z-index:1;display:grid;grid-template-columns:1.4fr 1fr;gap:80px;align-items:end}
+.cm-cta-h2{margin:0;font-size:54px;font-weight:500;line-height:1.04;letter-spacing:-0.025em;color:#fff;text-wrap:balance}
+.cm-cta-h2 em{font-style:normal;color:#85B7EB;font-weight:500}
+.cm-cta-h2 em.cm-script{font-family:var(--cv-font-display);font-style:italic;color:#E8C28A}
+.cm-cta-side{display:flex;flex-direction:column;gap:24px}
+.cm-cta-side p{margin:0;font-size:15px;line-height:1.55;color:rgba(243,244,246,0.78);max-width:360px}
+.cm-cta-actions{display:flex;align-items:center;gap:12px}
+
+/* ====== Footer ====== */
+.cm-footer{background:var(--cm-navy);color:var(--cm-on-dark-dim);padding:60px 0 48px;border-top:0.5px solid rgba(255,255,255,0.10)}
+.cm-footer-row{display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:48px}
+.cm-footer-brand .cm-logo{color:#fff;font-family:var(--cv-font-display);font-size:18px;font-weight:500;letter-spacing:-0.01em;display:flex;align-items:center;gap:9px;margin-bottom:14px}
+.cm-footer-brand p{margin:0;font-size:12.5px;line-height:1.6;color:rgba(255,255,255,0.45);max-width:280px}
+.cm-footer-col h4{margin:0 0 14px;font-family:var(--cv-font-mono);font-size:10.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.55)}
+.cm-footer-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.cm-footer-col a{color:rgba(255,255,255,0.72);text-decoration:none;font-size:13px}
+.cm-footer-fine{margin-top:64px;padding-top:22px;border-top:0.5px solid rgba(255,255,255,0.10);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-family:var(--cv-font-mono);font-size:10.5px;letter-spacing:0.10em;text-transform:uppercase;color:rgba(255,255,255,0.40)}
+</style>
+</head>
+<body>
+
+<header class="cm-nav">
+  <div class="cm-nav-row">
+    <a href="#" class="cm-nav-logo">
+      <svg viewBox="0 0 22 22" fill="none"><path d="M3 11a8 8 0 1116 0" stroke="#001A3A" stroke-width="1.6" stroke-linecap="round"/><path d="M19 11a8 8 0 01-13.6 5.7" stroke="#185FA5" stroke-width="1.6" stroke-linecap="round"/><circle cx="11" cy="11" r="2.2" fill="#001A3A"/></svg>
+      <span>Clarity Value</span>
+    </a>
+    <nav class="cm-nav-links">
+      <a class="cm-nav-link" href="#product">Product</a>
+      <a class="cm-nav-link" href="#modules">Solutions</a>
+      <a class="cm-nav-link" href="#about">About</a>
+      <a class="cm-nav-link" href="#approach">Approach</a>
+      <a class="cm-nav-link" href="#">Security</a>
+    </nav>
+    <div class="cm-nav-spacer"></div>
+    <a class="cm-nav-signin" href="#">Sign in</a>
+    <a class="cm-nav-cta" href="#cta">Request a pilot
+      <svg viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 2.5l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="cm-hero">
+    <div class="cm-hero-grid"></div>
+    <div class="cm-hero-wash"></div>
+    <div class="cm-hero-row">
+      <div>
+        <span class="cm-hero-eyebrow">
+          <span class="cm-dot"></span><span>One platform</span>
+          <span class="cm-sep"></span><span>Built in Miami</span>
+        </span>
+        <h1>The system <br/>underneath <em class="cm-script">the system.</em></h1>
+        <p class="cm-hero-lede">Civic infrastructure for the full range of public-sector work — permitting, records, citizen services, case management. One codebase, one data model, one team. Built for the citizen who files once, and the clerk who opens it eighty times a day.</p>
+        <div class="cm-hero-ctas">
+          <a class="cm-btn cm-btn--primary" href="#cta">Request a pilot
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h7M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </a>
+          <a class="cm-btn cm-btn--ghost-dark" href="#product">See the platform</a>
+        </div>
+        <div class="cm-hero-foot">
+          <div class="cm-hero-foot-item"><span class="cm-hero-foot-k">Built</span><span class="cm-hero-foot-v">In-house · one codebase</span></div>
+          <div class="cm-hero-foot-item"><span class="cm-hero-foot-k">Hosting</span><span class="cm-hero-foot-v">Google Cloud · US-only</span></div>
+          <div class="cm-hero-foot-item"><span class="cm-hero-foot-k">Compliance</span><span class="cm-hero-foot-v">SOC 2 Type II · annual pen-tests</span></div>
+          <div class="cm-hero-foot-item"><span class="cm-hero-foot-k">Deploys</span><span class="cm-hero-foot-v">Counties, cities, state agencies</span></div>
+        </div>
+      </div>
+      <div class="cm-hero-art">
+        <span class="cm-rose-note cm-rose-note--tr"><b>FIG · 01</b>The work of government<br/>One platform, twenty modules</span>
+        <span class="cm-rose-note cm-rose-note--bl"><b>CV-PLATFORM · v3</b>Live surface<br/>Real product, framed as art</span>
+        <div class="cm-rose-wrap">
+          <svg class="cm-rose" id="cm-rose" viewBox="0 0 540 540" aria-hidden="true"></svg>
+        </div>
+        <div class="cm-stamp" id="cm-stamp">
+          <div class="cm-stamp-h">
+            <span class="cm-stamp-h-title">Live across the platform</span>
+            <span class="cm-stamp-h-meta">JUST NOW</span>
+          </div>
+          <div class="cm-stamp-row" id="cm-stamp-row">
+            <span class="cm-stamp-id">SUB-2024-002</span>
+            <span class="cm-stamp-text">Permit issued · Building, Coral Way</span>
+            <span class="cv-pill cv-pill--green">Completion</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BREATH 1 -->
+  <div class="cm-breath" aria-hidden="true">
+    <div class="cm-breath-line">
+      <div class="cm-breath-mark">FIG.02</div>
+      <div class="cm-breath-q">Permits, FOIA, 311, reporting — <b>one product underneath</b>. Not seven companies in a trench coat.</div>
+    </div>
+  </div>
+
+  <!-- NOT A ROLL-UP -->
+  <section class="cm-sec" id="approach">
+    <div class="cm-wrap">
+      <div class="cm-sec-head">
+        <span class="cm-eyebrow cm-eyebrow--blue">The argument</span>
+        <h2 class="cm-sec-h2">Most "gov-tech platforms" are <em class="cm-script">seven companies in a trench coat.</em></h2>
+        <p class="cm-sec-sub">Stitched together by private equity. Different codebases, different data models, different login screens. Clarity Value is one product, built in-house, on one stack.</p>
+      </div>
+      <div class="cm-vs">
+        <div class="cm-vs-col cm-vs-col--bad">
+          <div class="cm-vs-label">The status quo</div>
+          <div class="cm-vs-title">A roll-up wearing a logo</div>
+          <ul class="cm-vs-list">
+            <li><svg viewBox="0 0 11 11" class="cm-vs-x"><path d="M2 2l7 7M9 2l-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span><b>3–7 acquired products</b> with separate codebases, glued together with a unified-looking marketing site.</span></li>
+            <li><svg viewBox="0 0 11 11" class="cm-vs-x"><path d="M2 2l7 7M9 2l-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Citizens hit <b>different login pages</b> for permits and FOIA. Clerks juggle three sidebars a day.</span></li>
+            <li><svg viewBox="0 0 11 11" class="cm-vs-x"><path d="M2 2l7 7M9 2l-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Reports run on <b>nightly ETLs between databases</b> — your "real-time dashboard" is yesterday's data.</span></li>
+            <li><svg viewBox="0 0 11 11" class="cm-vs-x"><path d="M2 2l7 7M9 2l-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Configuration changes require <b>professional services from each vendor team</b>.</span></li>
+          </ul>
+        </div>
+        <div class="cm-vs-mid"><span style="display:inline-flex;flex-direction:column;align-items:center;gap:8px"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M5 11h12M13 7l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>vs.</span></span></div>
+        <div class="cm-vs-col cm-vs-col--good">
+          <div class="cm-vs-label">Clarity Value</div>
+          <div class="cm-vs-title">One product. One codebase. One data model.</div>
+          <ul class="cm-vs-list">
+            <li><svg viewBox="0 0 11 11" class="cm-vs-y"><path d="M2 6l3 3 5-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><b>Every module ships from the same repo.</b> A status pill in Permitting is the same component as in 311.</span></li>
+            <li><svg viewBox="0 0 11 11" class="cm-vs-y"><path d="M2 6l3 3 5-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><b>One login</b> for citizens. One sidebar for staff. One design system across every surface they touch.</span></li>
+            <li><svg viewBox="0 0 11 11" class="cm-vs-y"><path d="M2 6l3 3 5-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>Reports query the <b>same database</b> staff are working in. No ETL, no stale dashboards.</span></li>
+            <li><svg viewBox="0 0 11 11" class="cm-vs-y"><path d="M2 6l3 3 5-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><b>Self-serve configuration.</b> A clerk can re-route a workflow on a Tuesday afternoon.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT — capability grid (sourced from clarityvalue.co/product) -->
+  <section class="cm-product cm-sec" id="product">
+    <div class="cm-wrap">
+      <div class="cm-sec-head">
+        <span class="cm-eyebrow cm-eyebrow--blue">The product</span>
+        <h2 class="cm-sec-h2">Everything you need, <em class="cm-script">in one place.</em></h2>
+        <p class="cm-sec-sub">Accept documents. Assign tasks. Share updates. Track progress. Process payments. Nine capabilities, one platform — turn on what you need, when you need it.</p>
+      </div>
+      <div class="cm-cap-grid">
+        <div class="cm-cap"><div class="cm-cap-bloom" style="background:#5B7FBF;top:-30px;right:-30px"></div>
+          <div class="cm-cap-num"><span>01</span><span>FORMS</span></div>
+          <div class="cm-cap-mark"><svg viewBox="0 0 54 54" fill="none"><rect x="10" y="8" width="34" height="42" rx="2" stroke="currentColor" stroke-width="1"/><path d="M16 18h22M16 24h22M16 30h14M16 36h22M16 42h16" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></div>
+          <h3 class="cm-cap-h">Digital intake</h3>
+          <p class="cm-cap-b">Digitize any form and pre-populate templates to speed up the application process. Conditional logic, file uploads, e-signatures.</p>
+        </div>
+        <div class="cm-cap"><div class="cm-cap-bloom" style="background:#A07A38;bottom:-30px;left:-30px"></div>
+          <div class="cm-cap-num"><span>02</span><span>RECORDS</span></div>
+          <div class="cm-cap-mark"><svg viewBox="0 0 54 54" fill="none"><rect x="8" y="14" width="38" height="32" rx="2" stroke="currentColor" stroke-width="1"/><path d="M8 22h38M16 30h22M16 36h14" stroke="currentColor" stroke-width="1" stroke-linecap="round"/><circle cx="14" cy="18" r="1" fill="currentColor"/></svg></div>
+          <h3 class="cm-cap-h">Records management</h3>
+          <p class="cm-cap-b">Track the status of records on a searchable page or kanban board. Receive, store, share and analyze across satellite offices and state agencies.</p>
+        </div>
+        <div class="cm-cap"><div class="cm-cap-bloom" style="background:#5B7FBF;top:-30px;right:-30px"></div>
+          <div class="cm-cap-num"><span>03</span><span>MAP</span></div>
+          <div class="cm-cap-mark"><svg viewBox="0 0 54 54" fill="none"><path d="M8 14l13-4 13 4 13-4v32l-13 4-13-4-13 4z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/><path d="M21 10v32M34 14v32" stroke="currentColor" stroke-width="1"/><circle cx="27" cy="26" r="3" fill="currentColor"/></svg></div>
+          <h3 class="cm-cap-h">GIS &amp; mapping</h3>
+          <p class="cm-cap-b">Pinpoint locations for service requests, permit applications, and more. View and filter records on an interactive map.</p>
+        </div>
+        <div class="cm-cap"><div class="cm-cap-bloom" style="background:#7BA888;bottom:-30px;right:-30px"></div>
+          <div class="cm-cap-num"><span>04</span><span>BILLING</span></div>
+          <div class="cm-cap-mark"><svg viewBox="0 0 54 54" fill="none"><rect x="8" y="14" width="38" height="26" rx="2" stroke="currentColor" stroke-width="1"/><path d="M8 22h38" stroke="currentColor" stroke-width="1"/><rect x="14" y="28" width="10" height="6" rx="1" fill="currentColor" opacity="0.5"/></svg></div>
+          <h3 class="cm-cap-h">Payments &amp; revenue</h3>
+          <p class="cm-cap-b">Generate invoices, process payments, allocate funds, and track revenue with our all-in-one solution.</p>
+        </div>
+        <div class="cm-cap"><div class="cm-cap-bloom" style="background:#A07A38;top:-30px;left:-30px"></div>
+          <div class="cm-cap-num"><span>05</span><span>REDACT</span></div>
+          <div class="cm-cap-mark"><svg viewBox="0 0 54 54" fill="none"><rect x="10" y="8" width="34" height="42" rx="2" stroke="currentColor" stroke-width="1"/><rect x="16" y="18" width="20" height="3" fill="currentColor" opacity="0.7"/><rect x="16" y="26" width="14" height="3" fill="currentColor" opacity="0.7"/><rect x="16" y="34" width="22" height="3" fill="currentColor" opacity="0.7"/></svg></div>
+          <h3 class="cm-cap-h">Document manager</h3>
+          <p class="cm-cap-b">Annotate and redact records using our document manager. Easily share records with end-users and colleagues in government.</p>
+        </div>
+        <div class="cm-cap"><div class="cm-cap-bloom" style="background:#5B7FBF;bottom:-30px;left:-30px"></div>
+          <div class="cm-cap-num"><span>06</span><span>REPORTS</span></div>
+          <div class="cm-cap-mark"><svg viewBox="0 0 54 54" fill="none"><path d="M8 44h38" stroke="currentColor" stroke-width="1"/><rect x="12" y="32" width="6" height="12" fill="currentColor" opacity="0.5"/><rect x="22" y="22" width="6" height="22" fill="currentColor" opacity="0.7"/><rect x="32" y="14" width="6" height="30" fill="currentColor" opacity="0.9"/></svg></div>
+          <h3 class="cm-cap-h">Reports &amp; KPIs</h3>
+          <p class="cm-cap-b">Run customized reports for insight or compliance. Bird's-eye view of agency projects with key indicators delivered to your inbox.</p>
+        </div>
+        <div class="cm-cap"><div class="cm-cap-bloom" style="background:#7BA888;top:-30px;right:-30px"></div>
+          <div class="cm-cap-num"><span>07</span><span>ROLES</span></div>
+          <div class="cm-cap-mark"><svg viewBox="0 0 54 54" fill="none"><circle cx="20" cy="20" r="6" stroke="currentColor" stroke-width="1"/><circle cx="36" cy="22" r="5" stroke="currentColor" stroke-width="1"/><path d="M10 42c0-6 4-10 10-10s10 4 10 10M30 42c0-5 3-8 6-8s6 3 6 8" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></div>
+          <h3 class="cm-cap-h">Roles &amp; permissions</h3>
+          <p class="cm-cap-b">Set appropriate permissions and interfaces for different government employees. One platform, many access models.</p>
+        </div>
+        <div class="cm-cap"><div class="cm-cap-bloom" style="background:#A07A38;bottom:-30px;right:-30px"></div>
+          <div class="cm-cap-num"><span>08</span><span>SECURITY</span></div>
+          <div class="cm-cap-mark"><svg viewBox="0 0 54 54" fill="none"><path d="M27 8l16 6v12c0 10-7 17-16 20-9-3-16-10-16-20V14z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/><path d="M21 28l4 4 8-8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+          <h3 class="cm-cap-h">Triple-encrypted</h3>
+          <p class="cm-cap-b">Protect data with triple-encrypted storage. SOC 2 Type II, US-only hosting on Google Cloud, annual penetration testing.</p>
+        </div>
+        <div class="cm-cap"><div class="cm-cap-bloom" style="background:#5B7FBF;top:-30px;left:-30px"></div>
+          <div class="cm-cap-num"><span>09</span><span>SUPPORT</span></div>
+          <div class="cm-cap-mark"><svg viewBox="0 0 54 54" fill="none"><circle cx="27" cy="27" r="18" stroke="currentColor" stroke-width="1"/><path d="M22 24c0-3 2-5 5-5s5 2 5 5c0 2-1 3-3 4l-2 1v3M27 36v0.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+          <h3 class="cm-cap-h">Hands-on support</h3>
+          <p class="cm-cap-b">Real humans, fast response. The team that builds the platform also configures it for your statute, your rulebook, your people.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BREATH 2 -->
+  <div class="cm-breath cm-breath--alt" aria-hidden="true">
+    <div class="cm-breath-line">
+      <div class="cm-breath-mark">FIG.03</div>
+      <div class="cm-breath-q">"In the same way TurboTax can help you with tax filing, <b>we can do that for every other government service.</b> Why should that not be the case?"</div>
+    </div>
+  </div>
+
+  <!-- MODULES -->
+  <section class="cm-modules" id="modules">
+    <div class="cm-wrap">
+      <div class="cm-modules-head">
+        <span class="cm-eyebrow cm-eyebrow--blue">Solutions</span>
+        <h2 class="cm-sec-h2" style="margin-top:14px">Seven modules. <em>One product underneath.</em></h2>
+        <p class="cm-sec-sub">Land, HR, budget, licensing, records, citizen services, reports — every workflow we run is engineered the same way: one database, one auth, one design system. Contracts, e-sign, vendors, and constituent CRM thread through all of them.</p>
+      </div>
+    </div>
+
+    <div class="cm-mod">
+      <div class="cm-wrap">
+        <div class="cm-mod-row">
+          <div class="cm-mod-copy">
+            <div class="cm-mod-num"><strong>01</strong> &nbsp;/&nbsp; Land Management</div>
+            <h3 class="cm-mod-title">Permits, plan reviews, inspections — without the printer.</h3>
+            <p class="cm-mod-lede">Intake to issuance on one timeline. Citizens upload plans, departments review in parallel, fees are paid online, and the certificate prints itself.</p>
+            <ul class="cm-mod-feats">
+              <li><span class="cm-feat-k">Intake</span><span><b>Configurable application forms</b> with conditional logic; required-field amber, not error red.</span></li>
+              <li><span class="cm-feat-k">Review</span><span><b>Parallel department review</b> with an audit trail every reviewer can see — no email-thread archaeology.</span></li>
+              <li><span class="cm-feat-k">Issuance</span><span><b>Auto-generated certificates</b> with QR-verifiable IDs and a citizen-facing record locker.</span></li>
+            </ul>
+            <a class="cm-mod-link" href="land-management.html">See Land Management <svg viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 2.5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+          </div>
+          <div class="cm-mod-art cm-mod-art--land">
+            <span class="cm-mod-art-spec">SUBMISSIONS · LIVE</span>
+            <span class="cm-mod-art-mark">01</span>
+            <div class="cm-mod-surface" id="cm-mod-art-1"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cm-mod cm-mod--reverse">
+      <div class="cm-wrap">
+        <div class="cm-mod-row">
+          <div class="cm-mod-art cm-mod-art--foia">
+            <span class="cm-mod-art-spec">FOIA · INTAKE QUEUE</span>
+            <span class="cm-mod-art-mark">02</span>
+            <div class="cm-mod-surface" id="cm-mod-art-2"></div>
+          </div>
+          <div class="cm-mod-copy">
+            <div class="cm-mod-num"><strong>02</strong> &nbsp;/&nbsp; Record Requests</div>
+            <h3 class="cm-mod-title">FOIA without the spreadsheet.</h3>
+            <p class="cm-mod-lede">Public-records requests routed by topic, redacted in-app, fulfilled with a deadline counter the requester can see. Built for the statute, not against it.</p>
+            <ul class="cm-mod-feats">
+              <li><span class="cm-feat-k">Routing</span><span><b>Auto-assignment by record type</b> — police, planning, finance — with override and reassignment in one click.</span></li>
+              <li><span class="cm-feat-k">Redaction</span><span><b>In-app PDF redaction</b> with exemption-code tagging that survives audit.</span></li>
+              <li><span class="cm-feat-k">Deadlines</span><span><b>SLA timers visible to both sides</b>, with green/amber/red phase indicators tied to your statutory clock.</span></li>
+            </ul>
+            <a class="cm-mod-link" href="record-requests.html">See Record Requests <svg viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 2.5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cm-mod">
+      <div class="cm-wrap">
+        <div class="cm-mod-row">
+          <div class="cm-mod-copy">
+            <div class="cm-mod-num"><strong>03</strong> &nbsp;/&nbsp; 311 / Citizen Services</div>
+            <h3 class="cm-mod-title">From "there's a pothole" to a closed work order.</h3>
+            <p class="cm-mod-lede">One intake surface — web, phone, mobile — and one queue your public-works team actually wants to open. Every request lands as a typed, routable record.</p>
+            <ul class="cm-mod-feats">
+              <li><span class="cm-feat-k">Intake</span><span><b>Map-pinned, geocoded reports</b> with photo upload and auto-deduplication against open work orders.</span></li>
+              <li><span class="cm-feat-k">Routing</span><span><b>Department-aware dispatch</b> — the right crew gets the right ticket without a triage meeting.</span></li>
+              <li><span class="cm-feat-k">Closure</span><span><b>Citizen status updates</b> with photo evidence on resolution. The reporter knows it's fixed.</span></li>
+            </ul>
+            <a class="cm-mod-link" href="311.html">See 311 / Citizen Services <svg viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 2.5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+          </div>
+          <div class="cm-mod-art cm-mod-art--311">
+            <span class="cm-mod-art-spec">311 · WORK ORDERS</span>
+            <span class="cm-mod-art-mark">03</span>
+            <div class="cm-mod-surface" id="cm-mod-art-3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cm-mod cm-mod--reverse">
+      <div class="cm-wrap">
+        <div class="cm-mod-row">
+          <div class="cm-mod-art cm-mod-art--reports">
+            <span class="cm-mod-art-spec">REPORTS · DASHBOARD</span>
+            <span class="cm-mod-art-mark">04</span>
+            <div class="cm-mod-surface" id="cm-mod-art-4"></div>
+          </div>
+          <div class="cm-mod-copy">
+            <div class="cm-mod-num"><strong>04</strong> &nbsp;/&nbsp; Reports &amp; Dashboards</div>
+            <h3 class="cm-mod-title">Real numbers. Live. From the same database your staff are working in.</h3>
+            <p class="cm-mod-lede">No nightly ETL, no stale tab. The dashboard your director opens at 8am is the same data the clerk just typed at 7:58.</p>
+            <ul class="cm-mod-feats">
+              <li><span class="cm-feat-k">Live</span><span><b>Streaming-fresh aggregates</b> across permits, FOIA, and 311 — no warehouse round-trip.</span></li>
+              <li><span class="cm-feat-k">Drill-down</span><span><b>Click any number, land in the underlying records.</b> Aggregates and sources are the same model.</span></li>
+              <li><span class="cm-feat-k">Export</span><span><b>Council-ready PDF and CSV</b> for monthly reporting; scheduled emails for the people who want them in their inbox.</span></li>
+            </ul>
+            <a class="cm-mod-link" href="reports.html">See Reports &amp; Dashboards <svg viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 2.5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cm-mod">
+      <div class="cm-wrap">
+        <div class="cm-mod-row">
+          <div class="cm-mod-copy">
+            <div class="cm-mod-num"><strong>05</strong> &nbsp;/&nbsp; Human Resources</div>
+            <h3 class="cm-mod-title">The people side of government — onboarded, supported, on the books.</h3>
+            <p class="cm-mod-lede">Job posting to last paycheck. Offer letters that get signed on a phone. Employment contracts that don't live in someone's filing cabinet.</p>
+            <ul class="cm-mod-feats">
+              <li><span class="cm-feat-k">Record</span><span><b>One file per person</b> — bio, comp, role history, certifications, leave, reviews, contract.</span></li>
+              <li><span class="cm-feat-k">Contracts</span><span><b>Native e-sign + versioned templates</b> — offer, employment, NDA, separation. Same engine across HR, vendor, licensing.</span></li>
+              <li><span class="cm-feat-k">Reviews</span><span><b>Performance &amp; leave on a cadence the system enforces</b> — managers do less administration.</span></li>
+            </ul>
+            <a class="cm-mod-link" href="human-resources.html">See Human Resources <svg viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 2.5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+          </div>
+          <div class="cm-mod-art cm-mod-art--hr">
+            <span class="cm-mod-art-spec">EMPLOYEE · RECORD</span>
+            <span class="cm-mod-art-mark">05</span>
+            <div class="cm-mod-surface" id="cm-mod-art-5"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cm-mod cm-mod--reverse">
+      <div class="cm-wrap">
+        <div class="cm-mod-row">
+          <div class="cm-mod-art cm-mod-art--budget">
+            <span class="cm-mod-art-spec">BUDGET · BOOK</span>
+            <span class="cm-mod-art-mark">06</span>
+            <div class="cm-mod-surface" id="cm-mod-art-6"></div>
+          </div>
+          <div class="cm-mod-copy">
+            <div class="cm-mod-num"><strong>06</strong> &nbsp;/&nbsp; Budget Management</div>
+            <h3 class="cm-mod-title">Follow the money. From appropriation to paid invoice.</h3>
+            <p class="cm-mod-lede">Funds, encumbrances, vendors, contracts, invoices, payments. The chain of custody from "council approved" to "vendor cashed the check" — readable end-to-end.</p>
+            <ul class="cm-mod-feats">
+              <li><span class="cm-feat-k">Live</span><span><b>Available / encumbered / spent</b> updated on every transaction — not nightly batch.</span></li>
+              <li><span class="cm-feat-k">Vendors</span><span><b>360° vendor file</b> — W-9, COI, debarment, contracts, POs, invoices, performance — one record, not seven.</span></li>
+              <li><span class="cm-feat-k">AP</span><span><b>Three-way match without the spreadsheet.</b> Days, not weeks, from invoice to disbursement.</span></li>
+            </ul>
+            <a class="cm-mod-link" href="budget-management.html">See Budget Management <svg viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 2.5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cm-mod">
+      <div class="cm-wrap">
+        <div class="cm-mod-row">
+          <div class="cm-mod-copy">
+            <div class="cm-mod-num"><strong>07</strong> &nbsp;/&nbsp; Licensing</div>
+            <h3 class="cm-mod-title">Apply, sign, issue, renew. All in the browser.</h3>
+            <p class="cm-mod-lede">Every license your charter authorizes — applied for, paid for, e-signed, and issued online. With a CRM-grade view of the licensee on the other side.</p>
+            <ul class="cm-mod-feats">
+              <li><span class="cm-feat-k">Apply</span><span><b>Branded public portal</b> with conditional questions, document upload, and inline payment.</span></li>
+              <li><span class="cm-feat-k">Sign</span><span><b>Native e-sign + PDF certificate</b> with QR-verifiable lookup and Apple/Google Wallet pass.</span></li>
+              <li><span class="cm-feat-k">Renew</span><span><b>90/60/30-day notices</b> by email and SMS. Lapsed-license enforcement queue for the rest.</span></li>
+            </ul>
+            <a class="cm-mod-link" href="licensing.html">See Licensing <svg viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 2.5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+          </div>
+          <div class="cm-mod-art cm-mod-art--licensing">
+            <span class="cm-mod-art-spec">LICENSE · CERT</span>
+            <span class="cm-mod-art-mark">07</span>
+            <div class="cm-mod-surface" id="cm-mod-art-7"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="cm-about" id="about">
+    <div class="cm-wrap">
+      <div class="cm-about-row">
+        <div>
+          <span class="cm-eyebrow">About Clarity Value</span>
+          <h2 class="cm-about-headline">We believe governments should have the <em>best possible tools</em> to improve people's lives.</h2>
+          <blockquote class="cm-about-quote">
+            "In the same way TurboTax can help you with tax filing, we at Clarity Value can do that for every other government service. Why should that not be the case?"
+            <cite>— Cristian F. Robiou, Founder &amp; CEO</cite>
+          </blockquote>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:var(--cv-text-secondary);max-width:520px">Founded in Miami in 2021. Backed by Lightspeed Venture Partners, Newtype Ventures, Gaingels, and Arogeti Endeavors. Building partnerships with governments that endure for years.</p>
+          <div class="cm-about-meta">
+            <div><b>2021</b>Founded in Miami</div>
+            <div><b>$3M</b>Seed funding</div>
+            <div><b>FL · GA · +</b>State &amp; local deploys</div>
+          </div>
+        </div>
+        <div>
+          <span class="cm-eyebrow">Our values</span>
+          <h3 style="font-family:var(--cv-font-display);font-size:22px;font-weight:500;margin:14px 0 24px;letter-spacing:-0.01em">Public resources should be spent on public services — <em style="font-style:italic;color:#A07A38">not overpriced technology.</em></h3>
+          <ul class="cm-values">
+            <li class="cm-value">
+              <span class="cm-value-k">01 / Affordable</span>
+              <div><h4 class="cm-value-h">Better software, fairer price.</h4><p class="cm-value-b">Adaptable, cloud-based architecture lets us charge less for a better solution. Subscriptions are mid-five to low-six figures — orders of magnitude below incumbent vendors.</p></div>
+            </li>
+            <li class="cm-value">
+              <span class="cm-value-k">02 / Accessible</span>
+              <div><h4 class="cm-value-h">Designed for everyone.</h4><p class="cm-value-b">Simple and intuitive for all users — whatever their age or education. Especially for the communities that rely most on public services.</p></div>
+            </li>
+            <li class="cm-value">
+              <span class="cm-value-k">03 / Responsive</span>
+              <div><h4 class="cm-value-h">We follow through.</h4><p class="cm-value-b">Hands-on customer support. We prioritize transparency and collaboration, whether exploring a partnership or configuring our software for a customer's unique needs.</p></div>
+            </li>
+            <li class="cm-value">
+              <span class="cm-value-k">04 / Patient</span>
+              <div><h4 class="cm-value-h">Built for the long arc.</h4><p class="cm-value-b">Civic software outlasts contracts, administrations, vendors. We design for decades — for the clerk five years from now, and the auditor ten years after that.</p></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section class="cm-philosophy">
+    <div class="cm-wrap">
+      <div class="cm-philosophy-head">
+        <span class="cm-eyebrow cm-eyebrow--blue" style="color:#85B7EB">Approach</span>
+        <h2 class="cm-philosophy-h2" style="margin-top:14px">Engineered like infrastructure, <em class="cm-script">operated like a public utility.</em></h2>
+        <p class="cm-philosophy-sub">We are not a portfolio of products. We are one team building one system, on the assumption that the work of government is a permanent obligation — and the software underneath it should be too.</p>
+      </div>
+      <div class="cm-principles">
+        <div class="cm-principle"><span class="cm-principle-num">01 / Architecture</span><h3 class="cm-principle-h3">Engineered, not assembled.</h3><p class="cm-principle-body">One codebase. One data model. One design system. New modules ship as features of the platform — not as products bolted on behind a logo.</p></div>
+        <div class="cm-principle"><span class="cm-principle-num">02 / Ownership</span><h3 class="cm-principle-h3">Owned by one team.</h3><p class="cm-principle-body">The people who design the platform write the platform. No outsourced workflows. No acquired roadmaps fighting for attention.</p></div>
+        <div class="cm-principle"><span class="cm-principle-num">03 / Horizon</span><h3 class="cm-principle-h3">Built for the long arc.</h3><p class="cm-principle-body">Civic software outlasts contracts, administrations, vendors. We design for decades — for the clerk five years from now.</p></div>
+        <div class="cm-principle"><span class="cm-principle-num">04 / Discipline</span><h3 class="cm-principle-h3">Density over polish.</h3><p class="cm-principle-body">Civic tools, not consumer SaaS. Hairlines as primary structure. Two weights only. Required-field amber, not error red.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cm-cta" id="cta">
+    <div class="cm-cta-wash"></div>
+    <div class="cm-wrap">
+      <div class="cm-cta-row">
+        <h2 class="cm-cta-h2">If you run any part of the apparatus, <em class="cm-script">we should talk.</em></h2>
+        <div class="cm-cta-side">
+          <p>Pilots start with one workflow and one team — usually three to six weeks to live records. We bring the platform; you bring the statute, the rulebook, and the people who actually do the work.</p>
+          <div class="cm-cta-actions">
+            <a class="cm-btn cm-btn--primary" href="#">Request a pilot
+              <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h7M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </a>
+            <a class="cm-btn cm-btn--ghost-dark" href="#product">See the product</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="cm-footer">
+    <div class="cm-wrap">
+      <div class="cm-footer-row">
+        <div class="cm-footer-brand">
+          <span class="cm-logo"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#85B7EB" stroke-width="1.4"/><circle cx="9" cy="9" r="2" fill="#85B7EB"/></svg>Clarity Value</span>
+          <p>The system underneath the system. Civic infrastructure for the work of government — engineered as one platform, by one team. Built in Miami.</p>
+        </div>
+        <div class="cm-footer-col"><h4>Platform</h4><ul><li><a href="#product">Product</a></li><li><a href="#modules">Modules</a></li><li><a href="#approach">Approach</a></li><li><a href="#">Changelog</a></li></ul></div>
+        <div class="cm-footer-col"><h4>Solutions</h4><ul><li><a href="#">Land &amp; permitting</a></li><li><a href="#">Records &amp; FOIA</a></li><li><a href="#">311 &amp; citizen services</a></li><li><a href="#">All modules</a></li></ul></div>
+        <div class="cm-footer-col"><h4>Company</h4><ul><li><a href="#about">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li><li><a href="#">Contact</a></li></ul></div>
+        <div class="cm-footer-col"><h4>Trust</h4><ul><li><a href="#">Security</a></li><li><a href="#">Compliance</a></li><li><a href="#">Privacy</a></li><li><a href="#">Status</a></li></ul></div>
+      </div>
+      <div class="cm-footer-fine">
+        <span>&copy; 2026 Clarity Value, Inc. · Built in Miami</span>
+        <span>SOC 2 Type II · CJIS · FedRAMP-aligned · US-only hosting</span>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<script>
+/* Hero rosette — quieted: one outer label ring + cardinal markers + faint inner rings */
+(function(){
+  const el = document.getElementById('cm-rose');
+  if (!el) return;
+  const SIZE = 540, CX = 270, CY = 270;
+  const MODULES = ['Land','Permitting','Inspections','Code','Licensing','Records','311','Reports','Cases','Evidence','HR','Procurement','Vendors','Compliance','Assets','Tax','Court','GIS'];
+  const N = MODULES.length;
+  const R_OUT = 240, R_MID = 200, R_INNER = 150;
+  let labels = '';
+  MODULES.forEach((m,i)=>{
+    const deg = (i*360/N) - 90;
+    const a = deg*Math.PI/180;
+    const lx = CX + Math.cos(a)*(R_OUT+14);
+    const ly = CY + Math.sin(a)*(R_OUT+14);
+    let rot = deg+90; if (deg>0&&deg<180) rot = deg-90;
+    labels += `<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" transform="rotate(${rot.toFixed(1)} ${lx.toFixed(1)} ${ly.toFixed(1)})" text-anchor="middle" dominant-baseline="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="0.10em" fill="rgba(220,235,250,0.85)">${m.toUpperCase()}</text>`;
+    const dx = CX + Math.cos(a)*R_OUT, dy = CY + Math.sin(a)*R_OUT;
+    labels += `<circle cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="2" fill="rgba(180,210,240,0.7)"/>`;
+  });
+  let ticks = '';
+  for (let i=0;i<60;i++){
+    const a = (i*6-90)*Math.PI/180;
+    const big = i%5===0;
+    const r1 = R_MID, r2 = big?R_MID-10:R_MID-5;
+    ticks += `<line x1="${(CX+Math.cos(a)*r1).toFixed(1)}" y1="${(CY+Math.sin(a)*r1).toFixed(1)}" x2="${(CX+Math.cos(a)*r2).toFixed(1)}" y2="${(CY+Math.sin(a)*r2).toFixed(1)}" stroke="rgba(180,210,240,${big?0.5:0.18})" stroke-width="${big?1:0.5}"/>`;
+  }
+  el.innerHTML = `
+    <g class="cm-rose-spin" style="transform-box:fill-box;transform-origin:center">
+      <circle cx="${CX}" cy="${CY}" r="${R_OUT}" fill="none" stroke="rgba(180,210,240,0.25)" stroke-width="0.6"/>
+      ${labels}
+    </g>
+    <circle cx="${CX}" cy="${CY}" r="${R_MID}" fill="none" stroke="rgba(180,210,240,0.18)" stroke-width="0.5"/>
+    ${ticks}
+    <circle cx="${CX}" cy="${CY}" r="${R_INNER}" fill="none" stroke="rgba(180,210,240,0.22)" stroke-width="0.5" stroke-dasharray="2 4"/>
+    <g stroke="rgba(180,210,240,0.45)" stroke-width="0.8">
+      <line x1="${CX-10}" y1="${CY}" x2="${CX+10}" y2="${CY}"/>
+      <line x1="${CX}" y1="${CY-10}" x2="${CX}" y2="${CY+10}"/>
+    </g>
+  `;
+})();
+
+/* Stamp event rotation */
+(function(){
+  const events = [
+    {id:'SUB-2024-002', text:'Permit issued · Building, Coral Way', pill:'green', label:'Completion'},
+    {id:'FOIA-2024-0421', text:'Records request · routed to Planning', pill:'blue', label:'Application'},
+    {id:'SR-9128', text:'311 · Pothole filed at SW 14th St', pill:'red', label:'New'},
+    {id:'INS-2024-118', text:'Inspection passed · 2210 NE 2nd Ave', pill:'green', label:'Approved'},
+    {id:'P-2024-1190', text:'Plan review · awaiting Public Works', pill:'amber', label:'In review'}
+  ];
+  let idx = 0;
+  const row = document.getElementById('cm-stamp-row');
+  if (!row) return;
+  setInterval(()=>{
+    idx = (idx+1)%events.length;
+    const e = events[idx];
+    row.style.transition='opacity 220ms ease';
+    row.style.opacity='0';
+    setTimeout(()=>{
+      row.innerHTML = `<span class="cm-stamp-id">${e.id}</span><span class="cm-stamp-text">${e.text}</span><span class="cv-pill cv-pill--${e.pill}">${e.label}</span>`;
+      row.style.opacity='1';
+    }, 240);
+  }, 2800);
+})();
+
+/* Module surfaces — real cv-tbl/cv-pill content, untilted, fitted to plate */
+(function(){
+  const m1 = document.getElementById('cm-mod-art-1');
+  if (m1) {
+    m1.style.cssText += `right:32px;top:48px;width:600px;transform:rotate(-1deg)`;
+    m1.innerHTML = `
+      <div style="padding:14px 16px 0;border-bottom:0.5px solid var(--cv-line-hairline)">
+        <div class="cv-breadcrumb" style="margin-bottom:5px">Miami-Dade <span style="color:var(--cv-text-muted);margin:0 5px">/</span> Records <span style="color:var(--cv-text-muted);margin:0 5px">/</span> <span style="color:var(--cv-text-secondary)">Submissions</span></div>
+        <div style="display:flex;align-items:baseline;gap:10px;padding-bottom:10px">
+          <span class="cv-page-title">Submissions</span>
+          <span style="font-size:11px;color:var(--cv-text-tertiary);font-family:var(--cv-font-mono)">2,847 total · 12 awaiting review</span>
+        </div>
+      </div>
+      <table class="cv-tbl" style="width:100%">
+        <thead><tr><th style="width:34px"><span class="cv-chk"></span></th><th>Record ID</th><th>Step</th><th>Assignee</th><th>Phase</th></tr></thead>
+        <tbody>
+          <tr><td><span class="cv-chk"></span></td><td><span class="cv-tbl-id">SUB-2024-001</span></td><td>Upload site plan</td><td>Z. Lipshutz</td><td><span class="cv-pill cv-pill--blue">Application</span></td></tr>
+          <tr class="is-selected"><td><span class="cv-chk is-checked"></span></td><td><span class="cv-tbl-id">SUB-2024-002</span></td><td>Read guideline</td><td>Z. Workman</td><td><span class="cv-pill cv-pill--blue">Application</span></td></tr>
+          <tr><td><span class="cv-chk"></span></td><td><span class="cv-tbl-id">SUB-2024-003</span></td><td>Review phase</td><td>L. Carder</td><td><span class="cv-pill cv-pill--amber">Dept. review</span></td></tr>
+          <tr><td><span class="cv-chk"></span></td><td><span class="cv-tbl-id">SUB-2024-007</span></td><td>Permit issued</td><td>M. George</td><td><span class="cv-pill cv-pill--green">Completion</span></td></tr>
+          <tr><td><span class="cv-chk"></span></td><td><span class="cv-tbl-id">SUB-2024-009</span></td><td>Awaiting changes</td><td>P. Bator</td><td><span class="cv-pill cv-pill--red">Needs changes</span></td></tr>
+        </tbody>
+      </table>
+    `;
+  }
+  const m2 = document.getElementById('cm-mod-art-2');
+  if (m2) {
+    m2.style.cssText += `left:32px;top:48px;width:600px;transform:rotate(1deg)`;
+    const rows = [
+      {id:'FOIA-2024-0418', topic:'Police body-cam footage', dept:'PD', sla:38, days:'12d left', state:'green'},
+      {id:'FOIA-2024-0421', topic:'Planning · zoning ledger', dept:'Planning', sla:62, days:'7d left', state:'amber'},
+      {id:'FOIA-2024-0422', topic:'Procurement contracts', dept:'Finance', sla:84, days:'2d left', state:'red'},
+      {id:'FOIA-2024-0429', topic:'Fire incident reports', dept:'Fire', sla:14, days:'17d left', state:'green'},
+    ];
+    const c = s=>s==='red'?'var(--cv-status-red-text)':s==='amber'?'var(--cv-status-amber-text)':'var(--cv-brand-blue)';
+    m2.innerHTML = `
+      <div style="padding:14px 16px;border-bottom:0.5px solid var(--cv-line-hairline)">
+        <div class="cv-breadcrumb" style="margin-bottom:4px">Records <span style="color:var(--cv-text-muted);margin:0 5px">/</span> <span style="color:var(--cv-text-secondary)">Open requests</span></div>
+        <span class="cv-page-title">FOIA · intake queue</span>
+      </div>
+      <table class="cv-tbl" style="width:100%">
+        <thead><tr><th>Request</th><th>Topic</th><th>Dept</th><th style="width:170px">SLA</th><th>Status</th></tr></thead>
+        <tbody>${rows.map((r,i)=>`<tr${i===2?' class="is-selected"':''}><td><span class="cv-tbl-id">${r.id}</span></td><td>${r.topic}</td><td><span style="font-size:11px;color:var(--cv-text-secondary)">${r.dept}</span></td><td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:4px;background:var(--cv-line-hairline);border-radius:2px;overflow:hidden"><div style="height:100%;width:${r.sla}%;background:${c(r.state)};border-radius:2px"></div></div><span style="font-family:var(--cv-font-mono);font-size:10px;color:${c(r.state)};white-space:nowrap">${r.days}</span></div></td><td><span class="cv-pill cv-pill--${r.state==='red'?'red':r.state==='amber'?'amber':'blue'}">${r.state==='red'?'Past SLA':r.state==='amber'?'Approaching':'On track'}</span></td></tr>`).join('')}</tbody>
+      </table>
+    `;
+  }
+  const m3 = document.getElementById('cm-mod-art-3');
+  if (m3) {
+    m3.style.cssText += `right:32px;top:48px;width:600px;transform:rotate(-1deg)`;
+    m3.innerHTML = `
+      <div style="padding:14px 16px;border-bottom:0.5px solid var(--cv-line-hairline)"><div class="cv-breadcrumb" style="margin-bottom:4px">311 <span style="color:var(--cv-text-muted);margin:0 5px">/</span> <span style="color:var(--cv-text-secondary)">Work orders</span></div><span class="cv-page-title">Open requests · today</span></div>
+      <table class="cv-tbl" style="width:100%">
+        <thead><tr><th>#</th><th>Type</th><th>District</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr class="is-selected"><td><span class="cv-tbl-id">SR-9128</span></td><td>Pothole · SW 14th</td><td>03</td><td><span class="cv-pill cv-pill--red">New</span></td></tr>
+          <tr><td><span class="cv-tbl-id">SR-9129</span></td><td>Streetlight out</td><td>05</td><td><span class="cv-pill cv-pill--amber">Dispatched</span></td></tr>
+          <tr><td><span class="cv-tbl-id">SR-9131</span></td><td>Graffiti removal</td><td>02</td><td><span class="cv-pill cv-pill--blue">Assigned</span></td></tr>
+          <tr><td><span class="cv-tbl-id">SR-9134</span></td><td>Bulk pickup</td><td>04</td><td><span class="cv-pill cv-pill--green">Closed</span></td></tr>
+          <tr><td><span class="cv-tbl-id">SR-9136</span></td><td>Tree branch down</td><td>01</td><td><span class="cv-pill cv-pill--blue">Assigned</span></td></tr>
+        </tbody>
+      </table>
+    `;
+  }
+  const m4 = document.getElementById('cm-mod-art-4');
+  if (m4) {
+    m4.style.cssText += `left:32px;top:38px;width:600px;transform:rotate(1deg)`;
+    const series = [22,28,34,30,42,48,44,56,62,58,72,80,76,88,94,90,102,108];
+    const w=560, h=110, pad=8, max=120;
+    const pts = series.map((v,i)=>[pad+i*(w-pad*2)/(series.length-1), h-pad-(v/max)*(h-pad*2)]);
+    const path = pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');
+    const area = path+` L${pts[pts.length-1][0].toFixed(1)} ${h-pad} L${pts[0][0].toFixed(1)} ${h-pad} Z`;
+    m4.innerHTML = `
+      <div style="padding:14px 16px;border-bottom:0.5px solid var(--cv-line-hairline)"><div class="cv-breadcrumb" style="margin-bottom:4px">Reports <span style="color:var(--cv-text-muted);margin:0 5px">/</span> <span style="color:var(--cv-text-secondary)">Director dashboard</span></div><span class="cv-page-title">Operations · this week</span></div>
+      <div style="padding:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;border-bottom:0.5px solid var(--cv-line-hairline)">
+        <div style="padding:10px 12px;border:0.5px solid var(--cv-line-strong);border-radius:4px;background:var(--cv-surface-card)"><div style="font-family:var(--cv-font-mono);font-size:10px;color:var(--cv-text-tertiary)">PERMITS</div><div style="font-family:var(--cv-font-display);font-size:20px;color:var(--cv-text-primary);margin-top:2px">142</div><div style="font-size:10px;color:var(--cv-status-green-text);margin-top:1px">▲ 18%</div></div>
+        <div style="padding:10px 12px;border:0.5px solid var(--cv-line-strong);border-radius:4px;background:var(--cv-surface-card)"><div style="font-family:var(--cv-font-mono);font-size:10px;color:var(--cv-text-tertiary)">FOIA OPEN</div><div style="font-family:var(--cv-font-display);font-size:20px;color:var(--cv-text-primary);margin-top:2px">47</div><div style="font-size:10px;color:var(--cv-status-amber-text);margin-top:1px">6 due &lt; 5d</div></div>
+        <div style="padding:10px 12px;border:0.5px solid var(--cv-line-strong);border-radius:4px;background:var(--cv-surface-card)"><div style="font-family:var(--cv-font-mono);font-size:10px;color:var(--cv-text-tertiary)">311 CLOSED</div><div style="font-family:var(--cv-font-display);font-size:20px;color:var(--cv-text-primary);margin-top:2px">328</div><div style="font-size:10px;color:var(--cv-status-green-text);margin-top:1px">▲ 9%</div></div>
+        <div style="padding:10px 12px;border:0.5px solid var(--cv-line-strong);border-radius:4px;background:var(--cv-surface-card)"><div style="font-family:var(--cv-font-mono);font-size:10px;color:var(--cv-text-tertiary)">CYCLE</div><div style="font-family:var(--cv-font-display);font-size:20px;color:var(--cv-text-primary);margin-top:2px">11.2d</div><div style="font-size:10px;color:var(--cv-status-green-text);margin-top:1px">▼ 1.4d</div></div>
+      </div>
+      <div style="padding:14px 16px"><div style="font-family:var(--cv-font-display);font-size:13px;color:var(--cv-text-primary);font-weight:500;margin-bottom:8px">Permit volume · 18 weeks</div>
+      <svg viewBox="0 0 ${w} ${h}" style="width:100%;height:${h}px;display:block">
+        <defs><linearGradient id="cmrg" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="rgba(74,144,226,0.22)"/><stop offset="100%" stop-color="rgba(74,144,226,0)"/></linearGradient></defs>
+        ${[0.25,0.5,0.75].map(t=>`<line x1="${pad}" x2="${w-pad}" y1="${h-pad-t*(h-pad*2)}" y2="${h-pad-t*(h-pad*2)}" stroke="var(--cv-line-hairline)" stroke-width="0.5"/>`).join('')}
+        <path d="${area}" fill="url(#cmrg)"/>
+        <path d="${path}" stroke="var(--cv-brand-blue)" stroke-width="1.5" fill="none"/>
+      </svg></div>
+    `;
+  }
+
+  const m5 = document.getElementById('cm-mod-art-5');
+  if (m5) {
+    m5.style.cssText += `right:32px;top:48px;width:600px;transform:rotate(-1deg)`;
+    m5.innerHTML = `
+      <div style="padding:14px 16px;border-bottom:0.5px solid var(--cv-line-hairline);display:flex;justify-content:space-between;align-items:baseline"><div><div class="cv-breadcrumb" style="margin-bottom:4px">HR <span style="color:var(--cv-text-muted);margin:0 5px">/</span> Employees <span style="color:var(--cv-text-muted);margin:0 5px">/</span> <span style="color:var(--cv-text-secondary)">M. Sandoval</span></div><span class="cv-page-title">Sr. Permitting Analyst</span></div><span class="cv-pill cv-pill--green">ACTIVE · 4y 2mo</span></div>
+      <div style="padding:14px 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-bottom:0.5px solid var(--cv-line-hairline)">
+        ${[{k:'CLASS',v:'14 · Step 6'},{k:'BASE',v:'$84,200'},{k:'NEXT REVIEW',v:'Mar 2025'}].map(t=>`<div style="padding:10px 12px;border:0.5px solid var(--cv-line-hairline);border-radius:4px"><div style="font-family:var(--cv-font-mono);font-size:9.5px;color:var(--cv-text-tertiary)">${t.k}</div><div style="font-family:var(--cv-font-display);font-size:14px;color:var(--cv-text-primary);margin-top:2px">${t.v}</div></div>`).join('')}
+      </div>
+      <div style="padding:12px 16px"><div style="border:0.5px solid var(--cv-line-hairline);border-radius:3px;padding:10px 12px;background:#fff;margin-bottom:8px"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><div style="font-family:var(--cv-font-display);font-size:12px;color:var(--cv-text-primary);font-weight:500">Employment Agreement · v3</div><span class="cv-pill cv-pill--green">SIGNED</span></div><div style="font-size:11px;color:var(--cv-text-secondary);line-height:1.5">Effective 2024-07-01 · amended for Step 6 promotion · e-signed by employee &amp; HR Director</div></div>
+      <div style="font-family:var(--cv-font-mono);font-size:10px;letter-spacing:0.10em;color:var(--cv-text-tertiary);text-transform:uppercase;margin-bottom:5px">Recent</div>
+      <div style="font-size:11px;color:var(--cv-text-secondary);line-height:1.6">→ Step promotion approved · 2024-07-01<br/>→ Annual review submitted · 2024-03-12<br/>→ Cert renewal · ICC permit tech</div></div>
+    `;
+  }
+
+  const m6 = document.getElementById('cm-mod-art-6');
+  if (m6) {
+    m6.style.cssText += `left:32px;top:48px;width:600px;transform:rotate(1deg)`;
+    m6.innerHTML = `
+      <div style="padding:14px 16px;border-bottom:0.5px solid var(--cv-line-hairline);display:flex;justify-content:space-between;align-items:baseline"><div><div class="cv-breadcrumb" style="margin-bottom:4px">Budget <span style="color:var(--cv-text-muted);margin:0 5px">/</span> FY 2025 <span style="color:var(--cv-text-muted);margin:0 5px">/</span> <span style="color:var(--cv-text-secondary)">General Fund</span></div><span class="cv-page-title">Public Works · 51400</span></div><span style="font-family:var(--cv-font-mono);font-size:10px;color:var(--cv-text-tertiary)">LIVE</span></div>
+      <div style="padding:14px 16px">
+        ${[{l:'Salaries',a:2840,s:1320,e:140},{l:'Operations',a:680,s:412,e:88},{l:'Capital — Resurfacing',a:4200,s:1640,e:3800},{l:'Equipment',a:340,s:198,e:62}].map((r,i)=>`<div style="padding:8px 0${i<3?';border-bottom:0.5px solid var(--cv-line-hairline)':''}">
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;color:var(--cv-text-primary)">${r.l}</span><span style="font-family:var(--cv-font-mono);font-size:10.5px;color:var(--cv-text-tertiary)">$${r.a}k</span></div>
+          <div style="height:5px;background:var(--cv-line-hairline);border-radius:2px;overflow:hidden;display:flex"><div style="width:${(r.s/r.a*100).toFixed(1)}%;height:100%;background:#C49648"></div><div style="width:${(r.e/r.a*100).toFixed(1)}%;height:100%;background:rgba(196,150,72,0.45)"></div></div>
+          <div style="display:flex;justify-content:space-between;font-family:var(--cv-font-mono);font-size:9.5px;color:var(--cv-text-tertiary);margin-top:3px"><span>spent $${r.s}k · enc $${r.e}k</span><span>${((r.s+r.e)/r.a*100).toFixed(0)}%</span></div>
+        </div>`).join('')}
+      </div>
+    `;
+  }
+
+  const m7 = document.getElementById('cm-mod-art-7');
+  if (m7) {
+    m7.style.cssText += `right:32px;top:38px;width:600px;transform:rotate(-1deg)`;
+    m7.innerHTML = `
+      <div style="padding:14px 16px;border-bottom:0.5px solid var(--cv-line-hairline);display:flex;justify-content:space-between;align-items:baseline"><div><div class="cv-breadcrumb" style="margin-bottom:4px">Licensing <span style="color:var(--cv-text-muted);margin:0 5px">/</span> <span style="color:var(--cv-text-secondary)">LIC-2024-0481</span></div><span class="cv-page-title">Mariposa Café · Class C</span></div><span class="cv-pill cv-pill--green">ISSUED</span></div>
+      <div style="padding:14px 16px">
+        <div style="background:#fff;border:0.5px solid #BA5444;border-radius:4px;padding:14px;position:relative">
+          <div style="position:absolute;top:10px;right:10px;width:46px;height:46px;background:#fff;border:1px solid var(--cv-text-primary);display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(8,1fr)">${Array.from({length:64}).map(()=>`<div style="background:${Math.random()>0.5?'var(--cv-text-primary)':'transparent'}"></div>`).join('')}</div>
+          <div style="font-family:var(--cv-font-display);font-size:9px;letter-spacing:0.18em;color:var(--cv-text-tertiary);text-transform:uppercase">City of Eastbrook · Florida</div>
+          <div style="font-family:var(--cv-font-display);font-size:14px;color:var(--cv-text-primary);font-weight:500;margin-top:2px">Business Operating License</div>
+          <div style="margin-top:14px"><div style="font-family:var(--cv-font-mono);font-size:9px;color:var(--cv-text-tertiary)">LICENSE NO.</div><div style="font-family:var(--cv-font-display);font-size:13px;color:var(--cv-text-primary);font-weight:500">LIC-2024-0481</div></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px"><div><div style="font-family:var(--cv-font-mono);font-size:9px;color:var(--cv-text-tertiary)">LICENSEE</div><div style="font-size:11.5px;color:var(--cv-text-primary)">Mariposa Café LLC</div></div><div><div style="font-family:var(--cv-font-mono);font-size:9px;color:var(--cv-text-tertiary)">EXPIRES</div><div style="font-size:11.5px;color:var(--cv-text-primary)">2025-12-31</div></div></div>
+          <div style="margin-top:12px;padding-top:10px;border-top:0.5px solid var(--cv-line-hairline);display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div><div style="font-family:'Caveat',cursive;font-size:18px;color:#BA5444">Elena Mariposa</div><div style="font-family:var(--cv-font-mono);font-size:9px;color:var(--cv-text-tertiary)">e-signed</div></div>
+            <div><div style="font-family:'Caveat',cursive;font-size:18px;color:#BA5444">R. Ramos</div><div style="font-family:var(--cv-font-mono);font-size:9px;color:var(--cv-text-tertiary)">issuing officer</div></div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+# OS noise
+.DS_Store
+Thumbs.db
+._*
+
+# Editor noise
+.vscode/
+.idea/
+*.swp
+
+# Netlify CLI cache (if you ever use it)
+.netlify/
+
+# Local-only test output
+.cache/

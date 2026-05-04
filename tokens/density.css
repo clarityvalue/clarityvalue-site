@@ -1,0 +1,54 @@
+/* ============================================================
+   Clarity Value — Density, Radii, Elevation, Motion
+   ============================================================ */
+
+:root {
+  /* Spacing scale */
+  --cv-s-0: 0px;
+  --cv-s-1: 4px;
+  --cv-s-2: 8px;
+  --cv-s-3: 16px;
+  --cv-s-4: 32px;
+  --cv-s-5: 64px;
+  --cv-s-6: 80px;
+
+  /* Radii */
+  --cv-r-1: 4px;   /* tags, small chips */
+  --cv-r-2: 6px;   /* buttons, inputs */
+  --cv-r-3: 8px;   /* cards */
+  --cv-r-4: 10px;  /* large cards */
+  --cv-r-5: 12px;  /* modals */
+  --cv-r-pill: 999px;
+
+  /* Component dimensions */
+  --cv-h-button-sm: 26px;
+  --cv-h-button:    28px; /* Phase 3 default */
+  --cv-h-button-md: 30px; /* gov chrome */
+  --cv-h-input:     30px;
+  --cv-h-input-multi-min: 64px;
+  --cv-h-row:       36px;
+  --cv-h-icon-btn:  32px;
+
+  /* Page padding */
+  --cv-pad-page-h:        24px;
+  --cv-pad-page-v:        14px;
+  --cv-pad-card-h:        18px;
+  --cv-pad-card-v:        14px;
+  --cv-pad-table-cell-h:  14px;
+  --cv-pad-table-cell-v:  11px;
+  --cv-pad-table-head-v:  9px;
+
+  /* Elevation (used very sparingly) */
+  --cv-shadow-card:  0 1px 2px rgba(0,0,0,0.03);
+  --cv-shadow-pop:   0 8px 24px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06);
+  --cv-shadow-modal: 0 24px 60px rgba(0,0,0,0.18), 0 6px 16px rgba(0,0,0,0.08);
+  --cv-shadow-panel: -8px 0 24px rgba(0,0,0,0.06); /* compose dock side-rim */
+
+  /* Motion */
+  --cv-dur-fast:    100ms; /* hover, button bg */
+  --cv-dur-base:    200ms; /* expand, focus */
+  --cv-dur-slow:    240ms; /* panel/modal in */
+  --cv-ease-std:    cubic-bezier(0.2, 0, 0.2, 1);
+  --cv-ease-decel:  cubic-bezier(0,    0, 0.2, 1);
+  --cv-ease-accel:  cubic-bezier(0.4,  0, 1,   1);
+}

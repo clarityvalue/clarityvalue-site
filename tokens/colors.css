@@ -1,0 +1,77 @@
+/* ============================================================
+   Clarity Value — Phase 3 Color Tokens
+   Source: gov_chrome_canonical.html (signed off 2026-04-28)
+   ============================================================ */
+
+:root {
+  /* ---- Brand ---- */
+  --cv-brand-blue: #185FA5;
+  --cv-brand-blue-hover: #0C447C;
+  --cv-brand-blue-tint: #E6F1FB;
+  --cv-brand-blue-tint-2: #D6E6F5;
+  --cv-brand-blue-border: #B5D4F4;
+
+  /* Primary ramp */
+  --cv-primary-50:  #E6F1FB;
+  --cv-primary-100: #CDDFEF;
+  --cv-primary-200: #B5D4F4;
+  --cv-primary-300: #85B7EB;
+  --cv-primary-400: #378ADD;
+  --cv-primary-500: #266DAF;
+  --cv-primary-main: #185FA5;
+  --cv-primary-dark: #0C447C;
+
+  /* ---- Text ---- */
+  --cv-text-primary:    #111827;
+  --cv-text-secondary:  #4B5563;
+  --cv-text-tertiary:   #6B7280;
+  --cv-text-muted:      #9CA3AF;
+  --cv-text-on-dark:    #F3F4F6;
+  --cv-text-on-dark-muted: #9CA0B5;
+
+  /* ---- Surface ---- */
+  --cv-surface-page:        #F7F8FA;
+  --cv-surface-card:        #FFFFFF;
+  --cv-surface-sidebar:     #1B2245;
+  --cv-surface-sidebar-dark:#141B36;
+  --cv-surface-sidebar-hover: rgba(255,255,255,0.06);
+  --cv-surface-sidebar-active: rgba(255,255,255,0.10);
+
+  /* ---- Lines / Hairlines (Density Rule 8) ---- */
+  --cv-line-hairline: rgba(0,0,0,0.08);   /* default 0.5px structural line */
+  --cv-line-strong:   rgba(0,0,0,0.13);   /* muted-pill borders, table input */
+  --cv-line-stronger: rgba(0,0,0,0.20);   /* checkbox borders, hover emphasis */
+  --cv-line-input:    rgba(0,0,0,0.18);   /* default input border */
+  --cv-line-input-hover: rgba(0,0,0,0.32);
+
+  /* ---- Status pills (5 severities × 3 stops) ---- */
+  --cv-status-muted-bg:    #F7F8FA;  --cv-status-muted-border:    rgba(0,0,0,0.13); --cv-status-muted-text:    #4B5563;
+  --cv-status-blue-bg:     #E6F1FB;  --cv-status-blue-border:     #B5D4F4;          --cv-status-blue-text:     #0C447C;
+  --cv-status-green-bg:    #EAF3DE;  --cv-status-green-border:    #C0DD97;          --cv-status-green-text:    #27500A;
+  --cv-status-amber-bg:    #FAEEDA;  --cv-status-amber-border:    #F0CB8E;          --cv-status-amber-text:    #633806;
+  --cv-status-red-bg:      #FCEBEB;  --cv-status-red-border:      #E5BBBB;          --cv-status-red-text:      #7A1010;
+
+  /* ---- Status icon-tile tints (lighter pair, for list-row icons) ---- */
+  --cv-tile-blue-bg:  #E6F1FB; --cv-tile-blue-fg:  #185FA5;
+  --cv-tile-green-bg: #EAF3DE; --cv-tile-green-fg: #3B6D11;
+  --cv-tile-amber-bg: #FAEEDA; --cv-tile-amber-fg: #854F0B;
+  --cv-tile-red-bg:   #FCEBEB; --cv-tile-red-fg:   #A32D2D;
+  --cv-tile-muted-bg: #F1EFE8; --cv-tile-muted-fg: #5F5E5A;
+
+  /* ---- Tag palette (categorical, not state) ---- */
+  --cv-tag-blue-bg:   #DBEAF7; --cv-tag-blue-text:   #1A4F8A;
+  --cv-tag-teal-bg:   #C7E5DA; --cv-tag-teal-text:   #0F5240;
+  --cv-tag-green-bg:  #DEEFD9; --cv-tag-green-text:  #2D6A1F;
+  --cv-tag-amber-bg:  #F7E9CC; --cv-tag-amber-text:  #80531A;
+  --cv-tag-coral-bg:  #F8D8CC; --cv-tag-coral-text:  #8B3015;
+  --cv-tag-pink-bg:   #F5D3DD; --cv-tag-pink-text:   #7A2543;
+  --cv-tag-purple-bg: #DDD9F4; --cv-tag-purple-text: #463A85;
+  --cv-tag-muted-bg:  #E5E7EB; --cv-tag-muted-text:  #374151;
+
+  /* ---- Required-field amber (NOT error red) ---- */
+  --cv-required-asterisk: #BA7517;
+
+  /* ---- Error / focus ---- */
+  --cv-error-border: #C13F3F;
+  --cv-error-main:   #F34747;
+}
