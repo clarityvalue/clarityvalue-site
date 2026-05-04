@@ -47,6 +47,28 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
 .cm-nav-cta{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px 0 14px;font-size:13px;font-weight:500;color:#fff;background:var(--cv-brand-blue);border-radius:6px;text-decoration:none}
 .cm-nav-cta svg{width:11px;height:11px}
 
+/* ====== Solutions dropdown (CSS-only :hover + :focus-within) ====== */
+.cm-nav-dropdown{position:relative;display:inline-flex;align-items:stretch}
+.cm-nav-dd-trigger{font:inherit;background:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:5px;height:30px;padding:0 10px;font-size:13px;color:var(--cv-text-secondary);border-radius:6px}
+.cm-nav-dd-trigger:hover,.cm-nav-dropdown:hover .cm-nav-dd-trigger,.cm-nav-dropdown:focus-within .cm-nav-dd-trigger{background:rgba(0,0,0,0.04);color:var(--cv-text-primary)}
+.cm-nav-dd-chev{width:10px;height:10px;transition:transform 180ms ease}
+.cm-nav-dropdown:hover .cm-nav-dd-chev,.cm-nav-dropdown:focus-within .cm-nav-dd-chev{transform:rotate(180deg)}
+.cm-nav-dd-panel{position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%) translateY(-4px);width:560px;background:#fff;border:0.5px solid var(--cv-line-hairline);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.08),0 2px 6px rgba(0,0,0,0.04);padding:14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 160ms ease,transform 160ms ease,visibility 0s linear 160ms;z-index:60}
+.cm-nav-dropdown:hover .cm-nav-dd-panel,.cm-nav-dropdown:focus-within .cm-nav-dd-panel{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);pointer-events:auto;transition:opacity 160ms ease,transform 160ms ease,visibility 0s linear 0s}
+.cm-nav-dd-item{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:14px;row-gap:1px;padding:11px 12px;border-radius:8px;text-decoration:none;color:var(--cv-text-primary);transition:background 100ms ease}
+.cm-nav-dd-item:hover{background:rgba(24,95,165,0.05)}
+.cm-nav-dd-k{grid-column:1;grid-row:1 / span 2;align-self:center;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:rgba(24,95,165,0.07);color:var(--cv-brand-blue);font-family:var(--cv-font-mono);font-size:9px;font-weight:500;letter-spacing:0.10em;text-transform:uppercase}
+.cm-nav-dd-h{grid-column:2;grid-row:1;font-size:13px;font-weight:500;color:var(--cv-text-primary);line-height:1.25}
+.cm-nav-dd-b{grid-column:2;grid-row:2;font-size:11.5px;color:var(--cv-text-tertiary);line-height:1.4;margin-top:1px}
+.cm-nav-dd-foot{grid-column:1 / -1;display:flex;justify-content:flex-end;align-items:center;padding:10px 6px 2px;margin-top:4px;border-top:0.5px solid var(--cv-line-hairline)}
+.cm-nav-dd-all{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--cv-brand-blue);text-decoration:none;padding:4px 8px;border-radius:6px}
+.cm-nav-dd-all:hover{background:rgba(24,95,165,0.06)}
+.cm-nav-dd-all svg{width:11px;height:11px}
+@media (max-width:780px){
+  .cm-nav-dd-panel{position:fixed;left:12px;right:12px;width:auto;transform:translateY(-4px);max-width:none}
+  .cm-nav-dropdown:hover .cm-nav-dd-panel,.cm-nav-dropdown:focus-within .cm-nav-dd-panel{transform:translateY(0)}
+}
+
 /* ====== Hero ====== */
 .cm-hero{position:relative;background:var(--cm-navy);color:var(--cm-on-dark);overflow:hidden;isolation:isolate}
 .cm-hero-wash{position:absolute;inset:-5% -5% -5% 30%;background-image:url(art/wash-hero.png);background-size:cover;background-position:center;mix-blend-mode:screen;opacity:0.85;pointer-events:none;z-index:0}
@@ -260,7 +282,53 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
     </a>
     <nav class="cm-nav-links">
       <a class="cm-nav-link" href="#product">Product</a>
-      <a class="cm-nav-link" href="#modules">Solutions</a>
+      <div class="cm-nav-dropdown">
+        <button class="cm-nav-link cm-nav-dd-trigger" type="button" aria-expanded="false" aria-haspopup="menu">Solutions
+          <svg class="cm-nav-dd-chev" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2.5 4l2.5 2.5L7.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="cm-nav-dd-panel" role="menu">
+          <a class="cm-nav-dd-item" href="land-management.html" role="menuitem">
+            <span class="cm-nav-dd-k">Land</span>
+            <span class="cm-nav-dd-h">Land Management</span>
+            <span class="cm-nav-dd-b">Permits, plan reviews, inspections.</span>
+          </a>
+          <a class="cm-nav-dd-item" href="human-resources.html" role="menuitem">
+            <span class="cm-nav-dd-k">HR</span>
+            <span class="cm-nav-dd-h">Human Resources</span>
+            <span class="cm-nav-dd-b">Onboarding, contracts, the people-side.</span>
+          </a>
+          <a class="cm-nav-dd-item" href="budget-management.html" role="menuitem">
+            <span class="cm-nav-dd-k">Budget</span>
+            <span class="cm-nav-dd-h">Budget Management</span>
+            <span class="cm-nav-dd-b">Funds, vendors, encumbrances, payments.</span>
+          </a>
+          <a class="cm-nav-dd-item" href="licensing.html" role="menuitem">
+            <span class="cm-nav-dd-k">Licensing</span>
+            <span class="cm-nav-dd-h">Licensing</span>
+            <span class="cm-nav-dd-b">Applications and renewals, signed online.</span>
+          </a>
+          <a class="cm-nav-dd-item" href="record-requests.html" role="menuitem">
+            <span class="cm-nav-dd-k">FOIA</span>
+            <span class="cm-nav-dd-h">Record Requests</span>
+            <span class="cm-nav-dd-b">Public-records routed, redacted, fulfilled.</span>
+          </a>
+          <a class="cm-nav-dd-item" href="311.html" role="menuitem">
+            <span class="cm-nav-dd-k">311</span>
+            <span class="cm-nav-dd-h">311 / Citizen Services</span>
+            <span class="cm-nav-dd-b">From "there&rsquo;s a pothole" to a closed work order.</span>
+          </a>
+          <a class="cm-nav-dd-item" href="reports.html" role="menuitem">
+            <span class="cm-nav-dd-k">Reports</span>
+            <span class="cm-nav-dd-h">Reports &amp; Dashboards</span>
+            <span class="cm-nav-dd-b">Live numbers from the working database.</span>
+          </a>
+          <div class="cm-nav-dd-foot">
+            <a class="cm-nav-dd-all" href="#modules">See all solutions
+              <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h7M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
       <a class="cm-nav-link" href="#about">About</a>
       <a class="cm-nav-link" href="#approach">Approach</a>
       <a class="cm-nav-link" href="#">Security</a>
@@ -329,13 +397,14 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
         <span class="cm-logos-eyebrow-label">Running on Clarity Value</span>
       </div>
       <div class="cm-logos-grid">
-        <div class="cm-logos-cell" role="img" aria-label="New York City"><img src="art/customers/nyc.svg" alt="New York City" loading="lazy"></div>
-        <div class="cm-logos-cell" role="img" aria-label="Georgia Department of Human Services"><img src="art/customers/georgia-dhs.svg" alt="Georgia Department of Human Services" loading="lazy"></div>
+        <div class="cm-logos-cell" role="img" aria-label="New York City"><img src="art/customers/nyc.png" alt="New York City" loading="lazy"></div>
+        <div class="cm-logos-cell" role="img" aria-label="Georgia Department of Human Services"><img src="art/customers/georgia-dhs.png" alt="Georgia Department of Human Services" loading="lazy"></div>
         <div class="cm-logos-cell" role="img" aria-label="Florida Department of Health"><img src="art/customers/florida-health.png" alt="Florida Department of Health" loading="lazy"></div>
-        <div class="cm-logos-cell" role="img" aria-label="City of Atlanta"><img src="art/customers/city-of-atlanta.svg" alt="City of Atlanta" loading="lazy"></div>
+        <div class="cm-logos-cell" role="img" aria-label="Miami-Dade County"><img src="art/customers/miami-dade.png" alt="Miami-Dade County" loading="lazy"></div>
+        <div class="cm-logos-cell" role="img" aria-label="City of Atlanta"><img src="art/customers/city-of-atlanta.png" alt="City of Atlanta" loading="lazy"></div>
         <div class="cm-logos-cell" role="img" aria-label="City of Hialeah"><img src="art/customers/hialeah.png" alt="City of Hialeah" loading="lazy"></div>
         <div class="cm-logos-cell" role="img" aria-label="City of Aurora, Illinois"><img src="art/customers/aurora-il.png" alt="City of Aurora, IL" loading="lazy"></div>
-        <div class="cm-logos-cell" role="img" aria-label="Orange County, New York"><img src="art/customers/orange-county-ny.svg" alt="Orange County, NY" loading="lazy"></div>
+        <div class="cm-logos-cell" role="img" aria-label="Orange County, New York"><img src="art/customers/orange-county-ny.png" alt="Orange County, NY" loading="lazy"></div>
         <div class="cm-logos-cell" role="img" aria-label="City of North Miami"><img src="art/customers/north-miami.png" alt="City of North Miami" loading="lazy"></div>
         <div class="cm-logos-cell" role="img" aria-label="City of Riviera Beach"><img src="art/customers/riviera-beach.png" alt="City of Riviera Beach" loading="lazy"></div>
         <div class="cm-logos-cell" role="img" aria-label="Granite Falls"><img src="art/customers/granite-falls.png" alt="Granite Falls" loading="lazy"></div>

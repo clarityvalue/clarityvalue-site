@@ -40,6 +40,36 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
 .cm-nav-cta{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px 0 14px;font-size:13px;font-weight:500;color:#fff;background:var(--cv-brand-blue);border-radius:6px;text-decoration:none}
 .cm-nav-cta svg{width:11px;height:11px}
 
+/* ---------- Solutions dropdown ---------- */
+/* CSS-only reveal: hover OR focus-within on the wrapper opens the panel.
+   No JS needed. Works on touch via the :focus-within fallback after the
+   browser auto-focuses the button on tap. */
+.cm-nav-dropdown{position:relative;display:inline-flex;align-items:stretch}
+.cm-nav-dd-trigger{font:inherit;background:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:5px;height:30px;padding:0 10px;font-size:13px;color:var(--cv-text-secondary);border-radius:6px}
+.cm-nav-dd-trigger:hover,.cm-nav-dd-trigger.is-active,.cm-nav-dropdown:hover .cm-nav-dd-trigger,.cm-nav-dropdown:focus-within .cm-nav-dd-trigger{background:rgba(0,0,0,0.04);color:var(--cv-text-primary)}
+.cm-nav-dd-chev{width:10px;height:10px;transition:transform 180ms ease}
+.cm-nav-dropdown:hover .cm-nav-dd-chev,.cm-nav-dropdown:focus-within .cm-nav-dd-chev{transform:rotate(180deg)}
+
+.cm-nav-dd-panel{position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%) translateY(-4px);width:560px;background:#fff;border:0.5px solid var(--cv-line-hairline);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.08),0 2px 6px rgba(0,0,0,0.04);padding:14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 160ms ease,transform 160ms ease,visibility 0s linear 160ms;z-index:60}
+.cm-nav-dropdown:hover .cm-nav-dd-panel,.cm-nav-dropdown:focus-within .cm-nav-dd-panel{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);pointer-events:auto;transition:opacity 160ms ease,transform 160ms ease,visibility 0s linear 0s}
+
+.cm-nav-dd-item{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:14px;row-gap:1px;padding:11px 12px;border-radius:8px;text-decoration:none;color:var(--cv-text-primary);transition:background 100ms ease}
+.cm-nav-dd-item:hover{background:rgba(24,95,165,0.05)}
+.cm-nav-dd-k{grid-column:1;grid-row:1 / span 2;align-self:center;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:rgba(24,95,165,0.07);color:var(--cv-brand-blue);font-family:var(--cv-font-mono);font-size:9px;font-weight:500;letter-spacing:0.10em;text-transform:uppercase}
+.cm-nav-dd-h{grid-column:2;grid-row:1;font-size:13px;font-weight:500;color:var(--cv-text-primary);line-height:1.25}
+.cm-nav-dd-b{grid-column:2;grid-row:2;font-size:11.5px;color:var(--cv-text-tertiary);line-height:1.4;margin-top:1px}
+
+.cm-nav-dd-foot{grid-column:1 / -1;display:flex;justify-content:flex-end;align-items:center;padding:6px 6px 2px;margin-top:4px;border-top:0.5px solid var(--cv-line-hairline);padding-top:10px}
+.cm-nav-dd-all{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--cv-brand-blue);text-decoration:none;padding:4px 8px;border-radius:6px}
+.cm-nav-dd-all:hover{background:rgba(24,95,165,0.06)}
+.cm-nav-dd-all svg{width:11px;height:11px}
+
+/* On narrow viewports the dropdown panel hugs the right edge instead of overflowing */
+@media (max-width:780px){
+  .cm-nav-dd-panel{position:fixed;left:12px;right:12px;width:auto;transform:translateY(-4px);max-width:none}
+  .cm-nav-dropdown:hover .cm-nav-dd-panel,.cm-nav-dropdown:focus-within .cm-nav-dd-panel{transform:translateY(0)}
+}
+
 /* ---------- Module hero (paper, light) ---------- */
 .cm-mhero{position:relative;background-color:var(--cm-paper);overflow:hidden;border-bottom:0.5px solid var(--cv-line-hairline)}
 .cm-mhero::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center;opacity:0.85;z-index:0}

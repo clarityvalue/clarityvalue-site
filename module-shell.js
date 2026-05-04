@@ -23,7 +23,53 @@
         </a>
         <nav class="cm-nav-links">
           <a class="cm-nav-link" href="index.html#product">Product</a>
-          <a class="cm-nav-link is-active" href="index.html#modules">Solutions</a>
+          <div class="cm-nav-dropdown">
+            <button class="cm-nav-link cm-nav-dd-trigger is-active" type="button" aria-expanded="false" aria-haspopup="menu">Solutions
+              <svg class="cm-nav-dd-chev" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2.5 4l2.5 2.5L7.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="cm-nav-dd-panel" role="menu">
+              <a class="cm-nav-dd-item" href="land-management.html" role="menuitem">
+                <span class="cm-nav-dd-k">Land</span>
+                <span class="cm-nav-dd-h">Land Management</span>
+                <span class="cm-nav-dd-b">Permits, plan reviews, inspections.</span>
+              </a>
+              <a class="cm-nav-dd-item" href="human-resources.html" role="menuitem">
+                <span class="cm-nav-dd-k">HR</span>
+                <span class="cm-nav-dd-h">Human Resources</span>
+                <span class="cm-nav-dd-b">Onboarding, contracts, the people-side.</span>
+              </a>
+              <a class="cm-nav-dd-item" href="budget-management.html" role="menuitem">
+                <span class="cm-nav-dd-k">Budget</span>
+                <span class="cm-nav-dd-h">Budget Management</span>
+                <span class="cm-nav-dd-b">Funds, vendors, encumbrances, payments.</span>
+              </a>
+              <a class="cm-nav-dd-item" href="licensing.html" role="menuitem">
+                <span class="cm-nav-dd-k">Licensing</span>
+                <span class="cm-nav-dd-h">Licensing</span>
+                <span class="cm-nav-dd-b">Applications and renewals, signed online.</span>
+              </a>
+              <a class="cm-nav-dd-item" href="record-requests.html" role="menuitem">
+                <span class="cm-nav-dd-k">FOIA</span>
+                <span class="cm-nav-dd-h">Record Requests</span>
+                <span class="cm-nav-dd-b">Public-records routed, redacted, fulfilled.</span>
+              </a>
+              <a class="cm-nav-dd-item" href="311.html" role="menuitem">
+                <span class="cm-nav-dd-k">311</span>
+                <span class="cm-nav-dd-h">311 / Citizen Services</span>
+                <span class="cm-nav-dd-b">From "there&rsquo;s a pothole" to a closed work order.</span>
+              </a>
+              <a class="cm-nav-dd-item" href="reports.html" role="menuitem">
+                <span class="cm-nav-dd-k">Reports</span>
+                <span class="cm-nav-dd-h">Reports &amp; Dashboards</span>
+                <span class="cm-nav-dd-b">Live numbers from the working database.</span>
+              </a>
+              <div class="cm-nav-dd-foot">
+                <a class="cm-nav-dd-all" href="index.html#modules">See all solutions
+                  <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h7M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
           <a class="cm-nav-link" href="index.html#about">About</a>
           <a class="cm-nav-link" href="index.html#approach">Approach</a>
           <a class="cm-nav-link" href="#">Security</a>
