@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" data-cm-module="thanks">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Thanks — we&rsquo;ll be in touch — Clarity Value</title>
+<meta name="robots" content="noindex" />
+
+<link rel="stylesheet" href="tokens/colors.css" />
+<link rel="stylesheet" href="tokens/typography.css" />
+<link rel="stylesheet" href="tokens/density.css" />
+<link rel="stylesheet" href="tokens/components-controls.css" />
+<link rel="stylesheet" href="tokens/components-display.css" />
+<link rel="stylesheet" href="tokens/components-shell.css" />
+<link rel="stylesheet" href="module-shell.css" />
+
+<style>
+.cm-thanks{background:var(--cm-paper);position:relative;min-height:calc(100vh - 56px);display:flex;align-items:center;justify-content:center;padding:80px 24px;text-align:center}
+.cm-thanks::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(80,60,30,0.08) 1px,transparent 1.4px);background-size:3px 3px;mix-blend-mode:multiply;opacity:0.35;z-index:0}
+.cm-thanks>*{position:relative;z-index:1}
+.cm-thanks-card{max-width:560px;width:100%}
+.cm-thanks-mark{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;background:#fff;border:0.5px solid var(--cv-line-hairline);border-radius:50%;margin-bottom:24px;box-shadow:0 1px 2px rgba(0,0,0,0.04),0 8px 24px rgba(0,0,0,0.04)}
+.cm-thanks-mark svg{width:22px;height:22px;color:#5C8D2D}
+.cm-thanks-eyebrow{font-family:var(--cv-font-mono);font-size:11px;font-weight:500;letter-spacing:0.10em;text-transform:uppercase;color:var(--cv-brand-blue);margin-bottom:14px}
+.cm-thanks-h{margin:0 0 14px;font-size:36px;font-weight:500;line-height:1.10;letter-spacing:-0.020em;color:var(--cv-text-primary);text-wrap:balance}
+.cm-thanks-h em{font-style:normal;color:var(--cv-brand-blue);font-weight:500}
+.cm-thanks-lede{margin:0 auto 32px;font-size:16px;line-height:1.55;color:var(--cv-text-secondary);max-width:440px}
+.cm-thanks-actions{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.cm-thanks-actions .cm-btn{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:8px;font-size:14px;font-weight:500;text-decoration:none;cursor:pointer;border:0}
+.cm-thanks-actions .cm-btn--primary{background:var(--cv-brand-blue);color:#fff;box-shadow:inset 0 0 0 0.5px rgba(255,255,255,0.18)}
+.cm-thanks-actions .cm-btn--primary:hover{background:#1268B5}
+.cm-thanks-actions .cm-btn--ghost{background:transparent;color:var(--cv-text-primary);box-shadow:inset 0 0 0 0.5px rgba(0,0,0,0.18)}
+.cm-thanks-actions .cm-btn--ghost:hover{background:rgba(0,0,0,0.04)}
+.cm-thanks-actions .cm-btn svg{width:12px;height:12px}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-91MDWR08NJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-91MDWR08NJ');
+</script>
+</head>
+<body>
+
+<div data-cm-slot="nav"></div>
+
+<main>
+  <section class="cm-thanks">
+    <div class="cm-thanks-card">
+      <span class="cm-thanks-mark" aria-hidden="true">
+        <svg viewBox="0 0 22 22" fill="none"><path d="M5 11l4 4 8-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <div class="cm-thanks-eyebrow">Submitted</div>
+      <h1 class="cm-thanks-h">Thanks &mdash; <em>we&rsquo;ll be in touch.</em></h1>
+      <p class="cm-thanks-lede">We typically reply within one business day. If you need us sooner, drop us a line at <a href="mailto:info@clarityvalue.co" style="color:var(--cv-brand-blue)">info@clarityvalue.co</a>.</p>
+      <div class="cm-thanks-actions">
+        <a class="cm-btn cm-btn--primary" href="index.html">
+          Back to home
+          <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h7M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+        <a class="cm-btn cm-btn--ghost" href="index.html#modules">See our solutions</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div data-cm-slot="footer"></div>
+
+<script src="module-shell.js"></script>
+</body>
+</html>

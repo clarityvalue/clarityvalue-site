@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 64" role="img" aria-label="Georgia Department of Human Services">
+  <style>
+    .gdhs-mark{font-family:'Public Sans',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:500;fill:#1F2733}
+    .gdhs-eyebrow{font-family:'Public Sans',-apple-system,sans-serif;font-weight:500;letter-spacing:0.10em;fill:#5C6588}
+  </style>
+  <g>
+    <text class="gdhs-eyebrow" x="0" y="20" font-size="9">STATE OF GEORGIA</text>
+    <text class="gdhs-mark" x="0" y="42" font-size="20">Department of Human Services</text>
+  </g>
+</svg>

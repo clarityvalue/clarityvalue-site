@@ -1,15 +1,28 @@
-# Pretty URLs
-/home          /index.html         200
-/solutions     /index.html#modules 302
-/product       /index.html#product 302
-/about         /index.html#about   302
-/approach      /index.html#approach 302
+# Pretty URLs (always live)
+/home          /index.html             200
+/solutions     /index.html#modules     302
+/approach      /index.html#approach    302
 
-# Old Webflow URLs → new pages (uncomment when migrating DNS)
-# /modules/land        /land-management.html      301
-# /modules/foia        /record-requests.html      301
-# /modules/311         /311.html                  301
-# /modules/reports     /reports.html              301
-# /modules/hr          /human-resources.html      301
-# /modules/budget      /budget-management.html    301
-# /modules/licensing   /licensing.html            301
+# Old Webflow slug → new file mappings (active at cutover)
+/citizen-service-requests   /311.html               301
+/record-request             /record-requests.html   301
+/reports-and-dashboards     /reports.html           301
+/land-management            /land-management.html   301
+/human-resources            /human-resources.html   301
+/budget-management          /budget-management.html 301
+/licensing                  /licensing.html         301
+
+# Pages we built fresh (canonical)
+/privacy-policy             /privacy-policy.html    301
+/terms-of-use               /terms-of-use.html      301
+/contacts                   /contacts.html          301
+/contact                    /contacts.html          301
+
+# Pages that exist on the old site but NOT yet on new (defer until rebuild):
+# /about, /product, /articles/* — temporary 302 to homepage
+/about         /             302
+/product       /             302
+/articles/*    /             302
+
+# Legacy SPA fallback for SEO links we may not know about yet
+# (catch-all 404 still served by netlify.toml)

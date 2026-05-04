@@ -97,6 +97,19 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
 .cm-sec-h2 em.cm-script{font-family:var(--cv-font-display);font-style:italic;color:#A07A38}
 .cm-sec-sub{margin:0;font-size:17px;line-height:1.55;color:var(--cv-text-secondary);max-width:620px}
 
+/* ====== Customer logo wall ====== */
+.cm-logos{padding:56px 0 64px;background:#fff;border-bottom:0.5px solid var(--cv-line-hairline)}
+.cm-logos-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:36px}
+.cm-logos-eyebrow-mark{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:0.5px solid rgba(31,39,51,0.18);border-radius:50%;font-family:var(--cv-font-mono);font-size:9px;color:var(--cv-text-tertiary);letter-spacing:0.1em}
+.cm-logos-eyebrow-label{font-family:var(--cv-font-mono);font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--cv-text-tertiary)}
+.cm-logos-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;border-top:0.5px solid var(--cv-line-hairline);border-left:0.5px solid var(--cv-line-hairline)}
+.cm-logos-cell{display:flex;align-items:center;justify-content:center;height:88px;padding:18px 24px;border-right:0.5px solid var(--cv-line-hairline);border-bottom:0.5px solid var(--cv-line-hairline);text-decoration:none;background:#fff;transition:background 120ms ease}
+.cm-logos-cell img{max-height:42px;max-width:100%;width:auto;height:auto;object-fit:contain;filter:grayscale(100%) opacity(0.55);transition:filter 200ms ease,transform 200ms ease}
+.cm-logos-cell:hover{background:rgba(0,0,0,0.015)}
+.cm-logos-cell:hover img{filter:grayscale(0) opacity(1);transform:scale(1.02)}
+@media (max-width:980px){.cm-logos-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.cm-logos-cell{height:78px;padding:14px 18px}}
+@media (max-width:560px){.cm-logos-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cm-logos-cell{height:72px;padding:12px}.cm-logos-cell img{max-height:32px}}
+
 /* ====== Breath bands ====== */
 .cm-breath{position:relative;height:200px;overflow:hidden;background:var(--cm-paper);border-top:0.5px solid var(--cv-line-hairline);border-bottom:0.5px solid var(--cv-line-hairline)}
 .cm-breath::before{content:"";position:absolute;inset:0;background-image:url(art/wash-breath-1.png);background-size:cover;background-position:center;opacity:0.85}
@@ -228,6 +241,14 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
 .cm-footer-col a{color:rgba(255,255,255,0.72);text-decoration:none;font-size:13px}
 .cm-footer-fine{margin-top:64px;padding-top:22px;border-top:0.5px solid rgba(255,255,255,0.10);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-family:var(--cv-font-mono);font-size:10.5px;letter-spacing:0.10em;text-transform:uppercase;color:rgba(255,255,255,0.40)}
 </style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-91MDWR08NJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-91MDWR08NJ');
+</script>
 </head>
 <body>
 
@@ -246,7 +267,7 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
     </nav>
     <div class="cm-nav-spacer"></div>
     <a class="cm-nav-signin" href="#">Sign in</a>
-    <a class="cm-nav-cta" href="#cta">Request a pilot
+    <a class="cm-nav-cta" href="contacts.html">Request a pilot
       <svg viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 2.5l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
     </a>
   </div>
@@ -267,7 +288,7 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
         <h1>The system <br/>underneath <em class="cm-script">the system.</em></h1>
         <p class="cm-hero-lede">Civic infrastructure for the full range of public-sector work — permitting, records, citizen services, case management. One codebase, one data model, one team. Built for the citizen who files once, and the clerk who opens it eighty times a day.</p>
         <div class="cm-hero-ctas">
-          <a class="cm-btn cm-btn--primary" href="#cta">Request a pilot
+          <a class="cm-btn cm-btn--primary" href="contacts.html">Request a pilot
             <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h7M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </a>
           <a class="cm-btn cm-btn--ghost-dark" href="#product">See the platform</a>
@@ -296,6 +317,29 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
             <span class="cv-pill cv-pill--green">Completion</span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CUSTOMER LOGO WALL ====== -->
+  <section class="cm-logos" aria-label="Agencies running on Clarity Value">
+    <div class="cm-wrap">
+      <div class="cm-logos-eyebrow">
+        <span class="cm-logos-eyebrow-mark">FIG.01b</span>
+        <span class="cm-logos-eyebrow-label">Running on Clarity Value</span>
+      </div>
+      <div class="cm-logos-grid">
+        <div class="cm-logos-cell" role="img" aria-label="New York City"><img src="art/customers/nyc.svg" alt="New York City" loading="lazy"></div>
+        <div class="cm-logos-cell" role="img" aria-label="Georgia Department of Human Services"><img src="art/customers/georgia-dhs.svg" alt="Georgia Department of Human Services" loading="lazy"></div>
+        <div class="cm-logos-cell" role="img" aria-label="Florida Department of Health"><img src="art/customers/florida-health.png" alt="Florida Department of Health" loading="lazy"></div>
+        <div class="cm-logos-cell" role="img" aria-label="City of Atlanta"><img src="art/customers/city-of-atlanta.svg" alt="City of Atlanta" loading="lazy"></div>
+        <div class="cm-logos-cell" role="img" aria-label="City of Hialeah"><img src="art/customers/hialeah.png" alt="City of Hialeah" loading="lazy"></div>
+        <div class="cm-logos-cell" role="img" aria-label="City of Aurora, Illinois"><img src="art/customers/aurora-il.png" alt="City of Aurora, IL" loading="lazy"></div>
+        <div class="cm-logos-cell" role="img" aria-label="Orange County, New York"><img src="art/customers/orange-county-ny.svg" alt="Orange County, NY" loading="lazy"></div>
+        <div class="cm-logos-cell" role="img" aria-label="City of North Miami"><img src="art/customers/north-miami.png" alt="City of North Miami" loading="lazy"></div>
+        <div class="cm-logos-cell" role="img" aria-label="City of Riviera Beach"><img src="art/customers/riviera-beach.png" alt="City of Riviera Beach" loading="lazy"></div>
+        <div class="cm-logos-cell" role="img" aria-label="Granite Falls"><img src="art/customers/granite-falls.png" alt="Granite Falls" loading="lazy"></div>
+        <div class="cm-logos-cell" role="img" aria-label="Georgia Office of Planning and Budget"><img src="art/customers/ga-opb.png" alt="Georgia Office of Planning and Budget" loading="lazy"></div>
       </div>
     </div>
   </section>
@@ -659,7 +703,7 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
         <div class="cm-cta-side">
           <p>Pilots start with one workflow and one team — usually three to six weeks to live records. We bring the platform; you bring the statute, the rulebook, and the people who actually do the work.</p>
           <div class="cm-cta-actions">
-            <a class="cm-btn cm-btn--primary" href="#">Request a pilot
+            <a class="cm-btn cm-btn--primary" href="contacts.html">Request a pilot
               <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h7M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
             </a>
             <a class="cm-btn cm-btn--ghost-dark" href="#product">See the product</a>
@@ -677,9 +721,9 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
           <p>The system underneath the system. Civic infrastructure for the work of government — engineered as one platform, by one team. Built in Miami.</p>
         </div>
         <div class="cm-footer-col"><h4>Platform</h4><ul><li><a href="#product">Product</a></li><li><a href="#modules">Modules</a></li><li><a href="#approach">Approach</a></li><li><a href="#">Changelog</a></li></ul></div>
-        <div class="cm-footer-col"><h4>Solutions</h4><ul><li><a href="#">Land &amp; permitting</a></li><li><a href="#">Records &amp; FOIA</a></li><li><a href="#">311 &amp; citizen services</a></li><li><a href="#">All modules</a></li></ul></div>
-        <div class="cm-footer-col"><h4>Company</h4><ul><li><a href="#about">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li><li><a href="#">Contact</a></li></ul></div>
-        <div class="cm-footer-col"><h4>Trust</h4><ul><li><a href="#">Security</a></li><li><a href="#">Compliance</a></li><li><a href="#">Privacy</a></li><li><a href="#">Status</a></li></ul></div>
+        <div class="cm-footer-col"><h4>Solutions</h4><ul><li><a href="land-management.html">Land &amp; permitting</a></li><li><a href="record-requests.html">Records &amp; FOIA</a></li><li><a href="311.html">311 &amp; citizen services</a></li><li><a href="#modules">All modules</a></li></ul></div>
+        <div class="cm-footer-col"><h4>Company</h4><ul><li><a href="#about">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li><li><a href="contacts.html">Contact</a></li></ul></div>
+        <div class="cm-footer-col"><h4>Trust</h4><ul><li><a href="#">Security</a></li><li><a href="#">Compliance</a></li><li><a href="privacy-policy.html">Privacy</a></li><li><a href="terms-of-use.html">Terms of Use</a></li></ul></div>
       </div>
       <div class="cm-footer-fine">
         <span>&copy; 2026 Clarity Value, Inc. · Built in Miami</span>

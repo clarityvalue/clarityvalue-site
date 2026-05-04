@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en" data-cm-module="contacts">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Talk to us — Clarity Value</title>
+<meta name="description" content="Schedule a demo or consultation with the Clarity Value team. We'll get back to you ASAP." />
+
+<link rel="stylesheet" href="tokens/colors.css" />
+<link rel="stylesheet" href="tokens/typography.css" />
+<link rel="stylesheet" href="tokens/density.css" />
+<link rel="stylesheet" href="tokens/components-controls.css" />
+<link rel="stylesheet" href="tokens/components-display.css" />
+<link rel="stylesheet" href="tokens/components-shell.css" />
+<link rel="stylesheet" href="module-shell.css" />
+
+<style>
+/* ====== Contact page ====== */
+.cm-contact-hero{background:var(--cm-paper);position:relative;padding:80px 0 64px;border-bottom:0.5px solid var(--cv-line-hairline)}
+.cm-contact-hero::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(80,60,30,0.06) 1px,transparent 1.4px);background-size:3px 3px;mix-blend-mode:multiply;opacity:0.35;z-index:0}
+.cm-contact-hero>*{position:relative;z-index:1}
+.cm-contact-hero-row{max-width:var(--cm-page-w);margin:0 auto;padding:0 var(--cm-pad-h)}
+.cm-contact-crumb{display:flex;align-items:center;gap:8px;font-family:var(--cv-font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--cv-text-tertiary);margin-bottom:18px}
+.cm-contact-crumb a{color:var(--cv-text-secondary);text-decoration:none}
+.cm-contact-crumb a:hover{color:var(--cv-brand-blue)}
+.cm-contact-crumb span.sep{color:var(--cv-text-tertiary)}
+.cm-contact-h1{margin:0 0 18px;font-size:52px;font-weight:500;line-height:1.04;letter-spacing:-0.024em;color:var(--cv-text-primary);text-wrap:balance;max-width:760px}
+.cm-contact-h1 em{font-style:normal;color:var(--cv-brand-blue);font-weight:500}
+.cm-contact-h1 em.cm-script{font-family:var(--cv-font-display);font-style:italic;color:#A07A38}
+.cm-contact-lede{margin:0;font-size:17px;line-height:1.55;color:var(--cv-text-secondary);max-width:560px}
+
+/* ====== Two-column body — form (left) + ways-to-reach-us (right) ====== */
+.cm-contact-body{padding:64px 0 96px;background:#fff}
+.cm-contact-row{max-width:var(--cm-page-w);margin:0 auto;padding:0 var(--cm-pad-h);display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:64px;align-items:start}
+@media (max-width:900px){.cm-contact-row{grid-template-columns:1fr;gap:48px}}
+
+/* ----- Form ----- */
+.cm-form-card{background:#fff;border:0.5px solid var(--cv-line-hairline);border-radius:8px;padding:32px 36px;box-shadow:0 1px 2px rgba(0,0,0,0.03),0 8px 24px rgba(0,0,0,0.04)}
+.cm-form-eyebrow{font-family:var(--cv-font-mono);font-size:11px;font-weight:500;letter-spacing:0.10em;text-transform:uppercase;color:var(--cv-brand-blue);margin-bottom:8px}
+.cm-form-h{margin:0 0 22px;font-size:22px;font-weight:500;line-height:1.25;letter-spacing:-0.012em;color:var(--cv-text-primary)}
+.cm-form-row{display:flex;flex-direction:column;gap:18px;margin-bottom:18px}
+.cm-form-row-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+@media (max-width:560px){.cm-form-row-grid{grid-template-columns:1fr}}
+.cm-form-field{display:flex;flex-direction:column;gap:6px}
+.cm-form-label{font-size:13px;font-weight:500;letter-spacing:-0.005em;color:var(--cv-text-primary)}
+.cm-form-label .cm-req{color:var(--cv-brand-blue);font-weight:400;margin-left:2px}
+.cm-form-help{font-size:12px;color:var(--cv-text-tertiary);line-height:1.4}
+.cm-form-input,.cm-form-textarea,.cm-form-select{width:100%;font:inherit;font-size:14px;color:var(--cv-text-primary);background:#fff;border:0.5px solid rgba(0,0,0,0.18);border-radius:6px;padding:10px 12px;line-height:1.45;transition:border-color 80ms,box-shadow 80ms}
+.cm-form-input:focus,.cm-form-textarea:focus,.cm-form-select:focus{outline:none;border-color:var(--cv-brand-blue);box-shadow:0 0 0 3px rgba(24,95,165,0.15)}
+.cm-form-input::placeholder,.cm-form-textarea::placeholder{color:var(--cv-text-tertiary)}
+.cm-form-textarea{min-height:120px;resize:vertical;font-family:inherit}
+.cm-form-honey{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;overflow:hidden}
+.cm-form-submit-row{margin-top:24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.cm-form-submit{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;background:var(--cv-brand-blue);color:#fff;border:0;border-radius:8px;font:inherit;font-size:14px;font-weight:500;cursor:pointer;box-shadow:inset 0 0 0 0.5px rgba(255,255,255,0.18),0 1px 2px rgba(24,95,165,0.15)}
+.cm-form-submit:hover{background:#1268B5}
+.cm-form-submit svg{width:12px;height:12px}
+.cm-form-fineprint{font-size:12px;color:var(--cv-text-tertiary);line-height:1.4;margin:0}
+.cm-form-fineprint a{color:var(--cv-brand-blue);text-decoration:none;border-bottom:1px solid rgba(24,95,165,0.25)}
+.cm-form-fineprint a:hover{border-bottom-color:var(--cv-brand-blue)}
+
+/* ----- Side panel ----- */
+.cm-contact-side{display:flex;flex-direction:column;gap:28px}
+.cm-side-block{padding:0 0 24px;border-bottom:0.5px solid var(--cv-line-hairline)}
+.cm-side-block:last-child{border-bottom:0;padding-bottom:0}
+.cm-side-eyebrow{font-family:var(--cv-font-mono);font-size:11px;font-weight:500;letter-spacing:0.10em;text-transform:uppercase;color:var(--cv-text-tertiary);margin-bottom:10px}
+.cm-side-h{margin:0 0 6px;font-size:14px;font-weight:500;color:var(--cv-text-primary)}
+.cm-side-body{margin:0;font-size:14px;line-height:1.55;color:var(--cv-text-secondary)}
+.cm-side-body a{color:var(--cv-brand-blue);text-decoration:none;border-bottom:1px solid rgba(24,95,165,0.25)}
+.cm-side-body a:hover{border-bottom-color:var(--cv-brand-blue)}
+.cm-side-mono{font-family:var(--cv-font-mono);font-size:13px}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-91MDWR08NJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-91MDWR08NJ');
+</script>
+</head>
+<body>
+
+<div data-cm-slot="nav"></div>
+
+<main>
+
+  <section class="cm-contact-hero">
+    <div class="cm-contact-hero-row">
+      <div class="cm-contact-crumb">
+        <a href="index.html">Clarity Value</a>
+        <span class="sep">/</span>
+        <span>Talk to us</span>
+      </div>
+      <h1 class="cm-contact-h1">Need a demo? <em class="cm-script">Want a consultation?</em><br/>We&rsquo;ve got you covered.</h1>
+      <p class="cm-contact-lede">Our team is here to answer your questions. Drop us a note to request more information or set up a demo. We&rsquo;ll get back to you ASAP.</p>
+    </div>
+  </section>
+
+  <section class="cm-contact-body">
+    <div class="cm-contact-row">
+
+      <!--
+        Netlify Forms wiring:
+          • name="demo-request" — appears as the form name in Netlify dashboard
+          • data-netlify="true" — tells Netlify to capture submissions
+          • netlify-honeypot="bot-field" — spam prevention via the hidden bot-field input
+          • action="/thanks.html" — branded success page after submit
+        For full docs: https://docs.netlify.com/forms/setup/
+      -->
+      <form
+        class="cm-form-card"
+        name="demo-request"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        action="/thanks.html"
+        autocomplete="on"
+      >
+        <input type="hidden" name="form-name" value="demo-request" />
+        <p class="cm-form-honey"><label>Don&rsquo;t fill this out: <input name="bot-field" /></label></p>
+
+        <div class="cm-form-eyebrow">Request a pilot</div>
+        <h2 class="cm-form-h">Tell us about your agency</h2>
+
+        <div class="cm-form-row-grid">
+          <div class="cm-form-field">
+            <label class="cm-form-label" for="name">Your name <span class="cm-req">*</span></label>
+            <input class="cm-form-input" type="text" id="name" name="name" placeholder="Jane Smith" required autocomplete="name" />
+          </div>
+          <div class="cm-form-field">
+            <label class="cm-form-label" for="email">Work email <span class="cm-req">*</span></label>
+            <input class="cm-form-input" type="email" id="email" name="email" placeholder="jane.smith@example.gov" required autocomplete="email" />
+          </div>
+        </div>
+
+        <div class="cm-form-row-grid">
+          <div class="cm-form-field">
+            <label class="cm-form-label" for="department">Department or jurisdiction <span class="cm-req">*</span></label>
+            <input class="cm-form-input" type="text" id="department" name="department" placeholder="e.g. City of Atlanta — HR" required autocomplete="organization" />
+          </div>
+          <div class="cm-form-field">
+            <label class="cm-form-label" for="role">Your role</label>
+            <input class="cm-form-input" type="text" id="role" name="role" placeholder="CIO, Director, Analyst, etc." autocomplete="organization-title" />
+          </div>
+        </div>
+
+        <div class="cm-form-row">
+          <div class="cm-form-field">
+            <label class="cm-form-label" for="needs">Tell us more about your needs</label>
+            <span class="cm-form-help">A workflow you&rsquo;re trying to modernize, a system you&rsquo;re replacing, anything you want us to know before we meet.</span>
+            <textarea class="cm-form-textarea" id="needs" name="needs" placeholder="We&rsquo;re looking at modernizing our open-records process &mdash; right now we&rsquo;re fielding everything by email&hellip;"></textarea>
+          </div>
+        </div>
+
+        <div class="cm-form-submit-row">
+          <button class="cm-form-submit" type="submit">
+            Get your free demo
+            <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h7M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <p class="cm-form-fineprint">By submitting, you agree to our <a href="privacy-policy.html">Privacy Policy</a>. We never share your info.</p>
+        </div>
+      </form>
+
+      <aside class="cm-contact-side">
+        <div class="cm-side-block">
+          <div class="cm-side-eyebrow">Email</div>
+          <p class="cm-side-body"><a href="mailto:info@clarityvalue.co" class="cm-side-mono">info@clarityvalue.co</a><br/>For demos, partnerships, anything sales-related.</p>
+        </div>
+        <div class="cm-side-block">
+          <div class="cm-side-eyebrow">Support</div>
+          <p class="cm-side-body"><a href="mailto:support@clarityvalue.co" class="cm-side-mono">support@clarityvalue.co</a><br/>Existing customers, technical questions, account help.</p>
+        </div>
+        <div class="cm-side-block">
+          <div class="cm-side-eyebrow">Office</div>
+          <p class="cm-side-body">31 NE 17th St.<br/>Miami, FL 33132</p>
+        </div>
+        <div class="cm-side-block">
+          <div class="cm-side-eyebrow">Response time</div>
+          <p class="cm-side-body">We typically reply within one business day. Pilots usually start with a 30-minute walkthrough &mdash; we bring the platform, you bring the statute and the people who do the work.</p>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+</main>
+
+<div data-cm-slot="footer"></div>
+
+<script src="module-shell.js"></script>
+</body>
+</html>

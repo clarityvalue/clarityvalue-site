@@ -30,7 +30,7 @@
         </nav>
         <div class="cm-nav-spacer"></div>
         <a class="cm-nav-signin" href="#">Sign in</a>
-        <a class="cm-nav-cta" href="#cta">Request a pilot
+        <a class="cm-nav-cta" href="contacts.html">Request a pilot
           <svg viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 2.5l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
         </a>
       </div>
@@ -74,7 +74,7 @@
           <div class="cm-cta-side">
             <p>Pilots start with one workflow and one team — usually three to six weeks to live records. We bring the platform; you bring the statute, the rulebook, and the people who do the work.</p>
             <div class="cm-cta-actions">
-              <a class="cm-btn cm-btn--primary" href="#">Request a pilot
+              <a class="cm-btn cm-btn--primary" href="contacts.html">Request a pilot
                 <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h7M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
               </a>
               <a class="cm-btn cm-btn--ghost-dark" href="index.html#product">See the product</a>
@@ -96,8 +96,8 @@
           </div>
           <div class="cm-footer-col"><h4>Platform</h4><ul><li><a href="index.html#product">Product</a></li><li><a href="index.html#modules">Modules</a></li><li><a href="index.html#approach">Approach</a></li><li><a href="#">Changelog</a></li></ul></div>
           <div class="cm-footer-col"><h4>Solutions</h4><ul>${PAGES.map(p=>`<li><a href="${p.href}">${p.label}</a></li>`).join('')}</ul></div>
-          <div class="cm-footer-col"><h4>Company</h4><ul><li><a href="index.html#about">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li><li><a href="#">Contact</a></li></ul></div>
-          <div class="cm-footer-col"><h4>Trust</h4><ul><li><a href="#">Security</a></li><li><a href="#">Compliance</a></li><li><a href="#">Privacy</a></li><li><a href="#">Status</a></li></ul></div>
+          <div class="cm-footer-col"><h4>Company</h4><ul><li><a href="index.html#about">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li><li><a href="contacts.html">Contact</a></li></ul></div>
+          <div class="cm-footer-col"><h4>Trust</h4><ul><li><a href="#">Security</a></li><li><a href="#">Compliance</a></li><li><a href="privacy-policy.html">Privacy</a></li><li><a href="terms-of-use.html">Terms of Use</a></li></ul></div>
         </div>
         <div class="cm-footer-fine">
           <span>&copy; 2026 Clarity Value, Inc. · Built in Miami</span>
