@@ -312,9 +312,15 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
   .cm-nav-logo span{font-size:14px;white-space:nowrap}
 
   /* Hero — collapse the 2-col cm-hero-row to 1-col so text uses full width.
-     Top padding tightened from 64px to 28px so the eyebrow + headline sit
-     closer to the nav (was reading as awkward whitespace on mobile). */
-  .cm-hero{padding:28px 0 48px}
+     Top padding tightened to 16px (modern SaaS standard for tight mobile heroes
+     — Linear, Vercel pattern). Was 28px, before that 64px. */
+  .cm-hero{padding:16px 0 48px}
+  /* Rosetta + its editorial captions — hide on mobile. The 4-row "Live across
+     the platform" card now carries the breadth-of-modules message in a more
+     concrete way, and the 540px rosetta SVG was duplicating that signal while
+     also competing for visual real estate. Editorial flourish stays on desktop
+     where there's room for it to breathe in its own column. */
+  .cm-rose-wrap,.cm-rose-note{display:none}
   .cm-hero-grid{display:none} /* the desktop dotted-grid bg pattern is too dense for narrow */
   /* Hero wash: desktop has it offset 30% from the left so it reads as a right-side
      atmospheric anchor on a wide aspect ratio. On a 412px phone that creates a
