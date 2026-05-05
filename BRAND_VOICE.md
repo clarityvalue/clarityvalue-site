@@ -100,7 +100,7 @@ This is a foundational brand pillar, not a feature paragraph. Talk about AI ever
 
 ### Anti-patterns — never use these phrases
 
-- ❌ "AI-powered" — empty signal, sounds like a Tyler ad
+- ❌ "AI-powered" — empty signal, reads like incumbent vendor marketing
 - ❌ "AI-driven insights" — corporate filler
 - ❌ "Intelligent automation" — meaningless
 - ❌ "Smart assistant" / "smart [anything]" — diminishes the model
@@ -131,7 +131,7 @@ Every AI claim should specify which side of the counter benefits. Citizen-side, 
 
 These three claims are uniquely defensible because of how the platform is built. **Use them when the audience is technical (CIOs, engineers, procurement IT):**
 
-1. **One database = AI sees across modules.** Tyler/Granicus's AI can't reason across Permits, FOIA, and 311 because those are different products glued together with ETLs. Ours can.
+1. **One database = AI sees across modules.** Stitched-together platforms can't reason across Permits, FOIA, and 311 because those are different products glued together with ETLs. Ours can — same database, same model, every record.
 2. **One data model = AI is calibrated to your statute.** Your FOIA classifier reads against your state's open-records law. Per-tenant calibration with shared platform improvements.
 3. **Every AI suggestion is logged.** Audit trail at the model level. Defensible at FOIA, defensible at audit, defensible in court.
 
