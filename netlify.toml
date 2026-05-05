@@ -2,9 +2,9 @@
 [build]
   publish = "."
 
-[[redirects]]
-  from = "/*"
-  to = "/404.html"
-  status = 404
-
-# HTTPS / TLS handled automatically by Netlify.
+# Note: catch-all "/* → /404.html status=404" redirect was removed because:
+#   1. Netlify automatically serves /404.html when no static file matches
+#      (so the rule was redundant), and
+#   2. The catch-all was intercepting Netlify Forms POSTs, causing form
+#      submissions to land on the 404 page instead of being processed.
+# HTTPS / TLS is handled automatically by Netlify.
