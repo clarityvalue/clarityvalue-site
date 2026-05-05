@@ -116,9 +116,9 @@
       <div class="cm-cta-wash"></div>
       <div class="cm-wrap">
         <div class="cm-cta-row">
-          <h2 class="cm-cta-h2">If you run any part of the apparatus, <em class="cm-script">we should talk.</em></h2>
+          <h2 class="cm-cta-h2">Bring one workflow. <em class="cm-script">We&rsquo;ll be live in three weeks.</em></h2>
           <div class="cm-cta-side">
-            <p>Pilots start with one workflow and one team — usually three to six weeks to live records. We bring the platform; you bring the statute, the rulebook, and the people who do the work.</p>
+            <p>Pilots start with one team and one workflow &mdash; three to six weeks to live records. We bring the platform; you bring the statute, the rulebook, and the people who do the work.</p>
             <div class="cm-cta-actions">
               <a class="cm-btn cm-btn--primary" href="contacts.html">Request a pilot
                 <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h7M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>

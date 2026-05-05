@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en" data-cm-module="ai">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AI for the work — Clarity Value</title>
+<meta name="description" content="The first govtech platform engineered with LLMs as a first-class architectural primitive. AI as the first set of eyes — on every record. The clerk still owns the call." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Clarity Value" />
+<meta property="og:url" content="https://clarityvalue.netlify.app/ai.html" />
+<meta property="og:title" content="AI for the work — Clarity Value" />
+<meta property="og:description" content="AI as the first set of eyes on every record. The clerk still owns the call. Six concrete use cases live across permits, FOIA, 311, budgets, and more." />
+<meta property="og:image" content="https://clarityvalue.netlify.app/art/og-image.png?v=2" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AI for the work — Clarity Value" />
+<meta name="twitter:description" content="AI as the first set of eyes on every record. The clerk still owns the call." />
+<meta name="twitter:image" content="https://clarityvalue.netlify.app/art/og-image.png?v=2" />
+
+<link rel="stylesheet" href="tokens/colors.css" />
+<link rel="stylesheet" href="tokens/typography.css" />
+<link rel="stylesheet" href="tokens/density.css" />
+<link rel="stylesheet" href="tokens/components-controls.css" />
+<link rel="stylesheet" href="tokens/components-display.css" />
+<link rel="stylesheet" href="tokens/components-shell.css" />
+<link rel="stylesheet" href="module-shell.css?v=3" />
+
+<style>
+/* AI page-specific styles. Borrows the cm-mhero pattern from module-shell.css for the hero,
+   adds bespoke chrome for the 6-use-case grid + architectural-moat band. */
+
+/* Six use cases — 3x2 grid of bordered cards. Bigger than the homepage 3-card section. */
+.cm-aip-uses{padding:88px 0 96px;background:#fff;border-bottom:0.5px solid var(--cv-line-hairline)}
+.cm-aip-head{max-width:680px;margin-bottom:48px}
+.cm-aip-head .cm-eyebrow{display:block;margin-bottom:12px}
+.cm-aip-h2{margin:0 0 14px;font-size:36px;font-weight:500;line-height:1.1;letter-spacing:-0.02em;color:var(--cv-text-primary);text-wrap:balance}
+.cm-aip-h2 em{font-style:normal;color:var(--cv-brand-blue);font-weight:500}
+.cm-aip-h2 em.cm-script{font-family:var(--cv-font-display);font-style:italic;color:#A07A38}
+.cm-aip-sub{margin:0;font-size:16px;line-height:1.55;color:var(--cv-text-secondary);max-width:620px}
+.cm-aip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.cm-aip-card{background:#fff;border:0.5px solid rgba(31,39,51,0.18);border-radius:8px;padding:24px 22px 22px;display:flex;flex-direction:column;gap:12px;box-shadow:0 1px 2px rgba(0,0,0,0.03),0 8px 24px rgba(0,0,0,0.04)}
+.cm-aip-card-eyebrow{font-family:var(--cv-font-mono);font-size:10px;font-weight:500;letter-spacing:0.10em;text-transform:uppercase;color:var(--cv-brand-blue);display:flex;align-items:center;gap:8px}
+.cm-aip-card-eyebrow .num{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:0.5px solid rgba(24,95,165,0.30);font-size:9px;color:var(--cv-brand-blue)}
+.cm-aip-card-h{margin:0;font-size:16px;font-weight:500;line-height:1.3;letter-spacing:-0.005em;color:var(--cv-text-primary)}
+.cm-aip-card-b{margin:0;font-size:13.5px;line-height:1.55;color:var(--cv-text-secondary);flex:1}
+.cm-aip-card-tag{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;background:rgba(24,95,165,0.05);border:0.5px solid rgba(24,95,165,0.18);border-radius:999px;font-family:var(--cv-font-mono);font-size:9.5px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--cv-brand-blue);align-self:flex-start;margin-top:4px}
+.cm-aip-card-tag.cm-aip-card-tag--green{background:#EAF3DE;border-color:#C0DD97;color:#27500A}
+.cm-aip-card-tag.cm-aip-card-tag--amber{background:#FAEEDA;border-color:#F0CB8E;color:#633806}
+@media (max-width:980px){.cm-aip-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.cm-aip-grid{grid-template-columns:1fr}}
+
+/* Architectural moat — dark navy band. Three claims that nobody else can make. */
+.cm-aip-moat{background:var(--cm-navy);color:var(--cm-on-dark);padding:96px 0;position:relative;overflow:hidden}
+.cm-aip-moat::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 90% 70% at 50% 50%,#000 30%,transparent 100%);pointer-events:none}
+.cm-aip-moat>.cm-wrap{position:relative;z-index:1}
+.cm-aip-moat-head{max-width:680px;margin-bottom:56px}
+.cm-aip-moat-h2{margin:0 0 14px;font-size:36px;font-weight:500;line-height:1.1;letter-spacing:-0.02em;color:#fff;text-wrap:balance}
+.cm-aip-moat-h2 em{font-style:normal;color:#85B7EB;font-weight:500}
+.cm-aip-moat-h2 em.cm-script{font-family:var(--cv-font-display);font-style:italic;color:#E8C28A}
+.cm-aip-moat-sub{margin:0;font-size:16px;line-height:1.55;color:rgba(255,255,255,0.65);max-width:600px}
+.cm-aip-claims{display:grid;grid-template-columns:repeat(3,1fr);border-top:0.5px solid rgba(255,255,255,0.14)}
+.cm-aip-claim{padding:32px 28px 0 0}
+.cm-aip-claim+.cm-aip-claim{border-left:0.5px solid rgba(255,255,255,0.14);padding-left:28px}
+.cm-aip-claim-num{font-family:var(--cv-font-mono);font-size:11px;letter-spacing:0.14em;color:rgba(255,255,255,0.45);margin-bottom:18px;display:block}
+.cm-aip-claim-h{margin:0 0 12px;font-family:var(--cv-font-display);font-size:20px;font-weight:500;line-height:1.18;letter-spacing:-0.01em;color:#fff;text-wrap:balance}
+.cm-aip-claim-b{margin:0;font-size:14px;line-height:1.55;color:rgba(255,255,255,0.65)}
+.cm-aip-claim-b b{color:#fff;font-weight:500}
+@media (max-width:780px){
+  .cm-aip-uses{padding:56px 0 64px}
+  .cm-aip-h2{font-size:26px}
+  .cm-aip-moat{padding:64px 0}
+  .cm-aip-moat-h2{font-size:26px}
+  .cm-aip-claims{grid-template-columns:1fr;border-top:0}
+  .cm-aip-claim{padding:24px 0;border-top:0.5px solid rgba(255,255,255,0.14)}
+  .cm-aip-claim+.cm-aip-claim{border-left:0;padding-left:0}
+}
+
+/* Honesty band — two columns, calm white bg, the human-in-the-loop reassurance. */
+.cm-aip-honest{padding:88px 0 96px;background:#fff}
+.cm-aip-honest-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
+.cm-aip-honest-h2{margin:14px 0 18px;font-size:30px;font-weight:500;line-height:1.1;letter-spacing:-0.02em;color:var(--cv-text-primary);text-wrap:balance}
+.cm-aip-honest-h2 em{font-style:italic;color:#A07A38;font-weight:500;font-family:var(--cv-font-display)}
+.cm-aip-honest-lede{margin:0 0 24px;font-size:15px;line-height:1.6;color:var(--cv-text-secondary);max-width:480px}
+.cm-aip-faq{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:0;border-top:0.5px solid var(--cv-line-hairline)}
+.cm-aip-faq li{padding:18px 0;border-bottom:0.5px solid var(--cv-line-hairline);display:flex;flex-direction:column;gap:6px}
+.cm-aip-faq-q{font-size:14px;font-weight:500;color:var(--cv-text-primary);line-height:1.4}
+.cm-aip-faq-a{margin:0;font-size:13.5px;line-height:1.55;color:var(--cv-text-secondary)}
+@media (max-width:780px){
+  .cm-aip-honest{padding:56px 0 64px}
+  .cm-aip-honest-row{grid-template-columns:1fr;gap:32px}
+  .cm-aip-honest-h2{font-size:24px}
+}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-91MDWR08NJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-91MDWR08NJ');
+</script>
+</head>
+<body>
+
+<div data-cm-slot="nav"></div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="cm-mhero">
+    <div class="cm-mhero-row">
+      <div>
+        <div class="cm-mhero-crumb">
+          <a href="index.html">Clarity Value</a>
+          <span>/</span>
+          <span>AI for the work</span>
+        </div>
+        <h1>AI as the first set of eyes &mdash; <em class="cm-script">on every record.</em></h1>
+        <p class="cm-mhero-lede">Not a chatbot bolted onto a 1990s database. The model is in the platform &mdash; reading plans, parsing requests, configuring workflows, watching the queue. The clerk still owns the call. They just see what to look at first. Citizens get faster service. Staff get amplified judgment.</p>
+        <div class="cm-mhero-ctas">
+          <a class="cm-btn cm-btn--primary" href="contacts.html">Request a pilot
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6h7M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </a>
+          <a class="cm-btn cm-btn--ghost" href="#use-cases">See six use cases</a>
+        </div>
+        <div class="cm-mhero-trust">SOC 2 Type II<span class="sep">&middot;</span>Every AI suggestion logged<span class="sep">&middot;</span>US-only on Google Cloud<span class="sep">&middot;</span>Built in Miami</div>
+      </div>
+      <div class="cm-mhero-art">
+        <div class="cm-mhero-surface" id="hero-surface" style="left:0;right:0;top:14px;bottom:14px;transform:rotate(-1deg)"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIX USE CASES -->
+  <section class="cm-aip-uses" id="use-cases">
+    <div class="cm-wrap">
+      <div class="cm-aip-head">
+        <span class="cm-eyebrow cm-eyebrow--blue">Use cases</span>
+        <h2 class="cm-aip-h2">Six places the model already earns its keep, <em class="cm-script">across the platform.</em></h2>
+        <p class="cm-aip-sub">Three for citizens, three for staff. Each one with a clear human check at the end. Each one calibrated to your statute, your code, your operations &mdash; not generic defaults. Each suggestion logged for audit.</p>
+      </div>
+      <div class="cm-aip-grid">
+
+        <div class="cm-aip-card">
+          <span class="cm-aip-card-eyebrow"><span class="num">01</span>Plan review</span>
+          <h3 class="cm-aip-card-h">Flagged before the planner opens it.</h3>
+          <p class="cm-aip-card-b">A citizen uploads plans. The model reads them against your code &mdash; surfaces likely non-compliance for the planner to verify, releases obvious passes through, leaves borderline cases for human review with the model&rsquo;s reasoning attached.</p>
+          <span class="cm-aip-card-tag">Citizen-side &middot; staff-side</span>
+        </div>
+
+        <div class="cm-aip-card">
+          <span class="cm-aip-card-eyebrow"><span class="num">02</span>Record requests</span>
+          <h3 class="cm-aip-card-h">Exemptions caught at intake.</h3>
+          <p class="cm-aip-card-b">A FOIA request lands. The model evaluates against your statute &mdash; surfaces likely exemptions, releases clear cases, routes the gray-zone requests to your officer with the relevant statutory text attached.</p>
+          <span class="cm-aip-card-tag">Citizen-side &middot; staff-side</span>
+        </div>
+
+        <div class="cm-aip-card">
+          <span class="cm-aip-card-eyebrow"><span class="num">03</span>Conversational config</span>
+          <h3 class="cm-aip-card-h">Configured by typing.</h3>
+          <p class="cm-aip-card-b">&ldquo;Add an inspector approval step before issuance.&rdquo; The model reconfigures the workflow inline. The clerk does it on a Tuesday afternoon &mdash; no vendor ticket, no sprint to wait through.</p>
+          <span class="cm-aip-card-tag">Architect-side</span>
+        </div>
+
+        <div class="cm-aip-card">
+          <span class="cm-aip-card-eyebrow"><span class="num">04</span>Health audit</span>
+          <h3 class="cm-aip-card-h">An AI health check on your operation.</h3>
+          <p class="cm-aip-card-b">Records with no assignee. Steps that have stalled. Queues drifting out of balance. The model surfaces them on a single screen every Monday morning &mdash; and points the manager at exactly what to triage today.</p>
+          <span class="cm-aip-card-tag cm-aip-card-tag--green">Manager-side</span>
+        </div>
+
+        <div class="cm-aip-card">
+          <span class="cm-aip-card-eyebrow"><span class="num">05</span>Cross-module reasoning</span>
+          <h3 class="cm-aip-card-h">One database means the model sees everything.</h3>
+          <p class="cm-aip-card-b">A FOIA request mentions Coral Way construction. The model preloads the relevant permit files at intake. A vendor flagged in HR can&rsquo;t be issued a new PO. Permits, FOIA, 311, budgets &mdash; all in one Postgres, all visible to one model.</p>
+          <span class="cm-aip-card-tag">Architect-side &middot; CIO</span>
+        </div>
+
+        <div class="cm-aip-card">
+          <span class="cm-aip-card-eyebrow"><span class="num">06</span>Proactive escalation</span>
+          <h3 class="cm-aip-card-h">Catch issues before they ripen.</h3>
+          <p class="cm-aip-card-b">A reviewer hasn&rsquo;t synced. A request is approaching SLA. A step has been overdue for three days. The model surfaces these to your director on Tuesday morning &mdash; before they show up in next week&rsquo;s council meeting.</p>
+          <span class="cm-aip-card-tag cm-aip-card-tag--amber">Manager-side</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ARCHITECTURAL MOAT -->
+  <section class="cm-aip-moat">
+    <div class="cm-wrap">
+      <div class="cm-aip-moat-head">
+        <span class="cm-eyebrow cm-eyebrow--blue" style="color:#85B7EB">Why ours is different</span>
+        <h2 class="cm-aip-moat-h2" style="margin-top:14px">Three things only one platform can claim. <em class="cm-script">This one.</em></h2>
+        <p class="cm-aip-moat-sub">The incumbents are bolting AI onto products that were built in the 1990s and acquired in the 2010s. We engineered the platform from day one with the model as a first-class primitive. That gives us three structural advantages no roll-up can replicate.</p>
+      </div>
+      <div class="cm-aip-claims">
+        <div class="cm-aip-claim">
+          <span class="cm-aip-claim-num">01 / Architecture</span>
+          <h3 class="cm-aip-claim-h">One database. The model sees across modules.</h3>
+          <p class="cm-aip-claim-b"><b>Tyler and Granicus can&rsquo;t reason across Permits, FOIA, and 311</b> &mdash; those are different products with different schemas, glued together by ETLs. We can. The model has full read access to the operational database, in real time, every record.</p>
+        </div>
+        <div class="cm-aip-claim">
+          <span class="cm-aip-claim-num">02 / Calibration</span>
+          <h3 class="cm-aip-claim-h">Your statute. Your code. Not generic defaults.</h3>
+          <p class="cm-aip-claim-b"><b>The FOIA classifier reads against your state&rsquo;s open-records law.</b> The plan compliance pre-check reads against your municipal code. The escalation rules match your operational tempo. Per-tenant calibration with shared platform improvements.</p>
+        </div>
+        <div class="cm-aip-claim">
+          <span class="cm-aip-claim-num">03 / Defensibility</span>
+          <h3 class="cm-aip-claim-h">Every AI suggestion logged. Every override audited.</h3>
+          <p class="cm-aip-claim-b"><b>Defensible at FOIA, defensible at audit, defensible in court.</b> The model recommends. The human decides. Both are timestamped against your statutory record. When the auditor asks why a permit was approved, you have the trail.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HONESTY BAND -->
+  <section class="cm-aip-honest">
+    <div class="cm-wrap">
+      <div class="cm-aip-honest-row">
+        <div>
+          <span class="cm-eyebrow cm-eyebrow--blue">How it stays honest</span>
+          <h2 class="cm-aip-honest-h2">The model has already read the file. <em>The clerk still owns the call.</em></h2>
+          <p class="cm-aip-honest-lede">Three things we don&rsquo;t do, and one thing we do. We don&rsquo;t replace clerks &mdash; we tee up their work. We don&rsquo;t generate citizen-facing decisions &mdash; we suggest, your staff decides. We don&rsquo;t hide our reasoning &mdash; every suggestion is auditable. What we do: make the clerk faster, make the citizen heard sooner, make the auditor&rsquo;s job easier next year.</p>
+        </div>
+        <ul class="cm-aip-faq">
+          <li>
+            <span class="cm-aip-faq-q">What about hallucinations?</span>
+            <p class="cm-aip-faq-a">The model never makes a binding decision. Every output is a suggestion the staff member can accept, modify, or override. Outputs are calibrated against your statute and logged with reasoning. If the model hallucinates a citation, the human reviewer catches it the same way they catch a typo.</p>
+          </li>
+          <li>
+            <span class="cm-aip-faq-q">Can we audit what the model said?</span>
+            <p class="cm-aip-faq-a">Yes. Every suggestion, every input that produced it, every human decision against it &mdash; logged in the same database your records live in. Pull a record&rsquo;s history; the AI suggestions are part of it. We use the same audit infrastructure that handles your bulk-delete trail.</p>
+          </li>
+          <li>
+            <span class="cm-aip-faq-q">Where does our data live?</span>
+            <p class="cm-aip-faq-a">In your Postgres database, on Google Cloud, in a US-only region. Model calls go through Anthropic&rsquo;s API with no training-data retention. Your statute, your code, and your citizen records never leave your tenant&rsquo;s isolation boundary.</p>
+          </li>
+          <li>
+            <span class="cm-aip-faq-q">What if the AI is wrong?</span>
+            <p class="cm-aip-faq-a">It will be sometimes &mdash; that&rsquo;s why the human is still in the loop. The model is calibrated to err toward escalation, not approval. Borderline plan reviews go to the planner. Borderline FOIA requests go to the officer. The cost of a missed flag is higher than the cost of a false positive.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CROSS-LINKS slot — module-shell.js renders 'Continue exploring' with all 7 modules -->
+  <div data-cm-slot="xlinks"></div>
+
+  <!-- CTA slot -->
+  <div data-cm-slot="cta"></div>
+
+</main>
+
+<div data-cm-slot="footer"></div>
+
+<script src="module-shell.js?v=4"></script>
+
+<script>
+/* Hero surface — Health Audit modal mockup. Shows the AI surfacing what the manager
+   should triage today: 3 records with no assignee, 5 stale steps, 2 queues out of balance. */
+(function(){
+  const el = document.getElementById('hero-surface');
+  if (!el) return;
+  el.innerHTML = `
+    <div style="padding:14px 16px;border-bottom:0.5px solid var(--cv-line-hairline)">
+      <div class="cv-breadcrumb" style="margin-bottom:5px">Dashboard <span style="color:var(--cv-text-muted);margin:0 5px">/</span> <span style="color:var(--cv-text-secondary)">Health audit</span></div>
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <span class="cv-page-title">Operation health</span>
+        <span style="font-size:11px;color:var(--cv-text-tertiary);font-family:var(--cv-font-mono)">5 categories &middot; refreshed 4m ago</span>
+      </div>
+    </div>
+    <div style="padding:14px;display:grid;grid-template-columns:140px 1fr;gap:18px;align-items:start;border-bottom:0.5px solid var(--cv-line-hairline)">
+      <div style="position:relative;width:120px;height:120px;display:flex;align-items:center;justify-content:center">
+        <svg viewBox="0 0 120 120" style="width:120px;height:120px;transform:rotate(-90deg)">
+          <circle cx="60" cy="60" r="48" fill="none" stroke="var(--cv-line-hairline)" stroke-width="8"/>
+          <circle cx="60" cy="60" r="48" fill="none" stroke="#5C8D2D" stroke-width="8" stroke-dasharray="226" stroke-dashoffset="38" stroke-linecap="round"/>
+        </svg>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-family:var(--cv-font-display);font-size:24px;font-weight:500;color:var(--cv-text-primary)">87</div><div style="font-family:var(--cv-font-mono);font-size:9px;letter-spacing:0.10em;text-transform:uppercase;color:var(--cv-text-tertiary)">SCORE</div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        ${[
+          {k:'No assignee',v:3,s:'amber'},
+          {k:'Stale steps',v:5,s:'amber'},
+          {k:'Activity recency',v:'OK',s:'green'},
+          {k:'On-time rate',v:'92%',s:'green'},
+          {k:'Distribution',v:'Skewed',s:'amber'},
+        ].map(r=>`<div style="display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:6px 10px;border:0.5px solid var(--cv-line-hairline);border-radius:4px;background:#fff"><span style="font-size:12px;color:var(--cv-text-primary)">${r.k}</span><span style="font-family:var(--cv-font-mono);font-size:11px;color:var(--cv-text-secondary)">${r.v}</span><span class="cv-pill cv-pill--${r.s}">${r.s==='amber'?'Watch':'Healthy'}</span></div>`).join('')}
+      </div>
+    </div>
+    <div style="padding:12px 16px;display:flex;justify-content:space-between;align-items:center;font-family:var(--cv-font-mono);font-size:10px;color:var(--cv-text-tertiary);letter-spacing:0.06em">
+      <span>RECOMMENDED &middot; reassign 2 stale records to L. Carder</span>
+      <span style="color:var(--cv-brand-blue);font-weight:500">REVIEW &nbsp;&rarr;</span>
+    </div>
+  `;
+})();
+</script>
+
+</body>
+</html>

@@ -89,3 +89,57 @@ When in doubt: **Voice B for product surfaces. Voice A for argument surfaces. Vo
 ## When tone fights — defer to the audience
 
 If the page is for a specific buyer (module pages → ops; about → procurement & founder; product → CIOs), let that buyer's preferred voice dominate. The hero is the only place all three voices coexist.
+
+---
+
+## AI for the work — the foundational pillar (locked 2026-05-05)
+
+Clarity Value is the first govtech platform engineered with LLMs as a first-class architectural primitive. Not a chatbot bolted onto a 1990s database. The model is in the platform — drafting workflows, pre-checking plans, parsing FOIA requests, summarizing case histories. **The AI is the first set of eyes on every record. The clerk still owns the call.**
+
+This is a foundational brand pillar, not a feature paragraph. Talk about AI everywhere it's relevant. But talk about it correctly.
+
+### Anti-patterns — never use these phrases
+
+- ❌ "AI-powered" — empty signal, sounds like a Tyler ad
+- ❌ "AI-driven insights" — corporate filler
+- ❌ "Intelligent automation" — meaningless
+- ❌ "Smart assistant" / "smart [anything]" — diminishes the model
+- ❌ "Leverage AI" / "harness AI" — gross verbs
+- ❌ "Revolutionary AI" / "next-generation AI" — uninhabitable adjectives
+- ❌ "AI takes care of it" — implies the human is removed; we never imply that
+- ❌ "Automatically" without saying who reviews — reads as no-human-in-the-loop
+
+### Always use these patterns
+
+- ✅ "Drafted by the model" — when AI produces a first draft
+- ✅ "Pre-checked by AI" — when AI evaluates before a human
+- ✅ "Suggested by the system" — when AI recommends an action
+- ✅ "Summarized for the reviewer" — when AI condenses content
+- ✅ "Surfaced by the model" — when AI flags something noteworthy
+- ✅ "The clerk still owns the call" / "the planner verifies" / "the FOIA officer signs off" — always show the human in the loop
+- ✅ "First set of eyes, not the final decision" — the brand frame in nine words
+
+### The two-sided rule
+
+Every AI claim should specify which side of the counter benefits. Citizen-side, staff-side, or both. **The AI helps both — and we always say which.**
+
+- ✅ "The model surfaces likely exemptions for the FOIA officer." (staff-side)
+- ✅ "The form helps the citizen pick the right department." (citizen-side)
+- ✅ "Same model, both sides — citizens get faster service, staff get amplified judgment." (both)
+
+### The architectural moat — claim it explicitly
+
+These three claims are uniquely defensible because of how the platform is built. **Use them when the audience is technical (CIOs, engineers, procurement IT):**
+
+1. **One database = AI sees across modules.** Tyler/Granicus's AI can't reason across Permits, FOIA, and 311 because those are different products glued together with ETLs. Ours can.
+2. **One data model = AI is calibrated to your statute.** Your FOIA classifier reads against your state's open-records law. Per-tenant calibration with shared platform improvements.
+3. **Every AI suggestion is logged.** Audit trail at the model level. Defensible at FOIA, defensible at audit, defensible in court.
+
+### The outputs
+
+Every visible AI surface gets:
+- A clear human-in-the-loop sentence
+- A specific use case (not generic "AI helps...")
+- An honesty caveat where appropriate ("likely," "approximately," "estimated") — never overclaim
+
+Audit anything you write against these rules before it ships. If you wrote "AI-powered intake" — stop, rewrite as "intake forms pre-checked by the model — your reviewer sees flagged fields first."

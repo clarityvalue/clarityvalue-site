@@ -206,6 +206,34 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
 .cm-trust-item svg{flex:0 0 auto;width:14px;height:14px;color:var(--cv-text-muted);margin-top:2px}
 .cm-trust-item b{color:var(--cv-text-primary);font-weight:500}
 
+/* ====== AI section — sits between the trust strip and breath 2.
+   White bg breaks the paper-paper visual rhythm. Bordered cards give the AI use cases
+   their own visual weight, distinct from the cap grid (which is borderless).
+   Frame: "AI as the first set of eyes — on every record." Three concrete cards
+   covering staff (plan review), citizen (FOIA), and architect (config). ====== */
+.cm-ai{background:#fff;border-top:0.5px solid var(--cv-line-hairline);border-bottom:0.5px solid var(--cv-line-hairline);padding:88px 0 96px}
+.cm-ai-head{max-width:560px;margin-bottom:36px}
+.cm-ai-head .cm-eyebrow{display:block;margin-bottom:12px}
+.cm-ai-h2{margin:0 0 14px;font-size:32px;font-weight:500;line-height:1.1;letter-spacing:-0.02em;color:var(--cv-text-primary);text-wrap:balance}
+.cm-ai-h2 em{font-style:normal;color:var(--cv-brand-blue);font-weight:500}
+.cm-ai-h2 em.cm-script{font-family:var(--cv-font-display);font-style:italic;color:#A07A38}
+.cm-ai-sub{margin:0;font-size:15px;line-height:1.55;color:var(--cv-text-secondary);max-width:520px}
+.cm-ai-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.cm-ai-card{background:#fff;border:0.5px solid rgba(31,39,51,0.18);border-radius:8px;padding:20px 18px 18px;display:flex;flex-direction:column;gap:10px;box-shadow:0 1px 2px rgba(0,0,0,0.03),0 8px 24px rgba(0,0,0,0.04)}
+.cm-ai-card-eyebrow{font-family:var(--cv-font-mono);font-size:10px;font-weight:500;letter-spacing:0.10em;text-transform:uppercase;color:var(--cv-text-tertiary)}
+.cm-ai-card-h{margin:0;font-size:14px;font-weight:500;line-height:1.3;color:var(--cv-text-primary)}
+.cm-ai-card-b{margin:0;font-size:13px;line-height:1.55;color:var(--cv-text-secondary);flex:1}
+.cm-ai-card-demo{margin-top:6px;border-radius:4px;padding:8px 10px;font-size:11px;line-height:1.4}
+.cm-ai-card-demo--amber{background:#FFFCF4;border:0.5px solid #F0CB8E;color:#633806}
+.cm-ai-card-demo--blue{background:#E6F1FB;border:0.5px solid #B5D4F4;color:#0C447C}
+.cm-ai-card-demo--mono{background:#F7F8FA;border:0.5px solid rgba(0,0,0,0.13);color:var(--cv-text-secondary);font-family:var(--cv-font-mono)}
+.cm-ai-card-demo .label{display:block;font-family:var(--cv-font-mono);font-size:9.5px;letter-spacing:0.06em;margin-bottom:3px;font-weight:500}
+.cm-ai-foot{margin-top:32px;padding-top:18px;border-top:0.5px solid rgba(31,39,51,0.10);display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px}
+.cm-ai-foot-meta{font-family:var(--cv-font-mono);font-size:10.5px;letter-spacing:0.10em;text-transform:uppercase;color:var(--cv-text-tertiary)}
+.cm-ai-foot-meta b{color:var(--cv-text-primary);font-weight:500;text-transform:none;font-family:var(--cv-font-sans)}
+.cm-ai-link{font-size:13px;font-weight:500;color:var(--cv-brand-blue);text-decoration:none;border-bottom:0.5px solid rgba(24,95,165,0.25);padding-bottom:1px}
+.cm-ai-link:hover{border-bottom-color:var(--cv-brand-blue)}
+
 /* ====== Modules — minimal frames; per-module wash inside ====== */
 .cm-modules{background:#fff}
 .cm-modules-head{padding:96px 0 60px}
@@ -383,6 +411,12 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
   .cm-about-row{grid-template-columns:1fr;gap:40px;padding:48px 0}
   .cm-about-headline{font-size:30px;line-height:1.1}
   .cm-about-meta{grid-template-columns:1fr 1fr;gap:14px 24px}
+
+  /* AI section — collapse 3-col cards to 1-col, tighten padding, stack the foot row. */
+  .cm-ai{padding:56px 0 64px}
+  .cm-ai-h2{font-size:24px}
+  .cm-ai-cards{grid-template-columns:1fr;gap:12px}
+  .cm-ai-foot{flex-direction:column;align-items:flex-start;gap:10px}
 
   /* Philosophy / Approach section — tighten 110px desktop padding for mobile,
      collapse the 4-col principles grid, swap left-borders for top-borders. */
@@ -690,6 +724,53 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
             <span><b>Hands-on support.</b> The team that builds the platform also configures it for your statute, your rulebook, your people.</span>
           </li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI SECTION — added 2026-05-05 (Tuesday). Brand foundation move:
+       AI as the first set of eyes on every record. Three concrete proof points
+       across staff (plan review), citizen (FOIA), and architect (workflow config).
+       Footer link routes to /ai.html for the deep-dive. -->
+  <section class="cm-ai" id="ai">
+    <div class="cm-wrap">
+      <div class="cm-ai-head">
+        <span class="cm-eyebrow cm-eyebrow--blue">AI for the work</span>
+        <h2 class="cm-ai-h2">AI as the first set of eyes &mdash; <em class="cm-script">on every record.</em></h2>
+        <p class="cm-ai-sub">Not a chatbot bolted onto a 1990s database. The model is in the platform &mdash; reading plans, parsing requests, configuring workflows. The clerk still owns the call. They just see what to look at first.</p>
+      </div>
+      <div class="cm-ai-cards">
+        <div class="cm-ai-card">
+          <span class="cm-ai-card-eyebrow">Plan review</span>
+          <h3 class="cm-ai-card-h">Flagged before the planner opens it.</h3>
+          <p class="cm-ai-card-b">A citizen uploads plans. The model reads them against your code, surfaces likely non-compliance for the planner to verify, releases obvious passes through.</p>
+          <div class="cm-ai-card-demo cm-ai-card-demo--amber">
+            <span class="label">A1 &middot; BUILDING</span>
+            Setback to side lot reads 4&prime;2&Prime;, code requires 5&prime;.
+          </div>
+        </div>
+        <div class="cm-ai-card">
+          <span class="cm-ai-card-eyebrow">Record requests</span>
+          <h3 class="cm-ai-card-h">Exemptions caught at intake.</h3>
+          <p class="cm-ai-card-b">A FOIA request lands. The model evaluates against your statute &mdash; surfaces likely exemptions, routes gray-zone cases to your officer with the relevant law attached.</p>
+          <div class="cm-ai-card-demo cm-ai-card-demo--blue">
+            <span class="label">FOIA-0421 &middot; LIKELY EXEMPT</span>
+            &sect;119.071(2)(c) &mdash; active criminal investigation.
+          </div>
+        </div>
+        <div class="cm-ai-card">
+          <span class="cm-ai-card-eyebrow">Config</span>
+          <h3 class="cm-ai-card-h">Configured by typing.</h3>
+          <p class="cm-ai-card-b">&ldquo;Add an inspector approval step before issuance.&rdquo; The model reconfigures the workflow. The clerk does it on a Tuesday afternoon. No vendor ticket.</p>
+          <div class="cm-ai-card-demo cm-ai-card-demo--mono">
+            <span class="label">&#9656; add inspection step before issuance</span>
+            &#10003; step inserted &middot; 2 rules updated
+          </div>
+        </div>
+      </div>
+      <div class="cm-ai-foot">
+        <span class="cm-ai-foot-meta"><b>Live in 12 production deployments.</b> SOC 2 audited &middot; every AI suggestion logged.</span>
+        <a class="cm-ai-link" href="ai.html">See how it works &rarr;</a>
       </div>
     </div>
   </section>
