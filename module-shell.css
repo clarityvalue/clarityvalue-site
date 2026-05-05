@@ -100,6 +100,12 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
 .cm-btn--ghost-dark:hover{background:rgba(255,255,255,0.06)}
 .cm-btn svg{width:12px;height:12px}
 
+/* Compact one-line trust footnote under hero CTAs. Caps mono, muted, low visual weight.
+   Sits below the CTAs so a buyer landing directly on a module page (e.g. from search)
+   gets credibility signals without scrolling to the footer. Added 2026-05-05. */
+.cm-mhero-trust{margin-top:22px;padding-top:14px;border-top:0.5px solid rgba(31,39,51,0.10);max-width:520px;font-family:var(--cv-font-mono);font-size:10.5px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:rgba(31,39,51,0.55);line-height:1.55}
+.cm-mhero-trust .sep{color:rgba(31,39,51,0.30);margin:0 6px}
+
 .cm-mhero-art{position:relative;height:460px}
 .cm-mhero-surface{position:absolute;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 30px 60px rgba(0,26,58,0.18),0 6px 14px rgba(0,26,58,0.10),0 0 0 0.5px rgba(0,0,0,0.06)}
 
