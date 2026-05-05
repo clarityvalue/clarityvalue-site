@@ -264,6 +264,77 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
 .cm-footer-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
 .cm-footer-col a{color:rgba(255,255,255,0.72);text-decoration:none;font-size:13px}
 .cm-footer-fine{margin-top:64px;padding-top:22px;border-top:0.5px solid rgba(255,255,255,0.10);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-family:var(--cv-font-mono);font-size:10.5px;letter-spacing:0.10em;text-transform:uppercase;color:rgba(255,255,255,0.40)}
+
+/* =========================================================
+   Mobile sweep — Pixel 9 XL Pro (412px) and similar.
+   Strategy: hide secondary nav links so just brand + Sign in
+   + Request a pilot stay visible (Cristian's call: "people on
+   mobile are skimming and clicking Request a pilot — clean,
+   fast, sexy"). All hardcoded desktop widths get max-width:100%
+   overrides. Comparison "vs." block stacks vertically and drops
+   the middle "VS." chip entirely (it's implicit when you read
+   down). Module preview cards reflow to fit the viewport.
+   ========================================================= */
+@media (max-width:780px){
+  /* Page rhythm — tighter horizontal padding */
+  :root{--cm-pad-h:18px}
+  .cm-wrap{padding:0 18px}
+
+  /* Nav — hide secondary links + Sign in, keep brand + Request a pilot */
+  .cm-nav-row{padding:10px 0}
+  .cm-nav-links{display:none}
+  .cm-nav-signin{display:none}
+  .cm-nav-cta{height:32px;padding:0 12px;font-size:12px}
+  .cm-nav-logo span{font-size:14px}
+
+  /* Hero — collapse the 2-col cm-hero-row to 1-col so text uses full width */
+  .cm-hero{padding:64px 0 56px}
+  .cm-hero-grid{display:none} /* the desktop dotted-grid bg pattern is too dense for narrow */
+  .cm-hero-row{grid-template-columns:1fr;gap:32px}
+  .cm-hero h1{font-size:34px;line-height:1.05;letter-spacing:-0.02em}
+  .cm-hero-sub,.cm-hero p{font-size:15px;line-height:1.55}
+  .cm-stamp{position:static;transform:none;width:100%;max-width:100%;margin:28px 0 0;box-shadow:0 8px 24px rgba(0,0,0,0.18),0 0 0 0.5px rgba(255,255,255,0.10)}
+  /* Buttons — keep label on a single line so "Request a pilot" / "See the platform" don't break */
+  .cm-btn{white-space:nowrap}
+
+  /* Section padding — tighter on mobile */
+  .cm-sec{padding:64px 0}
+  .cm-sec-h2{font-size:28px;line-height:1.12}
+  .cm-sec-sub{font-size:15px}
+
+  /* Comparison "trench coat" block — stack columns, drop middle VS chip */
+  .cm-vs{margin-top:36px;grid-template-columns:1fr;gap:16px}
+  .cm-vs-mid{display:none}
+  .cm-vs-col{padding:22px 20px 20px;border-radius:12px}
+  .cm-vs-title{font-size:19px;margin-bottom:16px}
+  .cm-vs-list li{font-size:13px}
+
+  /* Module sections — collapse the 2-col text/preview grid + release the 600px hardcoded preview width */
+  .cm-mod-row{grid-template-columns:1fr !important;gap:24px}
+  .cm-mod-surface{position:relative !important;width:100% !important;max-width:100% !important;margin:8px 0 0;height:auto}
+  .cm-mod-h{font-size:24px !important;line-height:1.15 !important}
+  .cm-mod-num{font-size:11px}
+
+  /* Bottom CTA "If you run any part of the apparatus" — collapse 2-col to 1-col + smaller h2 */
+  .cm-cta-row{grid-template-columns:1fr;gap:24px}
+  .cm-cta-h2{font-size:30px !important;line-height:1.1;letter-spacing:-0.02em}
+  .cm-cta-side{font-size:14px}
+  .cm-cta-actions{flex-wrap:wrap}
+
+  /* Footer — collapse 5-col grid to 2-col, stack brand block full-width */
+  .cm-footer-row{grid-template-columns:1fr 1fr;gap:32px 24px}
+  .cm-footer-brand{grid-column:1 / -1}
+  .cm-footer-col h4{font-size:10px}
+  .cm-footer-col a{font-size:13px}
+  .cm-footer-fine{margin-top:40px;flex-direction:column;gap:8px;font-size:10px}
+}
+@media (max-width:480px){
+  /* Smallest phones — drop hero h1 a touch more, footer to single column */
+  .cm-hero h1{font-size:30px}
+  .cm-sec-h2{font-size:24px}
+  .cm-footer-row{grid-template-columns:1fr;gap:28px}
+  .cm-footer-brand{grid-column:1}
+}
 </style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-91MDWR08NJ"></script>
