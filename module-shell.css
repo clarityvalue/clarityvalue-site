@@ -185,3 +185,78 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
 .cm-footer-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
 .cm-footer-col a{color:rgba(255,255,255,0.72);text-decoration:none;font-size:13px}
 .cm-footer-fine{margin-top:60px;padding-top:20px;border-top:0.5px solid rgba(255,255,255,0.10);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-family:var(--cv-font-mono);font-size:10.5px;letter-spacing:0.10em;text-transform:uppercase;color:rgba(255,255,255,0.40)}
+
+/* ============================================================
+   Mobile sweep — Pixel 9 XL Pro (412px) and similar.
+   Cascades to every page using module-shell.css: 7 module pages
+   (land/HR/budget/licensing/records/311/reports), contacts,
+   privacy, terms, thanks. Mirrors the homepage approach:
+   secondary nav links + Sign in hide, multi-col grids collapse
+   to single column, hero typography shrinks. Per-page content
+   layouts (e.g. .cm-contact-row) keep their own breakpoints.
+   ============================================================ */
+@media (max-width:780px){
+  /* Tighter horizontal rhythm */
+  :root{--cm-pad-h:18px}
+  .cm-wrap{padding:0 18px}
+
+  /* Nav — hide secondary links + Sign in, keep brand + Request a pilot */
+  .cm-nav-row{padding:10px 0;gap:8px}
+  .cm-nav-links{display:none}
+  .cm-nav-signin{display:none}
+  .cm-nav-cta{height:32px;padding:0 12px;font-size:12px;white-space:nowrap;flex-shrink:0}
+  .cm-nav-logo{flex-shrink:0}
+  .cm-nav-logo span{font-size:14px;white-space:nowrap}
+
+  /* Buttons — keep label on a single line */
+  .cm-btn{white-space:nowrap}
+
+  /* Module page hero — collapse to 1-col, shrink display type */
+  .cm-mhero{padding:80px 0 56px}
+  .cm-mhero-row{grid-template-columns:1fr;gap:32px}
+  .cm-mhero h1,.cm-mhero-h{font-size:32px !important;line-height:1.08;letter-spacing:-0.02em}
+  .cm-mhero p,.cm-mhero-sub{font-size:15px;line-height:1.55}
+
+  /* Workflow timeline — 4 phase cards stack vertically */
+  .cm-flow{grid-template-columns:1fr;gap:18px}
+
+  /* Capability rows (text + visual side-by-side) — stack, both directions */
+  .cm-cap-row,.cm-cap-row--reverse{grid-template-columns:1fr;gap:24px}
+  .cm-cap-row--reverse > *:first-child{order:2}
+  .cm-cap-row--reverse > *:last-child{order:1}
+  .cm-cap-h,.cm-cap-row h2,.cm-cap-row h3{font-size:24px !important;line-height:1.15}
+
+  /* Cross-link cards — 3-up to single column */
+  .cm-xlink-grid{grid-template-columns:1fr;gap:14px}
+  .cm-xlink-head{flex-direction:column;align-items:flex-start;gap:14px}
+  .cm-xlink-h{font-size:24px !important;line-height:1.15}
+
+  /* Bottom CTA — collapse 2-col to 1-col, shrink display type */
+  .cm-cta{padding:64px 0}
+  .cm-cta-row{grid-template-columns:1fr;gap:24px}
+  .cm-cta-h2{font-size:30px !important;line-height:1.1;letter-spacing:-0.02em}
+  .cm-cta-side p{font-size:14px}
+  .cm-cta-actions{flex-wrap:wrap}
+
+  /* Section padding — tighter */
+  .cm-sec{padding:64px 0}
+  .cm-sec-h2{font-size:28px;line-height:1.12}
+  .cm-sec-sub{font-size:15px}
+
+  /* Footer — 5-col grid → 2-col, brand block full-width on top */
+  .cm-footer{padding:48px 0 32px}
+  .cm-footer-row{grid-template-columns:1fr 1fr;gap:32px 24px}
+  .cm-footer-brand{grid-column:1 / -1}
+  .cm-footer-col h4{font-size:10px}
+  .cm-footer-col a{font-size:13px}
+  .cm-footer-fine{margin-top:40px;flex-direction:column;gap:8px;font-size:10px}
+}
+@media (max-width:480px){
+  /* Smallest phones — drop hero a touch more, footer to single column */
+  .cm-mhero h1,.cm-mhero-h{font-size:28px !important}
+  .cm-cap-h,.cm-xlink-h{font-size:22px !important}
+  .cm-cta-h2{font-size:26px !important}
+  .cm-sec-h2{font-size:24px}
+  .cm-footer-row{grid-template-columns:1fr;gap:28px}
+  .cm-footer-brand{grid-column:1}
+}

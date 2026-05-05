@@ -281,11 +281,12 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
   .cm-wrap{padding:0 18px}
 
   /* Nav — hide secondary links + Sign in, keep brand + Request a pilot */
-  .cm-nav-row{padding:10px 0}
+  .cm-nav-row{padding:10px 0;gap:8px}
   .cm-nav-links{display:none}
   .cm-nav-signin{display:none}
-  .cm-nav-cta{height:32px;padding:0 12px;font-size:12px}
-  .cm-nav-logo span{font-size:14px}
+  .cm-nav-cta{height:32px;padding:0 12px;font-size:12px;white-space:nowrap;flex-shrink:0}
+  .cm-nav-logo{flex-shrink:0}
+  .cm-nav-logo span{font-size:14px;white-space:nowrap}
 
   /* Hero — collapse the 2-col cm-hero-row to 1-col so text uses full width */
   .cm-hero{padding:64px 0 56px}
