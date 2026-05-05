@@ -1,0 +1,18 @@
+<!--
+  Clarity Value — "Eye" mark (alternate logo)
+  ----------------------------------------------
+  Variant of the brand mark depicting an open eye:
+    • Top arc = upper eyelid (navy `#001A3A`)
+    • Bottom-right partial arc = lower eyelid (brand-blue `#185FA5`)
+    • Center filled circle = pupil
+  ViewBox 22×22, designed to render at 22×22px.
+
+  Was the homepage nav + footer mark in the v0 deploy. Swapped 2026-05
+  for the 12-ray "sun" mark to match all module pages. Kept here as a
+  reusable asset for design iterations.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22" fill="none" aria-label="Clarity Value">
+  <path d="M3 11a8 8 0 1116 0" stroke="#001A3A" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M19 11a8 8 0 01-13.6 5.7" stroke="#185FA5" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="11" cy="11" r="2.2" fill="#001A3A"/>
+</svg>
