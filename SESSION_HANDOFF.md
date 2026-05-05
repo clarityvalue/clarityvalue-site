@@ -1,6 +1,6 @@
 # Clarity Value site — Session handoff
 
-Updated 2026-05-05. Read this top-to-bottom before doing any work on `clarityvalue-site/`. Operational notes for a fresh Claude session resuming the migration.
+Updated 2026-05-05 (evening — post og-image fix + brand copy pass). Read this top-to-bottom before doing any work on `clarityvalue-site/`. Operational notes for a fresh Claude session resuming the migration.
 
 ---
 
@@ -166,25 +166,35 @@ The previous single-row rotation JS was removed. If Cristian wants animation bac
 
 ---
 
-## OG/social card (Open Item — half-broken)
+## OG/social card — ✅ FIXED (2026-05-05 evening)
 
-Every shareable page has full og:* + twitter:* meta tags pointing to `https://clarityvalue.netlify.app/art/og-image.png`. The PNG file exists and is reachable.
+Every shareable page has full og:* + twitter:* meta tags pointing to `https://clarityvalue.netlify.app/art/og-image.png?v=2`. The PNG is now exactly 1200×630, 480KB.
 
-**Problem**: current PNG is 3170×2646 (Chrome captured the og-card.html with surrounding canvas). Should be exactly **1200×630**. The `og-card.html` source has been fixed (body now IS the card, no surrounding canvas) but Cristian needs to re-screenshot.
+**How it was fixed**: rendered headless via Playwright Chromium in the bash sandbox at viewport 1200×630, DPR=1, networkidle wait. The previous "Capture full size screenshot" approach failed because Chrome captured at the OS device pixel ratio (~2.64×) producing a 3170×2646 PNG. Headless render with explicit `deviceScaleFactor: 1` is deterministic and avoids the DPR trap.
 
-**To finish**:
-1. Open `art/og-card.html` in Chrome → hard refresh (Cmd+Shift+R)
-2. DevTools → Cmd+Shift+P → "Capture full size screenshot"
-3. Resulting PNG should be 1200×630 exactly
-4. `mv ~/Downloads/<filename>.png /Users/cfrobiou/Desktop/clarityapp/clarityvalue-site/art/og-image.png`
-5. Push
+**To re-render the card** (if copy changes again):
+```bash
+cd /Users/cfrobiou/Library/Application Support/Claude/local-agent-mode-sessions/.../outputs/og-render
+node render.js   # re-renders from art/og-card.html → og-image.png at 1200×630
+cp og-image.png ../../../mnt/clarityapp/clarityvalue-site/art/og-image.png
+```
 
-To verify: paste site URL into [opengraph.xyz](https://www.opengraph.xyz/) — shows live preview as iMessage/Slack/LinkedIn would render it.
+The render scaffold lives in the session sandbox at `outputs/og-render/` (Playwright + render.js). Future sessions can re-create it in 30s with `npm install playwright && npx playwright install chromium`.
+
+**Cache-bust on update**: every shareable page's og:image URL carries `?v=N` (currently `?v=2`). When swapping the PNG, bump the query string everywhere via:
+```bash
+cd clarityvalue-site && for f in *.html; do sed -i '' 's|og-image\.png?v=2|og-image.png?v=3|g' "$f"; done
+```
+This forces previewers (iMessage / Slack / LinkedIn / opengraph.xyz) to re-fetch instead of serving the cached old card.
+
+To verify a new card is live: paste site URL into [opengraph.xyz](https://www.opengraph.xyz/) — shows live preview as iMessage/Slack/LinkedIn would render it. iMessage caches per-conversation; for a clean test send the URL to a fresh contact or thread.
 
 ---
 
 ## Recently shipped (chronological, latest first)
 
+- **Brand copy: "the work of government" → "government workflows"** (2026-05-05 evening) — propagated across OG card + `<title>` + twitter:description + rose-note caption (FIG · 01) + homepage footer + module footer (via module-shell.js cascade to all 7 module pages + contacts + legal pages). Philosophy paragraph at `index.html:884` deliberately preserved (different meaning — "the work of government is a permanent obligation" doesn't translate to "workflows"). Module-shell.js cache-bust bumped to `?v=3` accordingly.
+- **og-image.png re-rendered at correct dims** (2026-05-05 evening) — was 3170×2646 (DPR trap from full-size screenshot capture), now exactly 1200×630 / 480KB via headless Playwright render. og:image URLs cache-busted to `?v=2` so previewers re-fetch.
 - **Hero card → 4 rows + rosetta hidden on mobile + nav-hero gap 28→16px** — card now carries breadth message, rosetta retired from mobile (kept on desktop), nav→hero feels like one continuous strip
 - **Hero gap 64→28px** — was reading as awkward whitespace below nav
 - **Cache fix: ?v=2 + must-revalidate** — was burning 24-hr stale CSS on Pixel
@@ -203,9 +213,8 @@ To verify: paste site URL into [opengraph.xyz](https://www.opengraph.xyz/) — s
 ## Open items / next session priorities
 
 ### High priority
-1. **Fix og-image.png dimensions** to exactly 1200×630 (re-screenshot from updated og-card.html)
-2. **Walk staging site, sign off** (task #7) — Cristian's actively doing this. He may flag more polish items.
-3. **DNS cutover from Webflow to Netlify** (task #8) — the big move. Point clarityvalue.co apex + www at Netlify. Sunset Webflow.
+1. **Walk staging site, sign off** (task #7) — Cristian's actively doing this. He may flag more polish items. Verify the new card is rendering on iMessage / Slack / opengraph.xyz before declaring done.
+2. **DNS cutover from Webflow to Netlify** (task #8) — the big move. Point clarityvalue.co apex + www at Netlify. Sunset Webflow.
 
 ### Medium priority
 4. **Granite Falls logo verification** (task #19) — NC vs MN vs WA. Cristian to confirm.
@@ -276,11 +285,12 @@ After every push, ~60s for Netlify to deploy. Then:
 
 ---
 
-## Tasks state at handoff (2026-05-05)
+## Tasks state at handoff (2026-05-05 evening)
 
 ```
-COMPLETED (28):
+COMPLETED (29):
 #1-6, 10-18, 20-30 — full migration scaffold, content, deploy, mobile sweep, OG, footer logo
+#31 — og-image dimension fix (real this time, via headless Playwright render) + brand copy pass
 
 IN PROGRESS:
 #7 — Walk staging site, sign off (Cristian actively iterating)
