@@ -55,7 +55,8 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
 
 .cm-nav-dd-item{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:14px;row-gap:1px;padding:11px 12px;border-radius:8px;text-decoration:none;color:var(--cv-text-primary);transition:background 100ms ease}
 .cm-nav-dd-item:hover{background:rgba(24,95,165,0.05)}
-.cm-nav-dd-k{grid-column:1;grid-row:1 / span 2;align-self:center;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:rgba(24,95,165,0.07);color:var(--cv-brand-blue);font-family:var(--cv-font-mono);font-size:9px;font-weight:500;letter-spacing:0.10em;text-transform:uppercase}
+.cm-nav-dd-k{grid-column:1;grid-row:1 / span 2;align-self:center;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:rgba(24,95,165,0.07);color:var(--cv-brand-blue)}
+.cm-nav-dd-k svg{width:18px;height:18px;display:block}
 .cm-nav-dd-h{grid-column:2;grid-row:1;font-size:13px;font-weight:500;color:var(--cv-text-primary);line-height:1.25}
 .cm-nav-dd-b{grid-column:2;grid-row:2;font-size:11.5px;color:var(--cv-text-tertiary);line-height:1.4;margin-top:1px}
 

@@ -29,37 +29,37 @@
             </button>
             <div class="cm-nav-dd-panel" role="menu">
               <a class="cm-nav-dd-item" href="land-management.html" role="menuitem">
-                <span class="cm-nav-dd-k">Land</span>
+                <span class="cm-nav-dd-k" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 21V8l8-4 8 4v13M9 21v-6h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="11.5" r="0.6" fill="currentColor"/><circle cx="12" cy="11.5" r="0.6" fill="currentColor"/><circle cx="16" cy="11.5" r="0.6" fill="currentColor"/></svg></span>
                 <span class="cm-nav-dd-h">Land Management</span>
                 <span class="cm-nav-dd-b">Permits, plan reviews, inspections.</span>
               </a>
               <a class="cm-nav-dd-item" href="human-resources.html" role="menuitem">
-                <span class="cm-nav-dd-k">HR</span>
+                <span class="cm-nav-dd-k" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M4.5 20a7.5 7.5 0 0115 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
                 <span class="cm-nav-dd-h">Human Resources</span>
                 <span class="cm-nav-dd-b">Onboarding, contracts, the people-side.</span>
               </a>
               <a class="cm-nav-dd-item" href="budget-management.html" role="menuitem">
-                <span class="cm-nav-dd-k">Budget</span>
+                <span class="cm-nav-dd-k" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v10M14.5 9.5a2.5 2.5 0 00-2.5-1.5h-.5a2 2 0 000 4h1a2 2 0 010 4H12a2.5 2.5 0 01-2.5-1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
                 <span class="cm-nav-dd-h">Budget Management</span>
                 <span class="cm-nav-dd-b">Funds, vendors, encumbrances, payments.</span>
               </a>
               <a class="cm-nav-dd-item" href="licensing.html" role="menuitem">
-                <span class="cm-nav-dd-k">Licensing</span>
+                <span class="cm-nav-dd-k" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6l8-3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                 <span class="cm-nav-dd-h">Licensing</span>
                 <span class="cm-nav-dd-b">Applications and renewals, signed online.</span>
               </a>
               <a class="cm-nav-dd-item" href="record-requests.html" role="menuitem">
-                <span class="cm-nav-dd-k">FOIA</span>
+                <span class="cm-nav-dd-k" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 13h8M8 16h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
                 <span class="cm-nav-dd-h">Record Requests</span>
                 <span class="cm-nav-dd-b">Public-records routed, redacted, fulfilled.</span>
               </a>
               <a class="cm-nav-dd-item" href="311.html" role="menuitem">
-                <span class="cm-nav-dd-k">311</span>
+                <span class="cm-nav-dd-k" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M21 12c0 4.4-4 8-9 8a9.6 9.6 0 01-3.8-.7L3 21l1.5-4.4A8.2 8.2 0 013 12c0-4.4 4-8 9-8s9 3.6 9 8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="8.5" cy="12" r="0.9" fill="currentColor"/><circle cx="12" cy="12" r="0.9" fill="currentColor"/><circle cx="15.5" cy="12" r="0.9" fill="currentColor"/></svg></span>
                 <span class="cm-nav-dd-h">311 / Citizen Services</span>
                 <span class="cm-nav-dd-b">From "there&rsquo;s a pothole" to a closed work order.</span>
               </a>
               <a class="cm-nav-dd-item" href="reports.html" role="menuitem">
-                <span class="cm-nav-dd-k">Reports</span>
+                <span class="cm-nav-dd-k" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 21V11M12 21V5M17 21v-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
                 <span class="cm-nav-dd-h">Reports &amp; Dashboards</span>
                 <span class="cm-nav-dd-b">Live numbers from the working database.</span>
               </a>
