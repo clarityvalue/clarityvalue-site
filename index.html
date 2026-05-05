@@ -365,6 +365,25 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
   .cm-footer-col h4{font-size:10px}
   .cm-footer-col a{font-size:13px}
   .cm-footer-fine{margin-top:40px;flex-direction:column;gap:8px;font-size:10px}
+
+  /* About section — collapse the 2-col headline/values grid to single column.
+     Bug fixed 2026-05-05: without this, the left col (headline + meta) was
+     much shorter than the right col (4 values), leaving ~200px of dead cream
+     space at bottom-left between the meta strip and the navy Approach section. */
+  .cm-about-row{grid-template-columns:1fr;gap:40px;padding:48px 0}
+  .cm-about-headline{font-size:30px;line-height:1.1}
+  .cm-about-meta{grid-template-columns:1fr 1fr;gap:14px 24px}
+
+  /* Philosophy / Approach section — tighten 110px desktop padding for mobile,
+     collapse the 4-col principles grid, swap left-borders for top-borders. */
+  .cm-philosophy{padding:56px 0}
+  .cm-philosophy-head{margin-bottom:36px}
+  .cm-philosophy-h2{font-size:28px;line-height:1.12}
+  .cm-philosophy-sub{font-size:15px}
+  .cm-principles{grid-template-columns:1fr;border-top:0}
+  .cm-principle{padding:24px 0;border-top:0.5px solid rgba(255,255,255,0.14)}
+  .cm-principle:first-child{border-top:0;padding-top:0}
+  .cm-principle+.cm-principle{border-left:0;padding-left:0}
 }
 @media (max-width:480px){
   /* Smallest phones — drop hero h1 a touch more, footer to single column */
@@ -372,6 +391,9 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
   .cm-sec-h2{font-size:24px}
   .cm-footer-row{grid-template-columns:1fr;gap:28px}
   .cm-footer-brand{grid-column:1}
+  .cm-about-headline{font-size:26px}
+  .cm-about-meta{grid-template-columns:1fr;gap:14px}
+  .cm-philosophy-h2{font-size:24px}
 }
 </style>
 <!-- Google Analytics -->
