@@ -310,8 +310,10 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
   .cm-nav-logo{flex-shrink:0}
   .cm-nav-logo span{font-size:14px;white-space:nowrap}
 
-  /* Hero — collapse the 2-col cm-hero-row to 1-col so text uses full width */
-  .cm-hero{padding:64px 0 56px}
+  /* Hero — collapse the 2-col cm-hero-row to 1-col so text uses full width.
+     Top padding tightened from 64px to 28px so the eyebrow + headline sit
+     closer to the nav (was reading as awkward whitespace on mobile). */
+  .cm-hero{padding:28px 0 48px}
   .cm-hero-grid{display:none} /* the desktop dotted-grid bg pattern is too dense for narrow */
   /* Hero wash: desktop has it offset 30% from the left so it reads as a right-side
      atmospheric anchor on a wide aspect ratio. On a 412px phone that creates a

@@ -218,8 +218,10 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
   /* Buttons — keep label on a single line */
   .cm-btn{white-space:nowrap}
 
-  /* Module page hero — collapse to 1-col, shrink display type */
-  .cm-mhero{padding:80px 0 56px}
+  /* Module page hero — collapse to 1-col, shrink display type.
+     Top padding tightened from 80px to 32px (module pages need slightly more
+     than homepage to breathe around the breadcrumb row). */
+  .cm-mhero{padding:32px 0 48px}
   .cm-mhero-row{grid-template-columns:1fr;gap:32px}
   .cm-mhero h1,.cm-mhero-h{font-size:32px !important;line-height:1.08;letter-spacing:-0.02em}
   .cm-mhero p,.cm-mhero-sub{font-size:15px;line-height:1.55}
