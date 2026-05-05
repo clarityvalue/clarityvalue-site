@@ -291,6 +291,12 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
   /* Hero — collapse the 2-col cm-hero-row to 1-col so text uses full width */
   .cm-hero{padding:64px 0 56px}
   .cm-hero-grid{display:none} /* the desktop dotted-grid bg pattern is too dense for narrow */
+  /* Hero wash: desktop has it offset 30% from the left so it reads as a right-side
+     atmospheric anchor on a wide aspect ratio. On a 412px phone that creates a
+     hard vertical seam at 30%-from-left where dark navy meets the wash. Full-cover
+     it on mobile + soften the opacity so the navy stays dominant and the texture
+     reads as ambient rather than a column separator. */
+  .cm-hero-wash{inset:0;opacity:0.45}
   .cm-hero-row{grid-template-columns:1fr;gap:32px}
   .cm-hero h1{font-size:34px;line-height:1.05;letter-spacing:-0.02em}
   .cm-hero-sub,.cm-hero p{font-size:15px;line-height:1.55}
