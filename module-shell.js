@@ -138,7 +138,7 @@
         <div class="cm-footer-row">
           <div class="cm-footer-brand">
             <span class="cm-logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="#fff" stroke="none"/><line x1="12" y1="6" x2="12" y2="2.5"/><line x1="15" y1="6.8" x2="16.75" y2="3.77"/><line x1="17.2" y1="9" x2="20.23" y2="7.25"/><line x1="18" y1="12" x2="21.5" y2="12"/><line x1="17.2" y1="15" x2="20.23" y2="16.75"/><line x1="15" y1="17.2" x2="16.75" y2="20.23"/><line x1="12" y1="18" x2="12" y2="21.5"/><line x1="9" y1="17.2" x2="7.25" y2="20.23"/><line x1="6.8" y1="15" x2="3.77" y2="16.75"/><line x1="6" y1="12" x2="2.5" y2="12"/><line x1="6.8" y1="9" x2="3.77" y2="7.25"/><line x1="9" y1="6.8" x2="7.25" y2="3.77"/></svg>Clarity Value</span>
-            <p>The system underneath the system. Civic infrastructure for the work of government — engineered as one platform, by one team. Built in Miami.</p>
+            <p>The system underneath the system. Civic infrastructure for government workflows — engineered as one platform, by one team. Built in Miami.</p>
           </div>
           <div class="cm-footer-col"><h4>Platform</h4><ul><li><a href="index.html#product">Product</a></li><li><a href="index.html#modules">Modules</a></li><li><a href="index.html#approach">Approach</a></li><li><a href="#">Changelog</a></li></ul></div>
           <div class="cm-footer-col"><h4>Solutions</h4><ul>${PAGES.map(p=>`<li><a href="${p.href}">${p.label}</a></li>`).join('')}</ul></div>
