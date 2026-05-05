@@ -121,7 +121,8 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
 .cm-stamp-h{padding:11px 14px 9px;border-bottom:0.5px solid var(--cv-line-hairline);display:flex;align-items:center;justify-content:space-between}
 .cm-stamp-h-title{font-family:var(--cv-font-display);font-size:13px;font-weight:500;color:var(--cv-text-primary)}
 .cm-stamp-h-meta{font-family:var(--cv-font-mono);font-size:10px;color:var(--cv-text-tertiary);letter-spacing:0.04em}
-.cm-stamp-row{padding:11px 14px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
+.cm-stamp-row{padding:9px 14px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;border-bottom:0.5px solid var(--cv-line-hairline)}
+.cm-stamp-row:last-child{border-bottom:0}
 .cm-stamp-id{font-family:var(--cv-font-mono);font-size:11px;color:var(--cv-text-tertiary)}
 .cm-stamp-text{font-size:12px;color:var(--cv-text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cm-rose-note{position:absolute;font-family:var(--cv-font-mono);font-size:10px;letter-spacing:0.10em;text-transform:uppercase;color:rgba(255,255,255,0.34);line-height:1.5;pointer-events:none}
@@ -486,10 +487,25 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
             <span class="cm-stamp-h-title">Live across the platform</span>
             <span class="cm-stamp-h-meta">JUST NOW</span>
           </div>
-          <div class="cm-stamp-row" id="cm-stamp-row">
+          <div class="cm-stamp-row">
             <span class="cm-stamp-id">SUB-2024-002</span>
-            <span class="cm-stamp-text">Permit issued · Building, Coral Way</span>
+            <span class="cm-stamp-text">Permit issued &middot; Building, Coral Way</span>
             <span class="cv-pill cv-pill--green">Completion</span>
+          </div>
+          <div class="cm-stamp-row">
+            <span class="cm-stamp-id">FOIA-0421</span>
+            <span class="cm-stamp-text">Records request &middot; routed to Planning</span>
+            <span class="cv-pill cv-pill--amber">In review</span>
+          </div>
+          <div class="cm-stamp-row">
+            <span class="cm-stamp-id">SR-9128</span>
+            <span class="cm-stamp-text">311 &middot; Pothole closed at SW 14th St</span>
+            <span class="cv-pill cv-pill--blue">Resolved</span>
+          </div>
+          <div class="cm-stamp-row">
+            <span class="cm-stamp-id">INS-118</span>
+            <span class="cm-stamp-text">Inspection passed &middot; 2210 NE 2nd Ave</span>
+            <span class="cv-pill cv-pill--green">Approved</span>
           </div>
         </div>
       </div>
@@ -957,29 +973,10 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
   `;
 })();
 
-/* Stamp event rotation */
-(function(){
-  const events = [
-    {id:'SUB-2024-002', text:'Permit issued · Building, Coral Way', pill:'green', label:'Completion'},
-    {id:'FOIA-2024-0421', text:'Records request · routed to Planning', pill:'blue', label:'Application'},
-    {id:'SR-9128', text:'311 · Pothole filed at SW 14th St', pill:'red', label:'New'},
-    {id:'INS-2024-118', text:'Inspection passed · 2210 NE 2nd Ave', pill:'green', label:'Approved'},
-    {id:'P-2024-1190', text:'Plan review · awaiting Public Works', pill:'amber', label:'In review'}
-  ];
-  let idx = 0;
-  const row = document.getElementById('cm-stamp-row');
-  if (!row) return;
-  setInterval(()=>{
-    idx = (idx+1)%events.length;
-    const e = events[idx];
-    row.style.transition='opacity 220ms ease';
-    row.style.opacity='0';
-    setTimeout(()=>{
-      row.innerHTML = `<span class="cm-stamp-id">${e.id}</span><span class="cm-stamp-text">${e.text}</span><span class="cv-pill cv-pill--${e.pill}">${e.label}</span>`;
-      row.style.opacity='1';
-    }, 240);
-  }, 2800);
-})();
+/* Stamp now renders 4 static rows showing live activity across modules (Permit,
+   FOIA, 311, Inspection). Replaced the single-row rotation 2026-05-05 — variety
+   across modules reads stronger than a single row cycling, and amplifies the
+   adjacent rosetta's "we span every domain" message instead of competing. */
 
 /* Module surfaces — real cv-tbl/cv-pill content, untilted, fitted to plate */
 (function(){
