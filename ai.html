@@ -75,22 +75,6 @@
   .cm-aip-claim{padding:24px 0;border-top:0.5px solid rgba(255,255,255,0.14)}
   .cm-aip-claim+.cm-aip-claim{border-left:0;padding-left:0}
 }
-
-/* Honesty band — two columns, calm white bg, the human-in-the-loop reassurance. */
-.cm-aip-honest{padding:88px 0 96px;background:#fff}
-.cm-aip-honest-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
-.cm-aip-honest-h2{margin:14px 0 18px;font-size:30px;font-weight:500;line-height:1.1;letter-spacing:-0.02em;color:var(--cv-text-primary);text-wrap:balance}
-.cm-aip-honest-h2 em{font-style:italic;color:#A07A38;font-weight:500;font-family:var(--cv-font-display)}
-.cm-aip-honest-lede{margin:0 0 24px;font-size:15px;line-height:1.6;color:var(--cv-text-secondary);max-width:480px}
-.cm-aip-faq{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:0;border-top:0.5px solid var(--cv-line-hairline)}
-.cm-aip-faq li{padding:18px 0;border-bottom:0.5px solid var(--cv-line-hairline);display:flex;flex-direction:column;gap:6px}
-.cm-aip-faq-q{font-size:14px;font-weight:500;color:var(--cv-text-primary);line-height:1.4}
-.cm-aip-faq-a{margin:0;font-size:13.5px;line-height:1.55;color:var(--cv-text-secondary)}
-@media (max-width:780px){
-  .cm-aip-honest{padding:56px 0 64px}
-  .cm-aip-honest-row{grid-template-columns:1fr;gap:32px}
-  .cm-aip-honest-h2{font-size:24px}
-}
 </style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-91MDWR08NJ"></script>
@@ -212,37 +196,6 @@
           <h3 class="cm-aip-claim-h">Every AI suggestion logged. Every override audited.</h3>
           <p class="cm-aip-claim-b"><b>Defensible at FOIA, defensible at audit, defensible in court.</b> The model recommends. The human decides. Both are timestamped against your statutory record. When the auditor asks why a permit was approved, you have the trail.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HONESTY BAND -->
-  <section class="cm-aip-honest">
-    <div class="cm-wrap">
-      <div class="cm-aip-honest-row">
-        <div>
-          <span class="cm-eyebrow cm-eyebrow--blue">How it stays honest</span>
-          <h2 class="cm-aip-honest-h2">The model has already read the file. <em>The clerk still owns the call.</em></h2>
-          <p class="cm-aip-honest-lede">Three things we don&rsquo;t do, and one thing we do. We don&rsquo;t replace clerks &mdash; we tee up their work. We don&rsquo;t generate citizen-facing decisions &mdash; we suggest, your staff decides. We don&rsquo;t hide our reasoning &mdash; every suggestion is auditable. What we do: make the clerk faster, make the citizen heard sooner, make the auditor&rsquo;s job easier next year.</p>
-        </div>
-        <ul class="cm-aip-faq">
-          <li>
-            <span class="cm-aip-faq-q">What about hallucinations?</span>
-            <p class="cm-aip-faq-a">The model never makes a binding decision. Every output is a suggestion the staff member can accept, modify, or override. Outputs are calibrated against your statute and logged with reasoning. If the model hallucinates a citation, the human reviewer catches it the same way they catch a typo.</p>
-          </li>
-          <li>
-            <span class="cm-aip-faq-q">Can we audit what the model said?</span>
-            <p class="cm-aip-faq-a">Yes. Every suggestion, every input that produced it, every human decision against it &mdash; logged in the same database your records live in. Pull a record&rsquo;s history; the AI suggestions are part of it. We use the same audit infrastructure that handles your bulk-delete trail.</p>
-          </li>
-          <li>
-            <span class="cm-aip-faq-q">Where does our data live?</span>
-            <p class="cm-aip-faq-a">In your Postgres database, on Google Cloud, in a US-only region. Model calls go through Anthropic&rsquo;s API with no training-data retention. Your statute, your code, and your citizen records never leave your tenant&rsquo;s isolation boundary.</p>
-          </li>
-          <li>
-            <span class="cm-aip-faq-q">What if the AI is wrong?</span>
-            <p class="cm-aip-faq-a">It will be sometimes &mdash; that&rsquo;s why the human is still in the loop. The model is calibrated to err toward escalation, not approval. Borderline plan reviews go to the planner. Borderline FOIA requests go to the officer. The cost of a missed flag is higher than the cost of a false positive.</p>
-          </li>
-        </ul>
       </div>
     </div>
   </section>

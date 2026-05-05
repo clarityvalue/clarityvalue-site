@@ -44,6 +44,24 @@ When in doubt: **Voice B for product surfaces. Voice A for argument surfaces. Vo
 
 ---
 
+## The Streisand rule — don't pre-emptively address concerns the buyer hasn't raised
+
+**Foundational principle.** If a sophisticated buyer doesn't have a concern, raising it pre-emptively *plants the seed*. The announcement *is* the problem. "We don't steal your data, promise" makes the reader wonder if they should have been worried about that.
+
+This applies to:
+- "What about hallucinations?" — never. Don't bring it up. If procurement asks, answer in the sales call where context matters.
+- "Will the AI replace my staff?" — never. The brand frame already says "the human still owns the call." That's enough.
+- "Is this safe?" / "Can we trust it?" — never. The trust strip + the architecture answer this implicitly.
+- "What happens if it goes wrong?" — never. Pre-defending against failure modes implies failure modes are likely.
+
+**The rule:** if you're answering a question, the question itself becomes content. Pick the questions deliberately. If there's no good reason to raise a concern, don't raise it.
+
+**The exception:** procurement-relevant facts that the buyer will need anyway (data residency, audit trail, deployment timeline, compliance certifications) — these are facts, not defenses. A trust strip stating "SOC 2 Type II · CJIS- and FedRAMP-aligned" is not pre-emptive defense; it's a fact the buyer needs.
+
+**Tonal test:** if a paragraph starts with "What about..." or "Don't worry about..." or "Some might think..." — cut it. The brand never apologizes for itself in advance.
+
+---
+
 ## Voice in action — paired examples
 
 **Wrong (corporate):** "Our comprehensive platform empowers governments to streamline workflows across departments."
