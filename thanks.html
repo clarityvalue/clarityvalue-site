@@ -15,7 +15,8 @@
 <link rel="stylesheet" href="module-shell.css" />
 
 <style>
-.cm-thanks{background:var(--cm-paper);position:relative;min-height:calc(100vh - 56px);display:flex;align-items:center;justify-content:center;padding:80px 24px;text-align:center}
+.cm-thanks{background:var(--cm-paper);position:relative;min-height:calc(100vh - 56px);display:flex;align-items:flex-start;justify-content:center;padding:120px 24px 80px;text-align:center}
+@media (min-width:980px){.cm-thanks{padding:140px 24px 96px}}
 .cm-thanks::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(80,60,30,0.08) 1px,transparent 1.4px);background-size:3px 3px;mix-blend-mode:multiply;opacity:0.35;z-index:0}
 .cm-thanks>*{position:relative;z-index:1}
 .cm-thanks-card{max-width:560px;width:100%}
