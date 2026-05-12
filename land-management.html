@@ -33,6 +33,23 @@
   gtag('js', new Date());
   gtag('config', 'G-91MDWR08NJ');
 </script>
+
+<!-- Ambient heartbeat animations for GIS + plan-review panels.
+     Slow on purpose — quiet life, not a notification UI. -->
+<style>
+@keyframes cv-pulse{0%,100%{opacity:.55;transform:scale(.9)}50%{opacity:1;transform:scale(1.15)}}
+@keyframes cv-breathe{0%,100%{opacity:.9}50%{opacity:1}}
+@keyframes cv-cursor{0%,49%{opacity:1}50%,100%{opacity:0}}
+@keyframes cv-scan-y{0%{transform:translateY(-4px);opacity:0}20%{opacity:.5}80%{opacity:.5}100%{transform:translateY(180px);opacity:0}}
+@keyframes cv-tick{0%,88%{opacity:.85}92%{opacity:.25}100%{opacity:.85}}
+.cv-pulse{animation:cv-pulse 1.8s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+.cv-pulse-slow{animation:cv-pulse 2.6s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+.cv-breathe{animation:cv-breathe 2.4s ease-in-out infinite}
+.cv-cursor-blink{animation:cv-cursor 1.1s steps(2,end) infinite;display:inline-block}
+.cv-scan-line{animation:cv-scan-y 4.2s linear infinite}
+.cv-tick-anim{animation:cv-tick 1s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.cv-pulse,.cv-pulse-slow,.cv-breathe,.cv-cursor-blink,.cv-scan-line,.cv-tick-anim{animation:none}}
+</style>
 </head>
 <body>
 
@@ -63,6 +80,32 @@
       </div>
       <div class="cm-mhero-art">
         <div class="cm-mhero-surface" id="hero-surface" style="left:0;right:0;top:20px;bottom:20px;transform:rotate(-1deg)"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS BAND — months → days, no city name-drops -->
+  <section class="cm-sec" style="padding:56px 0;border-bottom:0.5px solid var(--cv-line-hairline);background:#fff">
+    <div class="cm-wrap">
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:64px;align-items:start">
+        <div style="max-width:280px">
+          <span class="cm-eyebrow cm-eyebrow--blue cm-sec-eyebrow">Results</span>
+          <h2 class="cm-sec-h2" style="font-size:32px;margin-top:12px;line-height:1.05">Wait times cut by <em>months.</em></h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;padding-top:6px">
+          <div style="border-top:0.5px solid var(--cv-line-hairline);padding-top:14px">
+            <div style="font-family:var(--cv-font-mono);font-size:11px;letter-spacing:0.10em;text-transform:uppercase;color:var(--cv-brand-blue);margin-bottom:8px">Months &rarr; days</div>
+            <div style="font-size:13.5px;line-height:1.55;color:var(--cv-text-secondary)">Permit cycle times across every active deployment.</div>
+          </div>
+          <div style="border-top:0.5px solid var(--cv-line-hairline);padding-top:14px">
+            <div style="font-family:var(--cv-font-mono);font-size:11px;letter-spacing:0.10em;text-transform:uppercase;color:var(--cv-brand-blue);margin-bottom:8px">Same-day issuance</div>
+            <div style="font-size:13.5px;line-height:1.55;color:var(--cv-text-secondary)">Routine permits &mdash; tree removal, sign, driveway.</div>
+          </div>
+          <div style="border-top:0.5px solid var(--cv-line-hairline);padding-top:14px">
+            <div style="font-family:var(--cv-font-mono);font-size:11px;letter-spacing:0.10em;text-transform:uppercase;color:var(--cv-brand-blue);margin-bottom:8px">Months of backlog</div>
+            <div style="font-size:13.5px;line-height:1.55;color:var(--cv-text-secondary)">Cleared in weeks on every deployment.</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -272,65 +315,242 @@
   `;
 })();
 
-/* Capability surface 1 — Form intake */
+/* Capability surface 1 — GIS-aware intake (parcel map + auto-filled form) */
 (function(){
   const el = document.getElementById('cap1-surface');
   if (!el) return;
   el.innerHTML = `
-    <div style="padding:14px 16px;border-bottom:0.5px solid var(--cv-line-hairline)">
-      <div class="cv-breadcrumb" style="margin-bottom:4px">New application <span style="color:var(--cv-text-muted);margin:0 5px">/</span> <span style="color:var(--cv-text-secondary)">Building permit</span></div>
-      <span class="cv-page-title">Step 2 of 4 · Project details</span>
-    </div>
-    <div style="padding:18px 18px 16px;display:flex;flex-direction:column;gap:14px">
-      <div><label style="display:block;font-family:var(--cv-font-mono);font-size:10px;letter-spacing:0.10em;color:var(--cv-text-tertiary);text-transform:uppercase;margin-bottom:5px">Parcel ID</label><div style="height:30px;border:0.5px solid var(--cv-line-strong);border-radius:4px;padding:0 10px;display:flex;align-items:center;font-family:var(--cv-font-mono);font-size:12px;color:var(--cv-text-primary);background:#fff">01-3127-001-0290</div></div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <div><label style="display:block;font-family:var(--cv-font-mono);font-size:10px;letter-spacing:0.10em;color:var(--cv-text-tertiary);text-transform:uppercase;margin-bottom:5px">Project value</label><div style="height:30px;border:0.5px solid var(--cv-line-strong);border-radius:4px;padding:0 10px;display:flex;align-items:center;font-family:var(--cv-font-mono);font-size:12px;color:var(--cv-text-primary);background:#fff">$ 87,500.00</div></div>
-        <div><label style="display:block;font-family:var(--cv-font-mono);font-size:10px;letter-spacing:0.10em;color:var(--cv-text-tertiary);text-transform:uppercase;margin-bottom:5px">SF affected</label><div style="height:30px;border:0.5px solid var(--cv-line-strong);border-radius:4px;padding:0 10px;display:flex;align-items:center;font-family:var(--cv-font-mono);font-size:12px;color:var(--cv-text-primary);background:#fff">1,420</div></div>
+    <!-- Live status strip -->
+    <div style="padding:10px 14px;border-bottom:0.5px solid var(--cv-line-hairline);display:flex;justify-content:space-between;align-items:center">
+      <div style="display:flex;align-items:center;gap:7px">
+        <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#6FE3A4" class="cv-pulse"></span>
+        <span style="font-family:var(--cv-font-mono);font-size:10px;letter-spacing:0.10em;color:var(--cv-brand-blue)">JUST NOW · PARCEL SELECTED</span>
       </div>
-      <div><label style="display:block;font-family:var(--cv-font-mono);font-size:10px;letter-spacing:0.10em;color:#A07A38;text-transform:uppercase;margin-bottom:5px">Scope of work · required</label><div style="min-height:54px;border:0.5px solid #A07A38;border-radius:4px;padding:8px 10px;font-size:12px;color:var(--cv-text-secondary);background:#FFFCF4;line-height:1.5">Replacement of existing pitched roof with metal roofing system, including underlayment and flashing.</div></div>
-      <div style="border-top:0.5px solid var(--cv-line-hairline);padding-top:12px;display:flex;justify-content:space-between;align-items:center"><span style="font-family:var(--cv-font-mono);font-size:10.5px;color:var(--cv-text-muted)">FEE PREVIEW · $1,314.40</span><span style="height:28px;padding:0 14px;background:var(--cv-brand-blue);color:#fff;border-radius:4px;font-size:12px;font-weight:500;display:inline-flex;align-items:center">Continue →</span></div>
+      <span style="font-family:var(--cv-font-mono);font-size:9.5px;color:var(--cv-text-tertiary)">MIAMI-DADE GIS · LIVE</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1.05fr 1fr;height:calc(100% - 36px)">
+
+      <!-- Parcel map -->
+      <div style="padding:10px;border-right:0.5px solid var(--cv-line-hairline);background:#F7F8FA">
+        <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+          <defs>
+            <pattern id="cap1grid" width="20" height="20" patternUnits="userSpaceOnUse">
+              <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,0,0,0.05)" stroke-width="0.5"/>
+            </pattern>
+          </defs>
+          <rect width="320" height="240" fill="url(#cap1grid)"/>
+          <text x="160" y="14" font-family="ui-monospace,monospace" font-size="8" fill="#9CA0B5" text-anchor="middle" letter-spacing="1.2">SW 14TH STREET</text>
+          <text x="6" y="125" font-family="ui-monospace,monospace" font-size="8" fill="#9CA0B5" letter-spacing="1.2" transform="rotate(-90 6 125)">SW 24TH AVE</text>
+
+          <!-- Top row (commercial M-1, amber tint) -->
+          <rect x="30" y="40" width="60" height="60" fill="#FAEEDA" fill-opacity="0.5" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/>
+          <text x="60" y="58" font-family="ui-monospace,monospace" font-size="6.5" fill="#9CA0B5" text-anchor="middle">PARCEL · 0289</text>
+          <text x="60" y="80" font-family="ui-monospace,monospace" font-size="6.5" fill="#9CA0B5" text-anchor="middle">M-1</text>
+
+          <rect x="170" y="40" width="60" height="60" fill="#FAEEDA" fill-opacity="0.5" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/>
+          <text x="200" y="58" font-family="ui-monospace,monospace" font-size="6.5" fill="#9CA0B5" text-anchor="middle">PARCEL · 0291</text>
+          <text x="200" y="80" font-family="ui-monospace,monospace" font-size="6.5" fill="#9CA0B5" text-anchor="middle">M-1 · OPEN</text>
+          <circle cx="220" cy="48" r="3" fill="#185FA5" class="cv-pulse"/>
+
+          <rect x="240" y="40" width="60" height="60" fill="#FAEEDA" fill-opacity="0.5" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/>
+          <text x="270" y="58" font-family="ui-monospace,monospace" font-size="6.5" fill="#9CA0B5" text-anchor="middle">PARCEL · 0293</text>
+          <text x="270" y="80" font-family="ui-monospace,monospace" font-size="6.5" fill="#9CA0B5" text-anchor="middle">M-1 · OPEN</text>
+          <circle cx="290" cy="48" r="3" fill="#185FA5" class="cv-pulse-slow"/>
+
+          <!-- Bottom row (R-1, light blue tint) -->
+          <rect x="30" y="140" width="60" height="60" fill="#E6F1FB" fill-opacity="0.6" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/>
+          <text x="60" y="158" font-family="ui-monospace,monospace" font-size="6.5" fill="#9CA0B5" text-anchor="middle">PARCEL · 0309</text>
+          <text x="60" y="180" font-family="ui-monospace,monospace" font-size="6.5" fill="#9CA0B5" text-anchor="middle">R-1</text>
+
+          <rect x="170" y="140" width="60" height="60" fill="#E6F1FB" fill-opacity="0.6" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/>
+          <text x="200" y="158" font-family="ui-monospace,monospace" font-size="6.5" fill="#9CA0B5" text-anchor="middle">PARCEL · 0311</text>
+          <text x="200" y="180" font-family="ui-monospace,monospace" font-size="6.5" fill="#9CA0B5" text-anchor="middle">R-1 · OPEN</text>
+          <circle cx="220" cy="148" r="3" fill="#185FA5" class="cv-pulse"/>
+
+          <rect x="240" y="140" width="60" height="60" fill="#E6F1FB" fill-opacity="0.6" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/>
+          <text x="270" y="158" font-family="ui-monospace,monospace" font-size="6.5" fill="#9CA0B5" text-anchor="middle">PARCEL · 0313</text>
+          <text x="270" y="180" font-family="ui-monospace,monospace" font-size="6.5" fill="#9CA0B5" text-anchor="middle">R-1</text>
+
+          <!-- Subject parcel (breathing) -->
+          <g class="cv-breathe"><rect x="100" y="40" width="60" height="60" fill="#E6F1FB" fill-opacity="0.85" stroke="#185FA5" stroke-width="2"/></g>
+          <rect x="105" y="45" width="50" height="50" fill="none" stroke="#185FA5" stroke-width="0.5" stroke-dasharray="2 2"/>
+          <line x1="155" y1="45" x2="155" y2="95" stroke="#BA7517" stroke-width="2" stroke-dasharray="2 1.5"/>
+          <text x="130" y="64" font-family="-apple-system,sans-serif" font-size="9" font-weight="500" fill="#1F2733" text-anchor="middle">2410</text>
+          <text x="130" y="76" font-family="ui-monospace,monospace" font-size="6.5" fill="#185FA5" text-anchor="middle">SUBJECT</text>
+          <text x="130" y="88" font-family="ui-monospace,monospace" font-size="6.5" fill="#9CA0B5" text-anchor="middle">M-1 · 5,440 SF</text>
+          <g stroke="#185FA5" stroke-width="1.5" fill="none">
+            <path d="M 96 36 L 96 41 L 101 41"/>
+            <path d="M 164 36 L 164 41 L 159 41"/>
+            <path d="M 96 104 L 96 99 L 101 99"/>
+            <path d="M 164 104 L 164 99 L 159 99"/>
+          </g>
+
+          <!-- Compass + scale + legend -->
+          <g transform="translate(295,116)">
+            <circle cx="0" cy="0" r="11" fill="#fff" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/>
+            <path d="M 0 -7 L 2 0 L 0 7 L -2 0 Z" fill="#1F2733"/>
+            <text x="0" y="-14" font-family="ui-monospace,monospace" font-size="7" fill="#5F6771" text-anchor="middle">N</text>
+          </g>
+          <g transform="translate(16,220)">
+            <rect x="0" y="-4" width="16" height="6" fill="#1F2733"/>
+            <rect x="16" y="-4" width="16" height="6" fill="none" stroke="#1F2733" stroke-width="0.5"/>
+            <text x="-2" y="13" font-family="ui-monospace,monospace" font-size="7" fill="#5F6771">0</text>
+            <text x="32" y="13" font-family="ui-monospace,monospace" font-size="7" fill="#5F6771" text-anchor="middle">50 ft</text>
+            <text x="16" y="-9" font-family="ui-monospace,monospace" font-size="6.5" fill="#9CA0B5" text-anchor="middle">SCALE 1:480</text>
+          </g>
+          <g transform="translate(195,215)">
+            <rect x="0" y="0" width="115" height="16" fill="#fff" stroke="rgba(0,0,0,0.13)" stroke-width="0.5" rx="3"/>
+            <circle cx="8" cy="8" r="3" fill="#185FA5" class="cv-pulse"/>
+            <text x="15" y="11" font-family="ui-monospace,monospace" font-size="7" fill="#5F6771">OPEN PERMIT · 3 NEARBY</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Auto-filled form -->
+      <div style="padding:14px;display:flex;flex-direction:column;gap:10px;background:#fff;overflow:auto">
+        <div style="font-family:var(--cv-font-mono);font-size:9.5px;letter-spacing:0.10em;color:var(--cv-text-tertiary);text-transform:uppercase">New application · Building permit</div>
+
+        <div style="border:0.5px solid var(--cv-line-hairline);border-radius:5px;padding:10px 12px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline">
+            <span style="font-family:var(--cv-font-mono);font-size:9.5px;letter-spacing:0.08em;color:var(--cv-text-tertiary);text-transform:uppercase">Parcel ID · auto-filled</span>
+            <span style="font-family:var(--cv-font-mono);font-size:9px;color:var(--cv-text-tertiary)" class="cv-tick-anim">0.3s</span>
+          </div>
+          <div style="font-family:var(--cv-font-mono);font-size:12px;color:var(--cv-brand-blue);margin-top:3px">12-3127-001-0290<span class="cv-cursor-blink" style="width:6px;height:13px;background:var(--cv-brand-blue);vertical-align:-2px;margin-left:2px"></span></div>
+          <div style="font-family:var(--cv-font-mono);font-size:9.5px;letter-spacing:0.08em;color:var(--cv-text-tertiary);text-transform:uppercase;margin-top:10px">Address</div>
+          <div style="font-size:11.5px;margin-top:3px;color:var(--cv-text-primary)">2410 SW 14th Street</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+            <div>
+              <div style="font-family:var(--cv-font-mono);font-size:9.5px;letter-spacing:0.08em;color:var(--cv-text-tertiary);text-transform:uppercase">Zoning</div>
+              <div style="font-size:11.5px;margin-top:3px;color:var(--cv-text-primary)">M-1 Mixed-use <span style="color:#3B6D11">&check;</span></div>
+            </div>
+            <div>
+              <div style="font-family:var(--cv-font-mono);font-size:9.5px;letter-spacing:0.08em;color:var(--cv-text-tertiary);text-transform:uppercase">Lot size</div>
+              <div style="font-size:11.5px;margin-top:3px;color:var(--cv-text-primary)">5,440 sf</div>
+            </div>
+          </div>
+          <div style="margin-top:10px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px">
+              <span style="font-family:var(--cv-font-mono);font-size:9.5px;letter-spacing:0.08em;color:var(--cv-text-tertiary);text-transform:uppercase">FAR used</span>
+              <span style="font-family:var(--cv-font-mono);font-size:9.5px;color:var(--cv-text-primary)">67% of 1.0</span>
+            </div>
+            <div style="height:4px;background:rgba(0,0,0,0.06);border-radius:2px;overflow:hidden">
+              <div style="width:67%;height:100%;background:var(--cv-brand-blue)"></div>
+            </div>
+          </div>
+          <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:baseline">
+            <span style="font-family:var(--cv-font-mono);font-size:9.5px;letter-spacing:0.08em;color:var(--cv-text-tertiary);text-transform:uppercase">Flood zone</span>
+            <span style="font-size:11px;color:var(--cv-text-primary)">AE · base elev. 9 ft</span>
+          </div>
+        </div>
+
+        <!-- Amber setback flag -->
+        <div style="background:#FFFCF4;border:0.5px solid #FAC775;border-radius:5px;padding:9px 11px">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">
+            <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#BA7517" class="cv-pulse"></span>
+            <span style="font-family:var(--cv-font-mono);font-size:9.5px;letter-spacing:0.08em;color:#854F0B;text-transform:uppercase">Setback check · flagged</span>
+          </div>
+          <div style="font-size:10.5px;color:#412402;line-height:1.45">East side reads 4'2". Code requires 5' <span style="font-family:var(--cv-font-mono);font-size:9.5px">(M-1 §603.1)</span>. Caught before submit.</div>
+        </div>
+      </div>
     </div>
   `;
 })();
 
-/* Capability surface 2 — Plan review with comments */
+/* Capability surface 2 — AI plan review (site plan + ATTN/PASS/CONTEXT review panel) */
 (function(){
   const el = document.getElementById('cap2-surface');
   if (!el) return;
   el.innerHTML = `
-    <div style="display:grid;grid-template-columns:1fr 200px;height:100%">
-      <div style="display:flex;flex-direction:column;min-width:0">
-        <div style="padding:12px 14px;border-bottom:0.5px solid var(--cv-line-hairline);display:flex;justify-content:space-between;align-items:center">
-          <span class="cv-page-title" style="font-size:13px">A-201 · Site plan</span>
-          <span style="font-family:var(--cv-font-mono);font-size:10px;color:var(--cv-text-tertiary)">Sheet 4 of 12</span>
+    <!-- Model active strip -->
+    <div style="padding:10px 14px;border-bottom:0.5px solid var(--cv-line-hairline);display:flex;justify-content:space-between;align-items:center">
+      <div style="display:flex;align-items:center;gap:7px">
+        <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--cv-brand-blue)" class="cv-pulse"></span>
+        <span style="font-family:var(--cv-font-mono);font-size:10px;letter-spacing:0.10em;color:var(--cv-brand-blue)">MODEL ACTIVE · 2.3s ELAPSED</span>
+      </div>
+      <span style="font-family:var(--cv-font-mono);font-size:9.5px;color:var(--cv-text-tertiary)">PLAN REVIEW · SUB-2024-002</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;height:calc(100% - 36px)">
+
+      <!-- Site plan with scan line -->
+      <div style="padding:10px;border-right:0.5px solid var(--cv-line-hairline);background:#F7F8FA;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-family:var(--cv-font-mono);font-size:9.5px;letter-spacing:0.10em;color:var(--cv-text-tertiary);text-transform:uppercase">Submitted · A1-Building</span>
+          <span style="font-family:var(--cv-font-mono);font-size:9.5px;color:var(--cv-text-tertiary)">14:32</span>
         </div>
-        <div style="flex:1;background:#F0EEE6;position:relative;overflow:hidden">
-          <svg viewBox="0 0 280 200" style="width:100%;height:100%;position:absolute;inset:0" preserveAspectRatio="xMidYMid meet">
-            <rect x="40" y="30" width="200" height="140" fill="none" stroke="rgba(31,39,51,0.6)" stroke-width="0.6"/>
-            <rect x="60" y="50" width="80" height="60" fill="rgba(31,39,51,0.04)" stroke="rgba(31,39,51,0.5)" stroke-width="0.5"/>
-            <rect x="160" y="50" width="60" height="100" fill="rgba(31,39,51,0.04)" stroke="rgba(31,39,51,0.5)" stroke-width="0.5"/>
-            <line x1="40" y1="100" x2="240" y2="100" stroke="rgba(31,39,51,0.25)" stroke-dasharray="2 3" stroke-width="0.5"/>
-            <text x="46" y="44" font-family="ui-monospace" font-size="6" fill="rgba(31,39,51,0.55)">PROPERTY LINE</text>
-            <circle cx="142" cy="80" r="11" fill="rgba(193,63,63,0.18)" stroke="#C13F3F" stroke-width="0.8"/>
-            <text x="142" y="83" text-anchor="middle" font-family="ui-monospace" font-size="7" fill="#C13F3F" font-weight="600">A1</text>
-            <circle cx="190" cy="120" r="11" fill="rgba(160,122,56,0.18)" stroke="#A07A38" stroke-width="0.8"/>
-            <text x="190" y="123" text-anchor="middle" font-family="ui-monospace" font-size="7" fill="#A07A38" font-weight="600">A2</text>
+        <div style="position:relative;overflow:hidden;border:0.5px solid var(--cv-line-hairline);border-radius:5px;background:#fff;flex:1">
+          <svg viewBox="0 0 220 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block" preserveAspectRatio="xMidYMid meet">
+            <rect x="20" y="30" width="180" height="200" fill="#fff" stroke="#1F2733" stroke-width="1.5"/>
+            <text x="110" y="22" font-family="ui-monospace,monospace" font-size="8" fill="#5F6771" text-anchor="middle">90' 0"</text>
+            <text x="10" y="135" font-family="ui-monospace,monospace" font-size="8" fill="#5F6771" text-anchor="middle" transform="rotate(-90 10 135)">100' 0"</text>
+            <line x1="20" y1="60" x2="200" y2="60" stroke="#5F6771" stroke-width="0.5" stroke-dasharray="3 2"/>
+            <text x="186" y="56" font-family="ui-monospace,monospace" font-size="7" fill="#5F6771">25' FRONT</text>
+            <line x1="20" y1="200" x2="200" y2="200" stroke="#5F6771" stroke-width="0.5" stroke-dasharray="3 2"/>
+            <text x="186" y="212" font-family="ui-monospace,monospace" font-size="7" fill="#5F6771">15' REAR</text>
+            <line x1="50" y1="60" x2="50" y2="200" stroke="#5F6771" stroke-width="0.5" stroke-dasharray="3 2"/>
+            <text x="36" y="125" font-family="ui-monospace,monospace" font-size="7" fill="#5F6771" transform="rotate(-90 36 125)">5' L · OK</text>
+            <line x1="170" y1="60" x2="170" y2="200" stroke="#BA7517" stroke-width="2" stroke-dasharray="3 1.5" class="cv-breathe"/>
+            <text x="184" y="125" font-family="ui-monospace,monospace" font-size="7" fill="#BA7517" font-weight="500" transform="rotate(-90 184 125)">4'2" R · FLAG</text>
+            <rect x="50" y="60" width="120" height="140" fill="#E6F1FB" fill-opacity="0.5" stroke="#185FA5" stroke-width="1"/>
+            <text x="110" y="125" font-family="-apple-system,sans-serif" font-size="10" font-weight="500" fill="#185FA5" text-anchor="middle">PROPOSED</text>
+            <text x="110" y="138" font-family="-apple-system,sans-serif" font-size="9" fill="#185FA5" text-anchor="middle">2 STORY · 2,400 SF</text>
+            <line x1="110" y1="60" x2="110" y2="200" stroke="rgba(24,95,165,0.2)" stroke-width="0.3" stroke-dasharray="1 2"/>
+            <line x1="50" y1="130" x2="170" y2="130" stroke="rgba(24,95,165,0.2)" stroke-width="0.3" stroke-dasharray="1 2"/>
+            <text x="208" y="38" font-family="ui-monospace,monospace" font-size="8" fill="#9CA0B5" text-anchor="end">N &uarr;</text>
           </svg>
+          <!-- Scan line overlay -->
+          <div style="position:absolute;top:0;left:8px;right:8px;height:2px;background:linear-gradient(to bottom,rgba(24,95,165,0) 0%,rgba(24,95,165,0.5) 50%,rgba(24,95,165,0) 100%);pointer-events:none" class="cv-scan-line"></div>
+        </div>
+        <!-- Timestamp progression -->
+        <div style="display:flex;flex-direction:column;gap:3px">
+          <div style="display:flex;justify-content:space-between;font-family:var(--cv-font-mono);font-size:9px;color:var(--cv-text-tertiary)"><span>Received</span><span style="color:var(--cv-text-primary)">14:32:00</span></div>
+          <div style="display:flex;justify-content:space-between;font-family:var(--cv-font-mono);font-size:9px;color:#854F0B"><span>Flagged</span><span>14:32:02</span></div>
+          <div style="display:flex;justify-content:space-between;font-family:var(--cv-font-mono);font-size:9px;color:#27500A"><span>Ready for reviewer</span><span>14:32:04</span></div>
         </div>
       </div>
-      <aside style="border-left:0.5px solid var(--cv-line-hairline);background:#FCFAF6;padding:12px 12px;display:flex;flex-direction:column;gap:10px">
-        <div style="font-family:var(--cv-font-mono);font-size:10px;letter-spacing:0.10em;color:var(--cv-text-tertiary);text-transform:uppercase">2 comments</div>
-        <div style="background:#fff;border:0.5px solid var(--cv-line-strong);border-left:2px solid #C13F3F;border-radius:3px;padding:8px 10px">
-          <div style="font-family:var(--cv-font-mono);font-size:9px;color:var(--cv-status-red-text);letter-spacing:0.06em;margin-bottom:3px">A1 · BUILDING</div>
-          <div style="font-size:11px;line-height:1.45;color:var(--cv-text-primary);margin-bottom:4px">Setback to side lot is 4'2", code requires 5'.</div>
-          <div style="font-size:9.5px;color:var(--cv-text-tertiary);font-family:var(--cv-font-mono)">L. Carder · 2h ago</div>
+
+      <!-- Review panel -->
+      <div style="padding:12px;display:flex;flex-direction:column;gap:8px;background:#fff;overflow:auto">
+
+        <!-- ATTN -->
+        <div style="background:#FFFCF4;border:0.5px solid #FAC775;border-radius:5px;padding:9px 11px">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+            <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#BA7517" class="cv-pulse"></span>
+            <span style="font-family:var(--cv-font-mono);font-size:9.5px;letter-spacing:0.08em;color:#854F0B;text-transform:uppercase">ATTN · 2 items</span>
+          </div>
+          <div style="font-size:10.5px;color:#412402;line-height:1.5;margin-bottom:5px"><span style="font-weight:500">Side-lot setback.</span> East side reads 4'2" on A1-04. Code requires 5'. <span style="font-family:var(--cv-font-mono);font-size:9.5px">M-1 §603.1</span></div>
+          <div style="font-size:10.5px;color:#412402;line-height:1.5"><span style="font-weight:500">Egress width.</span> Second-floor corridor reads 32" &mdash; confirm against <span style="font-family:var(--cv-font-mono);font-size:9.5px">IBC 2018 §1005.3.1</span> (44" req'd, occupant load &gt; 50).</div>
         </div>
-        <div style="background:#fff;border:0.5px solid var(--cv-line-strong);border-left:2px solid #A07A38;border-radius:3px;padding:8px 10px">
-          <div style="font-family:var(--cv-font-mono);font-size:9px;color:#A07A38;letter-spacing:0.06em;margin-bottom:3px">A2 · FIRE</div>
-          <div style="font-size:11px;line-height:1.45;color:var(--cv-text-primary);margin-bottom:4px">Note hydrant location and FDC clearance.</div>
-          <div style="font-size:9.5px;color:var(--cv-text-tertiary);font-family:var(--cv-font-mono)">M. Voss · 1h ago</div>
+
+        <!-- PASS -->
+        <div style="background:#F5FAE9;border:0.5px solid #C0DD97;border-radius:5px;padding:9px 11px">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+            <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#639922"></span>
+            <span style="font-family:var(--cv-font-mono);font-size:9.5px;letter-spacing:0.08em;color:#27500A;text-transform:uppercase">PASS · 4 checks</span>
+          </div>
+          <div style="font-size:10.5px;color:#173404;line-height:1.65">
+            <div>&check; Zoning compliance &middot; M-1 mixed-use verified</div>
+            <div>&check; Thermal envelope &middot; within FL Building Code spec</div>
+            <div>&check; Foundation type &middot; matches geotech report</div>
+            <div>&check; Fire separation &middot; IBC 2018 §706 satisfied</div>
+          </div>
         </div>
-      </aside>
+
+        <!-- CONTEXT -->
+        <div style="border:0.5px solid var(--cv-line-hairline);border-radius:5px;padding:9px 11px;background:#F7F8FA">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px">
+            <span style="font-family:var(--cv-font-mono);font-size:9.5px;letter-spacing:0.08em;color:var(--cv-text-tertiary);text-transform:uppercase">Context · comparable approvals</span>
+            <span style="font-family:var(--cv-font-mono);font-size:9.5px;color:var(--cv-brand-blue);font-weight:500">12 · 24 MO</span>
+          </div>
+          <svg viewBox="0 0 240 36" style="width:100%;height:30px;margin:2px 0">
+            <polyline fill="none" stroke="#185FA5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+              points="0,28 20,24 40,26 60,18 80,20 100,12 120,16 140,8 160,14 180,6 200,10 220,4 240,8"/>
+            <circle cx="240" cy="8" r="2.5" fill="#185FA5" class="cv-pulse"/>
+          </svg>
+          <div style="font-size:10px;color:var(--cv-text-secondary);line-height:1.5">Similar 2-story builds &middot; median review <span style="color:var(--cv-text-primary);font-weight:500">6 days</span> &middot; first-pass approval <span style="color:var(--cv-text-primary);font-weight:500">83%</span></div>
+        </div>
+      </div>
     </div>
   `;
 })();
