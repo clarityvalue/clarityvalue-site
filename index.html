@@ -439,6 +439,26 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
   .cm-about-meta{grid-template-columns:1fr;gap:14px}
   .cm-philosophy-h2{font-size:24px}
 }
+
+/* ===== Heartbeat — ambient live-system indicators =====
+   CSS-only, opacity + transform only (GPU-composited, no layout/paint),
+   prefers-reduced-motion respected. ~6 elements animated per homepage view. */
+@keyframes cm-pulse-dot{0%,100%{opacity:.55;transform:scale(.9)}50%{opacity:1;transform:scale(1.15)}}
+@keyframes cm-breathe{0%,100%{opacity:.85}50%{opacity:1}}
+@keyframes cm-halo-red{0%,100%{box-shadow:0 0 0 0 rgba(193,63,63,0)}50%{box-shadow:0 0 0 4px rgba(193,63,63,0.10)}}
+@keyframes cm-halo-blue{0%,100%{box-shadow:0 0 0 0 rgba(24,95,165,0)}50%{box-shadow:0 0 0 4px rgba(24,95,165,0.10)}}
+@keyframes cm-halo-green{0%,100%{box-shadow:0 0 0 0 rgba(59,109,17,0)}50%{box-shadow:0 0 0 4px rgba(59,109,17,0.10)}}
+.cm-pulse-dot{display:inline-block;animation:cm-pulse-dot 1.8s ease-in-out infinite;transform-origin:center}
+.cm-pulse-dot--slow{display:inline-block;animation:cm-pulse-dot 2.3s ease-in-out infinite;transform-origin:center}
+.cm-breathe{animation:cm-breathe 2.4s ease-in-out infinite}
+.cm-halo-red{animation:cm-halo-red 1.9s ease-in-out infinite}
+.cm-halo-blue{animation:cm-halo-blue 2.1s ease-in-out infinite}
+.cm-halo-green{animation:cm-halo-green 2.3s ease-in-out infinite}
+/* SVG element variant — uses transform-box so scale orbits its own center */
+.cm-pulse-svg{animation:cm-pulse-dot 1.8s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+@media (prefers-reduced-motion:reduce){
+  .cm-pulse-dot,.cm-pulse-dot--slow,.cm-breathe,.cm-halo-red,.cm-halo-blue,.cm-halo-green,.cm-pulse-svg{animation:none}
+}
 </style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-91MDWR08NJ"></script>
@@ -563,7 +583,7 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
           <div class="cm-stamp-row">
             <span class="cm-stamp-id">SUB-2024-002</span>
             <span class="cm-stamp-text">Permit issued &middot; Building, Coral Way</span>
-            <span class="cv-pill cv-pill--green">Completion</span>
+            <span class="cv-pill cv-pill--green cm-halo-green" style="display:inline-flex;align-items:center;gap:5px"><span class="cm-pulse-dot" style="width:5px;height:5px;border-radius:50%;background:#639922"></span>Completion</span>
           </div>
           <div class="cm-stamp-row">
             <span class="cm-stamp-id">FOIA-0421</span>
@@ -1180,7 +1200,7 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
       </div>
       <table class="cv-tbl" style="width:100%">
         <thead><tr><th>Request</th><th>Topic</th><th>Dept</th><th style="width:170px">SLA</th><th>Status</th></tr></thead>
-        <tbody>${rows.map((r,i)=>`<tr${i===2?' class="is-selected"':''}><td><span class="cv-tbl-id">${r.id}</span></td><td>${r.topic}</td><td><span style="font-size:11px;color:var(--cv-text-secondary)">${r.dept}</span></td><td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:4px;background:var(--cv-line-hairline);border-radius:2px;overflow:hidden"><div style="height:100%;width:${r.sla}%;background:${c(r.state)};border-radius:2px"></div></div><span style="font-family:var(--cv-font-mono);font-size:10px;color:${c(r.state)};white-space:nowrap">${r.days}</span></div></td><td><span class="cv-pill cv-pill--${r.state==='red'?'red':r.state==='amber'?'amber':'blue'}">${r.state==='red'?'Past SLA':r.state==='amber'?'Approaching':'On track'}</span></td></tr>`).join('')}</tbody>
+        <tbody>${rows.map((r,i)=>`<tr${i===2?' class="is-selected"':''}><td><span class="cv-tbl-id">${r.id}</span></td><td>${r.topic}</td><td><span style="font-size:11px;color:var(--cv-text-secondary)">${r.dept}</span></td><td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:4px;background:var(--cv-line-hairline);border-radius:2px;overflow:hidden"><div style="height:100%;width:${r.sla}%;background:${c(r.state)};border-radius:2px"></div></div><span style="font-family:var(--cv-font-mono);font-size:10px;color:${c(r.state)};white-space:nowrap">${r.days}</span></div></td><td><span class="cv-pill cv-pill--${r.state==='red'?'red':r.state==='amber'?'amber':'blue'}${r.state==='red'?' cm-halo-red':''}" style="${r.state==='red'?'display:inline-flex;align-items:center;gap:5px':''}">${r.state==='red'?'<span class="cm-pulse-dot" style="width:5px;height:5px;border-radius:50%;background:#C13F3F"></span>Past SLA':r.state==='amber'?'Approaching':'On track'}</span></td></tr>`).join('')}</tbody>
       </table>
     `;
   }
@@ -1192,7 +1212,7 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
       <table class="cv-tbl" style="width:100%">
         <thead><tr><th>#</th><th>Type</th><th>District</th><th>Status</th></tr></thead>
         <tbody>
-          <tr class="is-selected"><td><span class="cv-tbl-id">SR-9128</span></td><td>Pothole · SW 14th</td><td>03</td><td><span class="cv-pill cv-pill--red">New</span></td></tr>
+          <tr class="is-selected"><td><span class="cv-tbl-id">SR-9128</span></td><td>Pothole · SW 14th</td><td>03</td><td><span class="cv-pill cv-pill--red cm-halo-red" style="display:inline-flex;align-items:center;gap:5px"><span class="cm-pulse-dot" style="width:5px;height:5px;border-radius:50%;background:#C13F3F"></span>New</span></td></tr>
           <tr><td><span class="cv-tbl-id">SR-9129</span></td><td>Streetlight out</td><td>05</td><td><span class="cv-pill cv-pill--amber">Dispatched</span></td></tr>
           <tr><td><span class="cv-tbl-id">SR-9131</span></td><td>Graffiti removal</td><td>02</td><td><span class="cv-pill cv-pill--blue">Assigned</span></td></tr>
           <tr><td><span class="cv-tbl-id">SR-9134</span></td><td>Bulk pickup</td><td>04</td><td><span class="cv-pill cv-pill--green">Closed</span></td></tr>
@@ -1212,7 +1232,7 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
     m4.innerHTML = `
       <div style="padding:14px 16px;border-bottom:0.5px solid var(--cv-line-hairline)"><div class="cv-breadcrumb" style="margin-bottom:4px">Reports <span style="color:var(--cv-text-muted);margin:0 5px">/</span> <span style="color:var(--cv-text-secondary)">Director dashboard</span></div><span class="cv-page-title">Operations · this week</span></div>
       <div style="padding:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;border-bottom:0.5px solid var(--cv-line-hairline)">
-        <div style="padding:10px 12px;border:0.5px solid var(--cv-line-strong);border-radius:4px;background:var(--cv-surface-card)"><div style="font-family:var(--cv-font-mono);font-size:10px;color:var(--cv-text-tertiary)">PERMITS</div><div style="font-family:var(--cv-font-display);font-size:20px;color:var(--cv-text-primary);margin-top:2px">142</div><div style="font-size:10px;color:var(--cv-status-green-text);margin-top:1px">▲ 18%</div></div>
+        <div style="padding:10px 12px;border:0.5px solid var(--cv-line-strong);border-radius:4px;background:var(--cv-surface-card)"><div style="font-family:var(--cv-font-mono);font-size:10px;color:var(--cv-text-tertiary)">PERMITS</div><div style="font-family:var(--cv-font-display);font-size:20px;color:var(--cv-text-primary);margin-top:2px">142</div><div class="cm-breathe" style="font-size:10px;color:var(--cv-status-green-text);margin-top:1px">▲ 18%</div></div>
         <div style="padding:10px 12px;border:0.5px solid var(--cv-line-strong);border-radius:4px;background:var(--cv-surface-card)"><div style="font-family:var(--cv-font-mono);font-size:10px;color:var(--cv-text-tertiary)">FOIA OPEN</div><div style="font-family:var(--cv-font-display);font-size:20px;color:var(--cv-text-primary);margin-top:2px">47</div><div style="font-size:10px;color:var(--cv-status-amber-text);margin-top:1px">6 due &lt; 5d</div></div>
         <div style="padding:10px 12px;border:0.5px solid var(--cv-line-strong);border-radius:4px;background:var(--cv-surface-card)"><div style="font-family:var(--cv-font-mono);font-size:10px;color:var(--cv-text-tertiary)">311 CLOSED</div><div style="font-family:var(--cv-font-display);font-size:20px;color:var(--cv-text-primary);margin-top:2px">328</div><div style="font-size:10px;color:var(--cv-status-green-text);margin-top:1px">▲ 9%</div></div>
         <div style="padding:10px 12px;border:0.5px solid var(--cv-line-strong);border-radius:4px;background:var(--cv-surface-card)"><div style="font-family:var(--cv-font-mono);font-size:10px;color:var(--cv-text-tertiary)">CYCLE</div><div style="font-family:var(--cv-font-display);font-size:20px;color:var(--cv-text-primary);margin-top:2px">11.2d</div><div style="font-size:10px;color:var(--cv-status-green-text);margin-top:1px">▼ 1.4d</div></div>
@@ -1222,7 +1242,17 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
         <defs><linearGradient id="cmrg" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="rgba(74,144,226,0.22)"/><stop offset="100%" stop-color="rgba(74,144,226,0)"/></linearGradient></defs>
         ${[0.25,0.5,0.75].map(t=>`<line x1="${pad}" x2="${w-pad}" y1="${h-pad-t*(h-pad*2)}" y2="${h-pad-t*(h-pad*2)}" stroke="var(--cv-line-hairline)" stroke-width="0.5"/>`).join('')}
         <path d="${area}" fill="url(#cmrg)"/>
-        <path d="${path}" stroke="var(--cv-brand-blue)" stroke-width="1.5" fill="none"/>
+        <!-- Base static line, dimmed so the trace overlay stands out -->
+        <path d="${path}" stroke="var(--cv-brand-blue)" stroke-width="1.5" fill="none" opacity="0.45"/>
+        <!-- Animated trace overlay — draws across in 6s -->
+        <path d="${path}" stroke="var(--cv-brand-blue)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="800" stroke-dashoffset="800">
+          <animate attributeName="stroke-dashoffset" from="800" to="0" dur="6s" repeatCount="indefinite"/>
+        </path>
+        <!-- Traveling dot riding the same path -->
+        <circle r="3" fill="var(--cv-brand-blue)" opacity="0">
+          <animateMotion dur="6s" repeatCount="indefinite" path="${path}"/>
+          <animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;0.04;0.85;0.95;1" dur="6s" repeatCount="indefinite"/>
+        </circle>
       </svg></div>
     `;
   }
@@ -1245,7 +1275,7 @@ body{background:#fff;color:var(--cv-text-primary);font-family:var(--cv-font-sans
   if (m6) {
     m6.style.cssText += `left:32px;top:48px;width:600px;transform:rotate(1deg)`;
     m6.innerHTML = `
-      <div style="padding:14px 16px;border-bottom:0.5px solid var(--cv-line-hairline);display:flex;justify-content:space-between;align-items:baseline"><div><div class="cv-breadcrumb" style="margin-bottom:4px">Budget <span style="color:var(--cv-text-muted);margin:0 5px">/</span> FY 2025 <span style="color:var(--cv-text-muted);margin:0 5px">/</span> <span style="color:var(--cv-text-secondary)">General Fund</span></div><span class="cv-page-title">Public Works · 51400</span></div><span style="font-family:var(--cv-font-mono);font-size:10px;color:var(--cv-text-tertiary)">LIVE</span></div>
+      <div style="padding:14px 16px;border-bottom:0.5px solid var(--cv-line-hairline);display:flex;justify-content:space-between;align-items:baseline"><div><div class="cv-breadcrumb" style="margin-bottom:4px">Budget <span style="color:var(--cv-text-muted);margin:0 5px">/</span> FY 2025 <span style="color:var(--cv-text-muted);margin:0 5px">/</span> <span style="color:var(--cv-text-secondary)">General Fund</span></div><span class="cv-page-title">Public Works · 51400</span></div><span class="cv-pill cv-pill--green cm-halo-green" style="display:inline-flex;align-items:center;gap:5px"><span class="cm-pulse-dot" style="width:5px;height:5px;border-radius:50%;background:#639922"></span>LIVE</span></div>
       <div style="padding:14px 16px">
         ${[{l:'Salaries',a:2840,s:1320,e:140},{l:'Operations',a:680,s:412,e:88},{l:'Capital — Resurfacing',a:4200,s:1640,e:3800},{l:'Equipment',a:340,s:198,e:62}].map((r,i)=>`<div style="padding:8px 0${i<3?';border-bottom:0.5px solid var(--cv-line-hairline)':''}">
           <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;color:var(--cv-text-primary)">${r.l}</span><span style="font-family:var(--cv-font-mono);font-size:10.5px;color:var(--cv-text-tertiary)">$${r.a}k</span></div>
