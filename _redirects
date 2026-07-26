@@ -2,21 +2,26 @@
 #
 # Netlify already serves licensing.html at /licensing by itself, so the pretty
 # form needs no rule here — the old "/licensing → /licensing.html 301" family
-# was both a no-op (file matching wins before the redirect engine) and pointed
-# the wrong way, putting .html back in the address bar for the slugs whose name
+# was both a no-op (an existing file wins over a redirect rule) and pointed the
+# wrong way, putting .html back in the address bar for the slugs whose name
 # didn't match their file. The rules below retire the .html form instead.
-/311.html                   /311                     301
-/ai.html                    /ai                      301
-/budget-management.html     /budget-management        301
-/human-resources.html       /human-resources          301
-/land-management.html       /land-management          301
-/licensing.html             /licensing                301
-/privacy-policy.html        /privacy-policy           301
-/record-requests.html       /record-requests          301
-/reports.html               /reports                  301
-/terms-of-use.html          /terms-of-use             301
-/thanks.html                /thanks                   301
-/index.html                 /                         301
+#
+# The trailing "!" is load-bearing, and for the same reason the old rules were
+# dead: /licensing.html IS a real file, so an unforced rule never fires. The
+# force flag is what lets the redirect win over the file. Drop the "!" and
+# these silently become no-ops that still LOOK correct in this file.
+/311.html                   /311                     301!
+/ai.html                    /ai                      301!
+/budget-management.html     /budget-management        301!
+/human-resources.html       /human-resources          301!
+/land-management.html       /land-management          301!
+/licensing.html             /licensing                301!
+/privacy-policy.html        /privacy-policy           301!
+/record-requests.html       /record-requests          301!
+/reports.html               /reports                  301!
+/terms-of-use.html          /terms-of-use             301!
+/thanks.html                /thanks                   301!
+/index.html                 /                         301!
 
 # contacts.html is deliberately NOT redirected. Its demo-request form POSTs to
 # its own URL, and browsers downgrade a 301'd POST to GET — which would drop
