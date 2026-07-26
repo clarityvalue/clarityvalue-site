@@ -72,10 +72,8 @@
           </div>
           <a class="cm-nav-link" href="/#about">About</a>
           <a class="cm-nav-link" href="/#approach">Approach</a>
-          <a class="cm-nav-link" href="#">Security</a>
         </nav>
         <div class="cm-nav-spacer"></div>
-        <a class="cm-nav-signin" href="#">Sign in</a>
         <a class="cm-nav-cta" href="/contacts">Request a pilot
           <svg viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 2.5l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
         </a>
@@ -140,10 +138,10 @@
             <span class="cm-logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="#fff" stroke="none"/><line x1="12" y1="6" x2="12" y2="2.5"/><line x1="15" y1="6.8" x2="16.75" y2="3.77"/><line x1="17.2" y1="9" x2="20.23" y2="7.25"/><line x1="18" y1="12" x2="21.5" y2="12"/><line x1="17.2" y1="15" x2="20.23" y2="16.75"/><line x1="15" y1="17.2" x2="16.75" y2="20.23"/><line x1="12" y1="18" x2="12" y2="21.5"/><line x1="9" y1="17.2" x2="7.25" y2="20.23"/><line x1="6.8" y1="15" x2="3.77" y2="16.75"/><line x1="6" y1="12" x2="2.5" y2="12"/><line x1="6.8" y1="9" x2="3.77" y2="7.25"/><line x1="9" y1="6.8" x2="7.25" y2="3.77"/></svg>Clarity Value</span>
             <p>The system underneath the system. Civic infrastructure for government workflows — engineered as one platform, by one team. Built in Miami.</p>
           </div>
-          <div class="cm-footer-col"><h4>Platform</h4><ul><li><a href="/#product">Product</a></li><li><a href="/#modules">Modules</a></li><li><a href="/#approach">Approach</a></li><li><a href="#">Changelog</a></li></ul></div>
+          <div class="cm-footer-col"><h4>Platform</h4><ul><li><a href="/#product">Product</a></li><li><a href="/#modules">Modules</a></li><li><a href="/#approach">Approach</a></li></ul></div>
           <div class="cm-footer-col"><h4>Solutions</h4><ul>${PAGES.map(p=>`<li><a href="${p.href}">${p.label}</a></li>`).join('')}</ul></div>
-          <div class="cm-footer-col"><h4>Company</h4><ul><li><a href="/#about">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li><li><a href="/contacts">Contact</a></li></ul></div>
-          <div class="cm-footer-col"><h4>Trust</h4><ul><li><a href="#">Security</a></li><li><a href="#">Compliance</a></li><li><a href="/privacy-policy">Privacy</a></li><li><a href="/terms-of-use">Terms of Use</a></li></ul></div>
+          <div class="cm-footer-col"><h4>Company</h4><ul><li><a href="/#about">About</a></li><li><a href="/contacts">Contact</a></li></ul></div>
+          <div class="cm-footer-col"><h4>Trust</h4><ul><li><a href="/privacy-policy">Privacy</a></li><li><a href="/terms-of-use">Terms of Use</a></li></ul></div>
         </div>
         <div class="cm-footer-fine">
           <span>&copy; 2026 Clarity Value, Inc. · Built in Miami</span>

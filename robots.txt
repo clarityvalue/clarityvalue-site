@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Post-submission confirmation page: no value in search results.
+Disallow: /thanks
+
+Sitemap: https://clarityvalue.co/sitemap.xml

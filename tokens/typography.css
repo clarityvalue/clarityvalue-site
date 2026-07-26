@@ -4,25 +4,25 @@
    Two weights only — 400 regular, 500 emphasized. No 600, no 700.
    ============================================================ */
 
-/* Brand fonts — Public Sans (self-hosted) */
-@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 100; src: url("../fonts/PublicSans-Thin.ttf") format("truetype"); font-display: swap; }
-@font-face { font-family: "Public Sans"; font-style: italic;  font-weight: 100; src: url("../fonts/PublicSans-ThinItalic.ttf") format("truetype"); font-display: swap; }
-@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 200; src: url("../fonts/PublicSans-ExtraLight.ttf") format("truetype"); font-display: swap; }
-@font-face { font-family: "Public Sans"; font-style: italic;  font-weight: 200; src: url("../fonts/PublicSans-ExtraLightItalic.ttf") format("truetype"); font-display: swap; }
-@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 300; src: url("../fonts/PublicSans-Light.ttf") format("truetype"); font-display: swap; }
-@font-face { font-family: "Public Sans"; font-style: italic;  font-weight: 300; src: url("../fonts/PublicSans-LightItalic.ttf") format("truetype"); font-display: swap; }
-@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 400; src: url("../fonts/PublicSans-Regular.ttf") format("truetype"); font-display: swap; }
-@font-face { font-family: "Public Sans"; font-style: italic;  font-weight: 400; src: url("../fonts/PublicSans-Italic.ttf") format("truetype"); font-display: swap; }
-@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 500; src: url("../fonts/PublicSans-Medium.ttf") format("truetype"); font-display: swap; }
-@font-face { font-family: "Public Sans"; font-style: italic;  font-weight: 500; src: url("../fonts/PublicSans-MediumItalic.ttf") format("truetype"); font-display: swap; }
-@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 600; src: url("../fonts/PublicSans-SemiBold.ttf") format("truetype"); font-display: swap; }
-@font-face { font-family: "Public Sans"; font-style: italic;  font-weight: 600; src: url("../fonts/PublicSans-SemiBoldItalic.ttf") format("truetype"); font-display: swap; }
-@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 700; src: url("../fonts/PublicSans-Bold.ttf") format("truetype"); font-display: swap; }
-@font-face { font-family: "Public Sans"; font-style: italic;  font-weight: 700; src: url("../fonts/PublicSans-BoldItalic.ttf") format("truetype"); font-display: swap; }
-@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 800; src: url("../fonts/PublicSans-ExtraBold.ttf") format("truetype"); font-display: swap; }
-@font-face { font-family: "Public Sans"; font-style: italic;  font-weight: 800; src: url("../fonts/PublicSans-ExtraBoldItalic.ttf") format("truetype"); font-display: swap; }
-@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 900; src: url("../fonts/PublicSans-Black.ttf") format("truetype"); font-display: swap; }
-@font-face { font-family: "Public Sans"; font-style: italic;  font-weight: 900; src: url("../fonts/PublicSans-BlackItalic.ttf") format("truetype"); font-display: swap; }
+/* Brand fonts — Public Sans (self-hosted)
+   WOFF2 first, TTF as fallback for anything that cannot read it. WOFF2 is 60%
+   smaller across the family (431 KB of TTF down to 174 KB).
+
+   This block used to declare 18 faces while only 7 font files exist, so 11 of
+   them pointed at URLs that 404 (Thin, ExtraLight, LightItalic, SemiBoldItalic,
+   BoldItalic, ExtraBold, Black and their italics). Browsers only fetch a face
+   when some element actually matches its weight and style, which is why this
+   stayed invisible: the moment any copy used bold italic, it fired a failed
+   request and then synthesized the slant anyway. Only real files are declared
+   now; unlisted weights and styles are synthesized from the nearest face,
+   which is the same result minus the 404. */
+@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 300; src: url("../fonts/PublicSans-Light.woff2") format("woff2"), url("../fonts/PublicSans-Light.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 400; src: url("../fonts/PublicSans-Regular.woff2") format("woff2"), url("../fonts/PublicSans-Regular.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: italic;  font-weight: 400; src: url("../fonts/PublicSans-Italic.woff2") format("woff2"), url("../fonts/PublicSans-Italic.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 500; src: url("../fonts/PublicSans-Medium.woff2") format("woff2"), url("../fonts/PublicSans-Medium.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: italic;  font-weight: 500; src: url("../fonts/PublicSans-MediumItalic.woff2") format("woff2"), url("../fonts/PublicSans-MediumItalic.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 600; src: url("../fonts/PublicSans-SemiBold.woff2") format("woff2"), url("../fonts/PublicSans-SemiBold.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Public Sans"; font-style: normal;  font-weight: 700; src: url("../fonts/PublicSans-Bold.woff2") format("woff2"), url("../fonts/PublicSans-Bold.ttf") format("truetype"); font-display: swap; }
 
 /* Mono — Roboto Mono via Google Fonts (no brand mono font supplied) */
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap");

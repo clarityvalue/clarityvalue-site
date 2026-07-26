@@ -2,6 +2,17 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  X-Frame-Options: DENY
+  Cross-Origin-Opener-Policy: same-origin
+  # Deliberately scoped to the four directives that cannot break this site:
+  # there is no <object>, <embed>, or <base> anywhere, and the only form action
+  # is same-origin (/thanks). Note what is ABSENT: no default-src and no
+  # script-src, so the Google Analytics snippet on 14 of 15 pages is untouched.
+  # Locking scripts down needs GA's full endpoint set verified first (the
+  # in-app browser blocks trackers, so it could not be observed here) and a
+  # nonce or hash for the inline gtag block. Until then a script-src would risk
+  # silently killing analytics, which is worse than not having one.
+  Content-Security-Policy: frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'
 
 # Netlify serves .webmanifest as application/octet-stream, and because the site
 # also sends X-Content-Type-Options: nosniff the browser refuses to sniff past
