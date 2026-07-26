@@ -5,18 +5,22 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Talk to us — Clarity Value</title>
 <meta name="description" content="Request a pilot or demo. We typically reply within one business day. Built in Miami, working with state and local governments across the country." />
+<!-- Canonical is declared here rather than as a _redirects 301 like the other
+     pages: this page's form POSTs to its own URL, and browsers downgrade a
+     301'd POST to GET, which would drop submissions. See _redirects. -->
+<link rel="canonical" href="https://clarityvalue.co/contacts" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Clarity Value" />
-<meta property="og:url" content="https://clarityvalue.netlify.app/contacts.html" />
+<meta property="og:url" content="https://clarityvalue.co/contacts" />
 <meta property="og:title" content="Talk to us — Clarity Value" />
 <meta property="og:description" content="Request a pilot or demo. We typically reply within one business day." />
-<meta property="og:image" content="https://clarityvalue.netlify.app/art/og-image.png?v=2" />
+<meta property="og:image" content="https://clarityvalue.co/art/og-image.png?v=2" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Talk to us — Clarity Value" />
 <meta name="twitter:description" content="Request a pilot or demo." />
-<meta name="twitter:image" content="https://clarityvalue.netlify.app/art/og-image.png?v=2" />
+<meta name="twitter:image" content="https://clarityvalue.co/art/og-image.png?v=2" />
 
 <link rel="stylesheet" href="tokens/colors.css" />
 <link rel="stylesheet" href="tokens/typography.css" />
@@ -99,7 +103,7 @@
   <section class="cm-contact-hero">
     <div class="cm-contact-hero-row">
       <div class="cm-contact-crumb">
-        <a href="index.html">Clarity Value</a>
+        <a href="/">Clarity Value</a>
         <span class="sep">/</span>
         <span>Talk to us</span>
       </div>
@@ -116,7 +120,7 @@
           • name="demo-request" — appears as the form name in Netlify dashboard
           • data-netlify="true" — tells Netlify to capture submissions
           • netlify-honeypot="bot-field" — spam prevention via the hidden bot-field input
-          • action="/thanks.html" — branded success page after submit
+          • action="/thanks" — branded success page after submit
         For full docs: https://docs.netlify.com/forms/setup/
       -->
       <form
@@ -125,7 +129,7 @@
         method="POST"
         data-netlify="true"
         netlify-honeypot="bot-field"
-        action="/thanks.html"
+        action="/thanks"
         autocomplete="on"
       >
         <input type="hidden" name="form-name" value="demo-request" />
@@ -169,7 +173,7 @@
             Request a pilot
             <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h7M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </button>
-          <p class="cm-form-fineprint">By submitting, you agree to our <a href="privacy-policy.html">Privacy Policy</a>. We never share your info.</p>
+          <p class="cm-form-fineprint">By submitting, you agree to our <a href="/privacy-policy">Privacy Policy</a>. We never share your info.</p>
         </div>
       </form>
 

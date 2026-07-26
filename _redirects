@@ -1,22 +1,38 @@
-# Pretty URLs (always live)
-/home          /index.html             200
-/solutions     /index.html#modules     302
-/approach      /index.html#approach    302
+# Canonical URL form is extensionless: /licensing, never /licensing.html
+#
+# Netlify already serves licensing.html at /licensing by itself, so the pretty
+# form needs no rule here — the old "/licensing → /licensing.html 301" family
+# was both a no-op (file matching wins before the redirect engine) and pointed
+# the wrong way, putting .html back in the address bar for the slugs whose name
+# didn't match their file. The rules below retire the .html form instead.
+/311.html                   /311                     301
+/ai.html                    /ai                      301
+/budget-management.html     /budget-management        301
+/human-resources.html       /human-resources          301
+/land-management.html       /land-management          301
+/licensing.html             /licensing                301
+/privacy-policy.html        /privacy-policy           301
+/record-requests.html       /record-requests          301
+/reports.html               /reports                  301
+/terms-of-use.html          /terms-of-use             301
+/thanks.html                /thanks                   301
+/index.html                 /                         301
 
-# Old Webflow slug → new file mappings (active at cutover)
-/citizen-service-requests   /311.html               301
-/record-request             /record-requests.html   301
-/reports-and-dashboards     /reports.html           301
-/land-management            /land-management.html   301
-/human-resources            /human-resources.html   301
-/budget-management          /budget-management.html 301
-/licensing                  /licensing.html         301
+# contacts.html is deliberately NOT redirected. Its demo-request form POSTs to
+# its own URL, and browsers downgrade a 301'd POST to GET — which would drop
+# submissions on the floor, the same class of breakage as the catch-all rule
+# removed from netlify.toml. contacts.html carries a rel="canonical" instead.
 
-# Pages we built fresh (canonical)
-/privacy-policy             /privacy-policy.html    301
-/terms-of-use               /terms-of-use.html      301
-/contacts                   /contacts.html          301
-/contact                    /contacts.html          301
+# Section shortcuts
+/home          /                        200
+/solutions     /#modules                302
+/approach      /#approach               302
+
+# Old Webflow slugs → canonical clean paths (active at cutover)
+/citizen-service-requests   /311                     301
+/record-request             /record-requests          301
+/reports-and-dashboards     /reports                  301
+/contact                    /contacts                 301
 
 # Pages that exist on the old site but NOT yet on new (defer until rebuild):
 # /about, /product, /articles/* — temporary 302 to homepage
