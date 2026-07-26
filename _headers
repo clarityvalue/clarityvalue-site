@@ -45,6 +45,15 @@
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
 
+# "immutable" promises the bytes at this URL never change, so these filenames
+# are only safe to cache this hard because every <link> to them carries a ?v=N
+# cache key. BUMP THAT ?v= IN EVERY HTML FILE WHENEVER A TOKEN FILE CHANGES.
+# Skipping the bump does not look like a bug, it looks like the edit did
+# nothing: returning visitors keep the previous CSS for up to a year while a
+# fresh browser shows the change. That is exactly how the TTF-to-WOFF2 switch
+# appeared to fail, with correct CSS deployed and stale CSS being served.
+# module-shell.css avoids this trap a second way, with max-age=0 +
+# must-revalidate, which is why edits to it land immediately.
 /tokens/*
   Cache-Control: public, max-age=31536000, immutable
 
